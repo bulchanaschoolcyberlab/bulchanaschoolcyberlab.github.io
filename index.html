@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bulchana School CyberLab - Learn technology, coding, cybersecurity and digital skills.">
+<title>Bulchana School CyberLab</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080d18;
+    color: #ffffff;
+}
+
+header {
+    background: #101a2b;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #173c60;
+}
+
+.logo {
+    color: #00d9ff;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #00d9ff;
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #101d35, #07101f);
+}
+
+.hero h1 {
+    font-size: 38px;
+    color: #00d9ff;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    color: #c4d4e8;
+    line-height: 1.8;
+    max-width: 650px;
+    margin: auto;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 14px 28px;
+    background: #00bce4;
+    color: #06101c;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #ffffff;
+}
+
+section {
+    padding: 65px 20px;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 28px;
+    color: #00d9ff;
+    margin-bottom: 15px;
+}
+
+.intro {
+    color: #aabbd0;
+    max-width: 700px;
+    margin: 0 auto 35px;
+    line-height: 1.7;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.card {
+    background: #111e32;
+    border: 1px solid #1b4567;
+    border-radius: 12px;
+    padding: 28px 20px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    border-color: #00d9ff;
+}
+
+.card h3 {
+    color: #00d9ff;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #bdc9d9;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.card a {
+    color: #00d9ff;
+    display: inline-block;
+    margin-top: 18px;
+    text-decoration: none;
+}
+
+.about {
+    background: #0d1728;
+}
+
+.join {
+    background: linear-gradient(135deg, #102b46, #081525);
+}
+
+footer {
+    background: #050a12;
+    padding: 30px 15px;
+    text-align: center;
+    color: #8295aa;
+    font-size: 13px;
+    line-height: 2;
+}
+
+footer strong {
+    color: #00d9ff;
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    color: white;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+@media(max-width: 700px) {
+    header {
+        flex-wrap: wrap;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    nav.active {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+    .hero {
+        padding: 75px 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">BULCHANA CYBERLAB</div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <nav id="menu">
+        <a href="#home">Home</a>
+        <a href="#courses">Courses</a>
+        <a href="#about">About</a>
+        <a href="#join">Join Us</a>
+    </nav>
+</header>
+
+<div class="hero" id="home">
+    <h1>BULCHANA SCHOOL CYBERLAB</h1>
+
+    <p>
+        Welcome to the future of education.
+        Discover technology, learn coding, explore cybersecurity
+        and develop the digital skills of tomorrow.
+    </p>
+
+    <a href="#courses" class="button">Explore Courses →</a>
+</div>
+
+<section id="courses">
+    <h2 class="section-title">Our Learning Programs</h2>
+
+    <p class="intro">
+        Explore different areas of technology and develop
+        practical skills for the modern digital world.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>💻 Coding Academy</h3>
+            <p>
+                Learn Python, HTML, CSS, JavaScript
+                and discover how software and websites are created.
+            </p>
+            <a href="#join">Explore →</a>
+        </div>
+
+        <div class="card">
+            <h3>🖥️ Computer Skills</h3>
+            <p>
+                Understand computer hardware, software,
+                operating systems and essential digital skills.
+            </p>
+            <a href="#join">Explore →</a>
+        </div>
+
+        <div class="card">
+            <h3>🌐 Modern Technology</h3>
+            <p>
+                Discover artificial intelligence, robotics,
+                digital communication and future technologies.
+            </p>
+            <a href="#join">Explore →</a>
+        </div>
+
+        <div class="card">
+            <h3>🔐 Cybersecurity</h3>
+            <p>
+                Explore ethical hacking, network security,
+                cyber threats and responsible digital protection.
+            </p>
+            <a href="#join">Explore →</a>
+        </div>
+
+        <div class="card">
+            <h3>⚠️ Cybercrime Awareness</h3>
+            <p>
+                Understand online scams, phishing,
+                identity theft and how to stay safe online.
+            </p>
+            <a href="#join">Explore →</a>
+        </div>
+
+        <div class="card">
+            <h3>🎓 Student Community</h3>
+            <p>
+                Share ideas, discuss technology,
+                participate in challenges and learn together.
+            </p>
+            <a href="#join">Explore →</a>
+        </div>
+
+    </div>
+</section>
+
+<section class="about" id="about">
+    <h2 class="section-title">About CyberLab</h2>
+
+    <p class="intro">
+        Bulchana School CyberLab is a technology education
+        initiative designed to introduce students to the digital
+        world, develop their technical abilities and inspire
+        innovation.
+
+        Our mission is to prepare students for a future
+        powered by technology.
+    </p>
+
+    <h3 style="color:#00d9ff;">
+        LEARN • INNOVATE • CONNECT • TRANSFORM
+    </h3>
+</section>
+
+<section class="join" id="join">
+    <h2 class="section-title">Your Digital Journey Starts Here</h2>
+
+    <p class="intro">
+        Become part of a learning community where
+        curiosity meets technology.
+    </p>
+
+    <a href="mailto:YOUR_EMAIL_HERE" class="button">
+        Contact CyberLab
+    </a>
+</section>
+
+<footer>
+    <strong>BULCHANA SCHOOL CYBERLAB</strong>
+    <br>
+    IT Department | Technology | Innovation
+    <br>
+    © 2026 Bulchana School CyberLab.
+    <br>
+    Empowering Students Through Technology.
+</footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
