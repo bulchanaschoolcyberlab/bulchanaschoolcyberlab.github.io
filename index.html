@@ -343,6 +343,73 @@ function toggleMenu() {
     document.getElementById("menu").classList.toggle("active");
 }
 </script>
+<!-- STUDENT REGISTRATION SECTION -->
+<section id="register" style="
+  background: #101d35;
+  padding: 40px 20px;
+  text-align: center;
+  color: white;
+  border-radius: 15px;
+  margin: 30px auto;
+  max-width: 500px;
+">
 
+  <h2 style="color: #38bdf8;">Join Bulchana CyberLab</h2>
+
+  <p>Empowering Students Through Technology.</p>
+
+  <form id="registrationForm">
+
+    <input
+      type="text"
+      id="studentName"
+      placeholder="Enter your full name"
+      required
+      style="width: 90%; padding: 12px; margin: 10px; border-radius: 8px;"
+    >
+
+    <input
+      type="email"
+      id="studentEmail"
+      placeholder="Enter your email"
+      required
+      style="width: 90%; padding: 12px; margin: 10px; border-radius: 8px;"
+    >
+
+    <input
+      type="password"
+      id="studentPassword"
+      placeholder="Create a password"
+      required
+      minlength="8"
+      style="width: 90%; padding: 12px; margin: 10px; border-radius: 8px;"
+    >
+
+    <button type="submit" style="
+      background: #0284c7;
+      color: white;
+      padding: 13px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 15px;
+    ">
+      Create Account
+    </button>
+
+  </form>
+
+  <p id="registrationMessage"></p>
+
+</section>
+
+<script>
+document.getElementById("registrationForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  document.getElementById("registrationMessage").textContent =
+    "Thank you for your interest! Account registration will be available soon.";
+});
+</script>
 </body>
 </html>
