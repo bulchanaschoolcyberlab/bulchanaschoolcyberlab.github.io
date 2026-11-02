@@ -1,157 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bulchana School CyberLab</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<title>Bulchana School CyberLab</title>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #222;
-            line-height: 1.6;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        header {
-            background: #101c35;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #222;
+    line-height: 1.6;
+}
 
-        header h1 {
-            font-size: 26px;
-        }
+header {
+    background: #101c35;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
 
-        nav {
-            background: #17294b;
-            padding: 15px;
-            text-align: center;
-        }
+nav {
+    background: #17294b;
+    padding: 15px;
+    text-align: center;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 10px;
-            display: inline-block;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+    display: inline-block;
+}
 
-        nav a:hover {
-            color: #35d0a0;
-        }
+nav a:hover {
+    color: #35d0a0;
+}
 
-        .hero {
-            background: linear-gradient(135deg, #101c35, #176b87);
-            color: white;
-            text-align: center;
-            padding: 75px 20px;
-        }
+.hero {
+    background: linear-gradient(135deg, #101c35, #176b87);
+    color: white;
+    text-align: center;
+    padding: 75px 20px;
+}
 
-        .hero h2 {
-            font-size: 34px;
-            margin-bottom: 15px;
-        }
+.hero h2 {
+    font-size: 34px;
+    margin-bottom: 15px;
+}
 
-        .hero p {
-            margin-bottom: 25px;
-        }
+.hero p {
+    margin-bottom: 25px;
+}
 
-        .button {
-            display: inline-block;
-            background: #35d0a0;
-            color: #101c35;
-            padding: 12px 25px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+.button {
+    display: inline-block;
+    background: #35d0a0;
+    color: #101c35;
+    padding: 12px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-        section {
-            padding: 45px 20px;
-            text-align: center;
-        }
+section {
+    padding: 45px 20px;
+    text-align: center;
+}
 
-        .container {
-            max-width: 1000px;
-            margin: auto;
-        }
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-top: 25px;
-        }
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
 
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-        }
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
 
-        .card h3 {
-            color: #176b87;
-            margin-bottom: 10px;
-        }
+.card h3 {
+    color: #176b87;
+    margin-bottom: 10px;
+}
 
-        #register {
-            background: #e9f0f8;
-        }
+form {
+    max-width: 420px;
+    margin: 25px auto 0;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
 
-        form {
-            max-width: 420px;
-            margin: 25px auto 0;
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-        }
+input {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
 
-        input {
-            width: 100%;
-            padding: 13px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 16px;
-        }
+button {
+    width: 100%;
+    padding: 13px;
+    background: #176b87;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-        button {
-            width: 100%;
-            padding: 13px;
-            background: #176b87;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+button:hover {
+    background: #101c35;
+}
 
-        button:hover {
-            background: #101c35;
-        }
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
 
-        #registrationMessage {
-            margin-top: 15px;
-            font-weight: bold;
-            overflow-wrap: anywhere;
-        }
+#register {
+    background: #e9f0f8;
+}
 
-        footer {
-            background: #101c35;
-            color: white;
-            text-align: center;
-            padding: 25px;
-        }
-    </style>
+#login {
+    background: #f4f7fb;
+}
+
+#dashboard {
+    background: #e9f0f8;
+}
+
+#registrationMessage,
+#loginMessage {
+    margin-top: 15px;
+    overflow-wrap: anywhere;
+}
+
+#dashboard[hidden] {
+    display: none;
+}
+
+.logout-button {
+    max-width: 200px;
+    margin-top: 25px;
+    background: #b83232;
+}
+
+footer {
+    background: #101c35;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+</style>
 </head>
 
 <body>
@@ -166,6 +186,7 @@
     <a href="#courses">Courses</a>
     <a href="#about">About</a>
     <a href="#register">Register</a>
+    <a href="#login">Login</a>
 </nav>
 
 <div class="hero" id="home">
@@ -192,12 +213,12 @@
 
             <div class="card">
                 <h3>🔐 Cybersecurity</h3>
-                <p>Understand online threats and how to stay safe.</p>
+                <p>Understand online threats and online safety.</p>
             </div>
 
             <div class="card">
                 <h3>🌐 Computer Skills</h3>
-                <p>Develop essential digital and computer skills.</p>
+                <p>Develop essential digital skills.</p>
             </div>
 
             <div class="card">
@@ -227,12 +248,19 @@
         <br>
 
         <h3>We don't replace teachers.</h3>
-        <p>We empower them with technology to make education more effective.</p>
+
+        <p>
+            We empower them with technology to make
+            education more effective.
+        </p>
     </div>
 </section>
 
+<!-- STUDENT REGISTRATION -->
+
 <section id="register">
     <div class="container">
+
         <h2>Student Registration</h2>
 
         <p>Create your student account below.</p>
@@ -268,14 +296,21 @@
             <p id="registrationMessage"></p>
 
         </form>
+
     </div>
+</section>
+
 <!-- STUDENT LOGIN -->
+
 <section id="login">
     <div class="container">
+
         <h2>Student Login 🔐</h2>
+
         <p>Welcome back to Bulchana CyberLab!</p>
 
         <form id="loginForm">
+
             <input
                 type="email"
                 id="loginEmail"
@@ -295,9 +330,64 @@
             </button>
 
             <p id="loginMessage"></p>
+
         </form>
+
     </div>
-</section></section>
+</section>
+
+<!-- STUDENT DASHBOARD -->
+
+<section id="dashboard" hidden>
+
+    <div class="container">
+
+        <h2>🎓 Student Dashboard</h2>
+
+        <h3 id="welcomeName">Welcome, Student!</h3>
+
+        <p id="profileEmail"></p>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>💻 Programming</h3>
+                <p>Start learning Python and web development.</p>
+            </div>
+
+            <div class="card">
+                <h3>🔐 Cybersecurity</h3>
+                <p>Learn about digital protection and safety.</p>
+            </div>
+
+            <div class="card">
+                <h3>🌐 Computer Skills</h3>
+                <p>Improve your computer knowledge.</p>
+            </div>
+
+            <div class="card">
+                <h3>🚀 Projects</h3>
+                <p>Explore practical technology projects.</p>
+            </div>
+
+        </div>
+
+        <p style="margin-top:25px;">
+            Welcome to your learning journey!
+        </p>
+
+        <button
+            type="button"
+            class="logout-button"
+            id="logoutButton">
+            Logout
+        </button>
+
+        <p id="logoutMessage"></p>
+
+    </div>
+
+</section>
 
 <footer>
     <p>© 2026 Bulchana School CyberLab</p>
@@ -305,65 +395,76 @@
 </footer>
 
 <!-- SUPABASE LIBRARY -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- SUPABASE CONNECTION AND REGISTRATION -->
+<!-- SUPABASE CONNECTION -->
+
 <script>
 
-const SUPABASE_URL = "https://gdawpyrjscrocjxdsphl.supabase.co";
+const SUPABASE_URL =
+"https://gdawpyrjscrocjxdsphl.supabase.co";
 
-const SUPABASE_KEY = "sb_publishable_V1ftP1gprlI0KJqeLD6e5w_Tl00butF";
+const SUPABASE_KEY =
+"sb_publishable_V1ftP1gprlI0KJqeLD6e5w_Tl00butF";
 
 const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
 
-console.log("Bulchana CyberLab connected!");
+// SHOW STUDENT DASHBOARD
 
-// STUDENT LOGIN
+function showDashboard(user) {
 
-document.getElementById("loginForm").addEventListener("submit", async function(event) {
+    const name = user.user_metadata?.full_name || "Student";
 
-    event.preventDefault();
+    document.getElementById("welcomeName").textContent =
+        "Welcome, " + name + "! 👋";
 
-    const email = document.getElementById("loginEmail").value.trim();
-    const password = document.getElementById("loginPassword").value;
+    document.getElementById("profileEmail").textContent =
+        user.email;
 
-    const message = document.getElementById("loginMessage");
+    document.getElementById("dashboard").hidden = false;
 
-    message.textContent = "Logging in...";
+    document.getElementById("login").hidden = true;
 
-    const { data, error } = await supabaseClient.auth.signInWithPassword({
-        email: email,
-        password: password
+    document.getElementById("register").hidden = true;
+
+    document.getElementById("dashboard").scrollIntoView({
+        behavior: "smooth"
     });
+}
 
-    if (error) {
-        message.textContent = error.message;
-    } else {
-        message.textContent = "Login successful! Welcome to Bulchana CyberLab!";
-    }
+// STUDENT REGISTRATION
 
-});// STUDENT REGISTRATION
-
-document.getElementById("registrationForm").addEventListener("submit", async function(event) {
+document.getElementById("registrationForm")
+.addEventListener("submit", async function(event) {
 
     event.preventDefault();
 
-    const name = document.getElementById("studentName").value.trim();
-    const email = document.getElementById("studentEmail").value.trim();
-    const password = document.getElementById("studentPassword").value;
+    const name =
+        document.getElementById("studentName").value.trim();
 
-    const message = document.getElementById("registrationMessage");
-    const button = document.getElementById("registerButton");
+    const email =
+        document.getElementById("studentEmail").value.trim();
+
+    const password =
+        document.getElementById("studentPassword").value;
+
+    const message =
+        document.getElementById("registrationMessage");
+
+    const button =
+        document.getElementById("registerButton");
 
     message.textContent = "Creating your account...";
+
     button.disabled = true;
 
     try {
 
-        const { data, error } = await supabaseClient.auth.signUp({
+        const { error } = await supabaseClient.auth.signUp({
 
             email: email,
             password: password,
@@ -377,17 +478,22 @@ document.getElementById("registrationForm").addEventListener("submit", async fun
         });
 
         if (error) {
+
             message.textContent = error.message;
+
         } else {
+
             message.textContent =
                 "Registration successful! Check your email to confirm your account.";
 
             document.getElementById("registrationForm").reset();
+
         }
 
     } catch (error) {
 
-        message.textContent = "Something went wrong. Please try again.";
+        message.textContent =
+            "Something went wrong. Please try again.";
 
     } finally {
 
@@ -396,6 +502,114 @@ document.getElementById("registrationForm").addEventListener("submit", async fun
     }
 
 });
+
+// STUDENT LOGIN
+
+document.getElementById("loginForm")
+.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const email =
+        document.getElementById("loginEmail").value.trim();
+
+    const password =
+        document.getElementById("loginPassword").value;
+
+    const message =
+        document.getElementById("loginMessage");
+
+    const button =
+        document.getElementById("loginButton");
+
+    message.textContent = "Logging in...";
+
+    button.disabled = true;
+
+    try {
+
+        const { data, error } =
+            await supabaseClient.auth.signInWithPassword({
+
+                email: email,
+                password: password
+
+            });
+
+        if (error) {
+
+            message.textContent = error.message;
+
+        } else {
+
+            message.textContent = "Login successful!";
+
+            showDashboard(data.user);
+
+        }
+
+    } catch (error) {
+
+        message.textContent =
+            "Something went wrong. Please try again.";
+
+    } finally {
+
+        button.disabled = false;
+
+    }
+
+});
+
+// STUDENT LOGOUT
+
+document.getElementById("logoutButton")
+.addEventListener("click", async function() {
+
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+
+        document.getElementById("logoutMessage").textContent =
+            error.message;
+
+    } else {
+
+        document.getElementById("dashboard").hidden = true;
+
+        document.getElementById("login").hidden = false;
+
+        document.getElementById("register").hidden = false;
+
+        document.getElementById("loginForm").reset();
+
+        document.getElementById("loginMessage").textContent =
+            "You have logged out successfully.";
+
+        document.getElementById("login").scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+});
+
+// RESTORE EXISTING LOGIN SESSION
+
+async function checkExistingSession() {
+
+    const { data, error } =
+        await supabaseClient.auth.getSession();
+
+    if (!error && data.session) {
+
+        showDashboard(data.session.user);
+
+    }
+
+}
+
+checkExistingSession();
 
 </script>
 
