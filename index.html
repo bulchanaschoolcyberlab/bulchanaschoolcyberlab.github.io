@@ -321,7 +321,31 @@ const supabaseClient = window.supabase.createClient(
 
 console.log("Bulchana CyberLab connected!");
 
-// STUDENT REGISTRATION
+// STUDENT LOGIN
+
+document.getElementById("loginForm").addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+
+    const message = document.getElementById("loginMessage");
+
+    message.textContent = "Logging in...";
+
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password
+    });
+
+    if (error) {
+        message.textContent = error.message;
+    } else {
+        message.textContent = "Login successful! Welcome to Bulchana CyberLab!";
+    }
+
+});// STUDENT REGISTRATION
 
 document.getElementById("registrationForm").addEventListener("submit", async function(event) {
 
