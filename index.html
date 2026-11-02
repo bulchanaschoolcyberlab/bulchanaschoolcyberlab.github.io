@@ -409,7 +409,20 @@ document.getElementById("registrationForm").addEventListener("submit", function(
 
   document.getElementById("registrationMessage").textContent =
     "Thank you for your interest! Account registration will be available soon.";
-});
+}); <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://gdawpyrjscrocjxdsphl.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_V1ftP1gprlI0KJqeLD6e5w_Tl00butF";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+console.log("Bulchana CyberLab connected!");
+</script>
 </script>
 </body>
 </html>
