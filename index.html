@@ -31,8 +31,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background: white;
     color: var(--navy);
-    width: 100%;
-    overflow-x: hidden;
 }
 
 /* NAVIGATION */
@@ -318,7 +316,6 @@ button:disabled {
 }
 
 .dashboard {
-    width: 100%;
     max-width: 950px;
     margin: 25px auto;
     background: white;
@@ -358,10 +355,9 @@ button:disabled {
     display: none !important;
 }
 
-/* ATTENDANCE - ADDITION ONLY */
+/* ATTENDANCE */
 
 .attendance-panel {
-    width: 100%;
     margin-top: 30px;
     padding: 20px;
     background: #f8fbff;
@@ -370,7 +366,7 @@ button:disabled {
 }
 
 .attendance-panel h3 {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
 .attendance-panel p {
@@ -378,7 +374,6 @@ button:disabled {
 }
 
 .attendance-date {
-    display: block;
     max-width: 220px;
 }
 
@@ -397,8 +392,8 @@ button:disabled {
 
 .attendance-table th,
 .attendance-table td {
-    padding: 12px;
     border-bottom: 1px solid #dce7f7;
+    padding: 12px;
     text-align: left;
     font-size: 14px;
 }
@@ -408,7 +403,7 @@ button:disabled {
 }
 
 .attendance-table select {
-    min-width: 105px;
+    min-width: 110px;
     margin: 0;
 }
 
@@ -477,8 +472,7 @@ footer {
     }
 
     .dashboard {
-        padding: 20px;
-        overflow: hidden;
+        overflow-x: auto;
     }
 
     .attendance-panel {
@@ -697,18 +691,18 @@ footer {
 
         </div>
 
-        <!-- ATTENDANCE SECTION -->
+        <!-- ATTENDANCE PANEL -->
 
         <div id="attendancePanel" class="attendance-panel hidden">
 
             <h3>📋 Attendance Management</h3>
 
-            <!-- TEACHER AND ADMIN VIEW -->
+            <!-- STAFF ATTENDANCE -->
 
             <div id="staffAttendance" class="hidden">
 
                 <p>
-                    Select a date and record each approved student's attendance.
+                    Select a date and mark each approved student's attendance.
                 </p>
 
                 <label for="attendanceDate">
@@ -724,12 +718,11 @@ footer {
                 <div class="attendance-table-wrapper">
 
                     <table class="attendance-table">
-
                         <thead>
                             <tr>
                                 <th>Student Name</th>
                                 <th>Email</th>
-                                <th>Status</th>
+                                <th>Attendance</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -739,7 +732,6 @@ footer {
                                 <td colspan="4">Loading students...</td>
                             </tr>
                         </tbody>
-
                     </table>
 
                 </div>
@@ -748,18 +740,17 @@ footer {
 
             </div>
 
-            <!-- STUDENT VIEW -->
+            <!-- STUDENT ATTENDANCE -->
 
             <div id="studentAttendance" class="hidden">
 
                 <p>
-                    View your personal attendance history here.
+                    Here you can view your personal attendance history.
                 </p>
 
                 <div class="attendance-table-wrapper">
 
                     <table class="attendance-table">
-
                         <thead>
                             <tr>
                                 <th>Date</th>
@@ -773,7 +764,6 @@ footer {
                                 <td colspan="3">Loading attendance...</td>
                             </tr>
                         </tbody>
-
                     </table>
 
                 </div>
@@ -922,6 +912,7 @@ async function handleAuth() {
                 );
 
             }
+
         }
 
     } catch (error) {
@@ -934,6 +925,7 @@ async function handleAuth() {
         button.textContent = isLogin ? "Login" : "Create Account";
 
     }
+
 }
 
 
@@ -972,6 +964,7 @@ async function loadUserDashboard(user) {
     }
 
     document.getElementById("authBox").classList.add("hidden");
+
     document.getElementById("dashboard").classList.remove("hidden");
 
     document.getElementById("welcomeUser").textContent =
@@ -986,6 +979,7 @@ async function loadUserDashboard(user) {
     if (profile.role === "admin") {
 
         document.getElementById("adminPanel").classList.remove("hidden");
+
         loadAdminUsers();
 
     } else {
@@ -994,13 +988,14 @@ async function loadUserDashboard(user) {
 
     }
 
-    /* SHOW ATTENDANCE ACCORDING TO ROLE */
+    /* LOAD ATTENDANCE ACCORDING TO USER ROLE */
 
     document.getElementById("attendancePanel").classList.remove("hidden");
 
     if (profile.role === "admin" || profile.role === "teacher") {
 
         document.getElementById("staffAttendance").classList.remove("hidden");
+
         document.getElementById("studentAttendance").classList.add("hidden");
 
         document.getElementById("attendanceDate").value = getLocalDate();
@@ -1010,6 +1005,7 @@ async function loadUserDashboard(user) {
     } else {
 
         document.getElementById("staffAttendance").classList.add("hidden");
+
         document.getElementById("studentAttendance").classList.remove("hidden");
 
         loadMyAttendance();
@@ -1055,11 +1051,13 @@ async function loadAdminUsers() {
         emailCell.textContent = user.email || "";
 
         const roleCell = document.createElement("td");
+
         const roleSelect = document.createElement("select");
 
         ["student", "teacher", "admin"].forEach(role => {
 
             const option = document.createElement("option");
+
             option.value = role;
             option.textContent = role;
 
@@ -1072,11 +1070,13 @@ async function loadAdminUsers() {
         roleCell.appendChild(roleSelect);
 
         const statusCell = document.createElement("td");
+
         const statusSelect = document.createElement("select");
 
         ["pending", "approved", "rejected"].forEach(status => {
 
             const option = document.createElement("option");
+
             option.value = status;
             option.textContent = status;
 
@@ -1089,6 +1089,7 @@ async function loadAdminUsers() {
         statusCell.appendChild(statusSelect);
 
         const actionCell = document.createElement("td");
+
         const saveButton = document.createElement("button");
 
         saveButton.textContent = "Save";
@@ -1170,10 +1171,11 @@ function getLocalDate() {
     const day = String(now.getDate()).padStart(2, "0");
 
     return `${year}-${month}-${day}`;
+
 }
 
 
-/* ATTENDANCE: LOAD STUDENTS */
+/* ATTENDANCE: LOAD APPROVED STUDENTS */
 
 async function loadAttendanceStudents() {
 
@@ -1186,7 +1188,7 @@ async function loadAttendanceStudents() {
     message.textContent = "";
 
     if (!date) {
-        message.textContent = "Please select a date.";
+        message.textContent = "Please select an attendance date.";
         return;
     }
 
@@ -1305,6 +1307,7 @@ async function loadAttendanceStudents() {
                 } catch (error) {
 
                     message.textContent = "Error: " + error.message;
+
                     saveButton.textContent = "Retry";
 
                 } finally {
@@ -1346,7 +1349,7 @@ document.getElementById("attendanceDate").addEventListener(
 );
 
 
-/* STUDENT: VIEW OWN ATTENDANCE */
+/* STUDENT: LOAD PERSONAL ATTENDANCE */
 
 async function loadMyAttendance() {
 
