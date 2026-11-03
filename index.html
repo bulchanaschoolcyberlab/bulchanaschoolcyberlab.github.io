@@ -23,17 +23,13 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: white;
     color: var(--navy);
 }
-
-/* NAVIGATION */
 
 header {
     background: #dceaff;
@@ -52,9 +48,7 @@ header {
     color: #073b91;
 }
 
-.logo span {
-    color: #0875ed;
-}
+.logo span { color: #0875ed; }
 
 nav {
     display: flex;
@@ -77,7 +71,7 @@ nav a.active {
     color: white;
 }
 
-/* HERO SECTION */
+/* HERO */
 
 .hero {
     min-height: 420px;
@@ -90,14 +84,10 @@ nav a.active {
     background:
         radial-gradient(circle at 75% 35%, #20a0ff 0%, transparent 35%),
         linear-gradient(120deg, #062a80, #0759d9 60%, #168aff);
-    position: relative;
     overflow: hidden;
 }
 
-.hero-text {
-    max-width: 650px;
-    z-index: 1;
-}
+.hero-text { max-width: 650px; }
 
 .hero h1 {
     font-size: clamp(36px, 5vw, 64px);
@@ -105,9 +95,7 @@ nav a.active {
     margin-bottom: 18px;
 }
 
-.hero h1 span {
-    color: #73d5ff;
-}
+.hero h1 span { color: #73d5ff; }
 
 .tagline {
     font-size: 24px;
@@ -119,7 +107,6 @@ nav a.active {
 .hero p {
     font-size: 18px;
     line-height: 1.6;
-    max-width: 550px;
     margin-bottom: 25px;
 }
 
@@ -133,23 +120,15 @@ nav a.active {
     font-size: 18px;
     font-weight: bold;
     border: 2px solid #8acbff;
-    transition: 0.3s;
-}
-
-.join-button:hover {
-    background: white;
-    color: #0755d9;
-    transform: translateY(-3px);
 }
 
 .hero-art {
     font-size: 145px;
     min-width: 220px;
     text-align: center;
-    filter: drop-shadow(0 15px 20px #001b55);
 }
 
-/* EXPLORE SECTION */
+/* COURSES */
 
 .explore {
     padding: 35px 5% 65px;
@@ -172,9 +151,7 @@ nav a.active {
     margin-bottom: 10px;
 }
 
-.section-title p {
-    font-size: 20px;
-}
+.section-title p { font-size: 20px; }
 
 .course-grid {
     display: grid;
@@ -183,25 +160,20 @@ nav a.active {
 }
 
 .course-card {
-    background: rgba(255,255,255,0.96);
+    background: white;
     border: 1px solid #d1e3ff;
     border-radius: 20px;
     padding: 25px;
     display: flex;
     align-items: center;
     gap: 20px;
-    box-shadow: 0 5px 12px rgba(0,60,150,0.10);
-    transition: 0.3s;
+    box-shadow: 0 5px 12px rgba(0,60,150,.10);
+    transition: .3s;
 }
 
-.course-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(0,80,200,0.17);
-}
+.course-card:hover { transform: translateY(-6px); }
 
-.course-icon {
-    font-size: 55px;
-}
+.course-icon { font-size: 55px; }
 
 .course-card h3 {
     color: #082d79;
@@ -219,7 +191,6 @@ nav a.active {
 .about {
     padding: 65px 8%;
     text-align: center;
-    background: white;
 }
 
 .about h2 {
@@ -254,7 +225,7 @@ nav a.active {
     margin: auto;
     padding: 30px;
     border-radius: 18px;
-    box-shadow: 0 5px 20px rgba(0,50,130,0.12);
+    box-shadow: 0 5px 20px rgba(0,50,130,.12);
 }
 
 .auth-box h3 {
@@ -282,8 +253,11 @@ button {
     font-weight: bold;
 }
 
-button:hover {
-    background: #064db0;
+button:hover { background: #064db0; }
+
+button:disabled {
+    opacity: .6;
+    cursor: wait;
 }
 
 .auth-box button {
@@ -310,13 +284,15 @@ button:hover {
     display: none;
 }
 
+/* DASHBOARD */
+
 .dashboard {
-    max-width: 950px;
+    max-width: 1100px;
     margin: 25px auto;
     background: white;
     padding: 30px;
     border-radius: 18px;
-    box-shadow: 0 5px 20px rgba(0,50,130,0.10);
+    box-shadow: 0 5px 20px rgba(0,50,130,.10);
 }
 
 .dashboard h3 {
@@ -338,17 +314,38 @@ button:hover {
     font-size: 14px;
 }
 
-.dashboard th {
-    background: #eaf2ff;
+.dashboard th { background: #eaf2ff; }
+
+.dashboard input,
+.dashboard select { min-width: 120px; }
+
+.dashboard button { margin: 3px; }
+
+.panel {
+    margin-top: 30px;
+    padding: 22px;
+    border: 1px solid #d6e5fb;
+    border-radius: 15px;
+    background: #fbfdff;
 }
 
-.user-actions select {
-    min-width: 110px;
+.attendance-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin: 18px 0;
 }
 
-.hidden {
-    display: none !important;
+.attendance-controls input {
+    max-width: 220px;
 }
+
+.status-present { color: #13823b; font-weight: bold; }
+.status-late { color: #b47700; font-weight: bold; }
+.status-absent { color: #c62828; font-weight: bold; }
+
+.hidden { display: none !important; }
 
 /* FOOTER */
 
@@ -360,79 +357,59 @@ footer {
     line-height: 1.8;
 }
 
-@media(max-width: 850px) {
+@media(max-width:850px) {
     .hero {
         flex-direction: column;
         text-align: center;
         padding: 50px 6%;
     }
 
-    .hero-art {
-        font-size: 100px;
-    }
+    .hero-art { font-size: 100px; }
 
-    .course-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .course-grid { grid-template-columns: repeat(2,1fr); }
 }
 
-@media(max-width: 550px) {
+@media(max-width:550px) {
     header {
         justify-content: center;
         text-align: center;
     }
 
-    nav {
-        justify-content: center;
-    }
+    nav { justify-content: center; }
 
     nav a {
         padding: 9px 11px;
         font-size: 14px;
     }
 
-    .course-grid {
-        grid-template-columns: 1fr;
-    }
+    .course-grid { grid-template-columns: 1fr; }
 
-    .course-card {
-        padding: 20px;
-    }
+    .course-card { padding: 20px; }
 
-    .section-title h2 {
-        font-size: 29px;
-    }
+    .section-title h2 { font-size: 29px; }
 
-    .hero h1 {
-        font-size: 39px;
-    }
+    .hero h1 { font-size: 39px; }
 
-    .dashboard {
-        overflow-x: auto;
-    }
+    .dashboard { overflow-x: auto; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
-
 <header>
     <div class="logo">💻 Bulchana <span>CyberLab</span></div>
 
     <nav>
-        <a href="#home" class="active">⌂ Home</a>
+        <a href="#home">⌂ Home</a>
         <a href="#courses">🎓 Courses</a>
+        <a href="#attendance">📋 Attendance</a>
         <a href="#about">About</a>
         <a href="#account">Account</a>
     </nav>
 </header>
 
-<!-- HERO -->
-
 <section class="hero" id="home">
-
     <div class="hero-text">
         <h1>
             Welcome to<br>
@@ -453,16 +430,10 @@ footer {
         </a>
     </div>
 
-    <div class="hero-art">
-        💻🔐
-    </div>
-
+    <div class="hero-art">💻🔐</div>
 </section>
 
-<!-- COURSES -->
-
 <section class="explore" id="courses">
-
     <div class="section-title">
         <h2>Explore Our Learning Areas</h2>
         <p>Learn today. Build tomorrow.</p>
@@ -519,13 +490,9 @@ footer {
         </div>
 
     </div>
-
 </section>
 
-<!-- ABOUT -->
-
 <section class="about" id="about">
-
     <h2>About Bulchana School CyberLab</h2>
 
     <p>
@@ -543,22 +510,19 @@ footer {
 
         Our goal is to connect teachers and students through
         technology and prepare learners for the digital future.
+
         <br><br>
+
         <strong>
             We don't replace teachers; we empower them with
             technology to make education more effective.
         </strong>
     </p>
-
 </section>
-
-<!-- ACCOUNT -->
 
 <section class="account" id="account">
 
     <h2>CyberLab Account</h2>
-
-    <!-- AUTHENTICATION FORM -->
 
     <div class="auth-box" id="authBox">
 
@@ -585,23 +549,19 @@ footer {
 
     </div>
 
-    <!-- USER DASHBOARD -->
-
     <div class="dashboard hidden" id="dashboard">
 
         <h3 id="welcomeUser">Welcome!</h3>
 
         <p id="userRole"></p>
-
         <p id="userStatus"></p>
 
-        <br>
+        <!-- ADMIN USER MANAGEMENT -->
 
-        <div id="adminPanel" class="hidden">
+        <div id="adminPanel" class="panel hidden">
 
             <h3>Admin Dashboard</h3>
-
-            <p>Manage registered CyberLab users below.</p>
+            <p>Manage registered CyberLab users.</p>
 
             <div style="overflow-x:auto;">
                 <table>
@@ -614,12 +574,79 @@ footer {
                             <th>Action</th>
                         </tr>
                     </thead>
-
                     <tbody id="usersTable"></tbody>
                 </table>
             </div>
 
             <p id="adminMessage"></p>
+        </div>
+
+        <!-- ATTENDANCE SYSTEM -->
+
+        <div id="attendancePanel" class="panel hidden">
+
+            <h3>📋 Attendance Management</h3>
+
+            <!-- TEACHER AND ADMIN -->
+
+            <div id="staffAttendance" class="hidden">
+
+                <p>Choose a date and mark student attendance.</p>
+
+                <div class="attendance-controls">
+                    <label for="attendanceDate">Attendance date:</label>
+
+                    <input type="date" id="attendanceDate">
+
+                    <button onclick="loadAttendanceStudents()">
+                        Load Students
+                    </button>
+                </div>
+
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Email</th>
+                                <th>Attendance</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceStudents"></tbody>
+                    </table>
+                </div>
+
+                <p id="staffAttendanceMessage"></p>
+
+            </div>
+
+            <!-- STUDENT ATTENDANCE -->
+
+            <div id="studentAttendance" class="hidden">
+
+                <h3>My Attendance Records</h3>
+
+                <button onclick="loadMyAttendance()">
+                    Refresh My Records
+                </button>
+
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Time Marked</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myAttendanceTable"></tbody>
+                    </table>
+                </div>
+
+                <p id="studentAttendanceMessage"></p>
+
+            </div>
 
         </div>
 
@@ -630,8 +657,6 @@ footer {
     </div>
 
 </section>
-
-<!-- FOOTER -->
 
 <footer>
     <h3>Bulchana School CyberLab</h3>
@@ -645,38 +670,36 @@ footer {
 
 /* SUPABASE CONNECTION */
 
-const SUPABASE_URL = "https://gdawpyrjscrocjxdsphl.supabase.co";
+const SUPABASE_URL =
+    "https://gdawpyrjscrocjxdsphl.supabase.co";
 
-const SUPABASE_KEY = "sb_publishable_V1ftP1gprlI0KJqeLD6e5w_Tl00butF";
+const SUPABASE_KEY =
+    "sb_publishable_V1ftP1gprlI0KJqeLD6e5w_Tl00butF";
 
 const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
 
-
-/* AUTHENTICATION */
-
 let isLogin = false;
-
 let currentUser = null;
 
-function showMessage(message, success = false) {
 
+/* MESSAGES */
+
+function showMessage(message, success = false) {
     const box = document.getElementById("authMessage");
 
     box.style.display = "block";
-
     box.style.background = success ? "#d9fbe5" : "#ffe0e0";
-
     box.style.color = success ? "#126b32" : "#a00000";
-
     box.textContent = message;
 }
 
 
-function toggleAuth() {
+/* LOGIN / REGISTER FORM */
 
+function toggleAuth() {
     isLogin = !isLogin;
 
     document.getElementById("authTitle").textContent =
@@ -686,8 +709,7 @@ function toggleAuth() {
         isLogin ? "Login" : "Create Account";
 
     document.getElementById("nameField").classList.toggle(
-        "hidden",
-        isLogin
+        "hidden", isLogin
     );
 
     document.getElementById("switchText").textContent =
@@ -705,9 +727,7 @@ function toggleAuth() {
 async function handleAuth() {
 
     const name = document.getElementById("fullName").value.trim();
-
     const email = document.getElementById("email").value.trim();
-
     const password = document.getElementById("password").value;
 
     if (!email || !password) {
@@ -723,7 +743,6 @@ async function handleAuth() {
     const button = document.getElementById("authButton");
 
     button.disabled = true;
-
     button.textContent = "Please wait...";
 
     try {
@@ -747,41 +766,28 @@ async function handleAuth() {
                     email,
                     password,
                     options: {
-                        data: {
-                            full_name: name
-                        }
+                        data: { full_name: name }
                     }
                 });
 
             if (error) throw error;
 
             if (data.session) {
-
                 await loadUserDashboard(data.user);
-
             } else {
-
                 showMessage(
-                    "Registration successful! Please check your email and verify your account before logging in.",
+                    "Registration successful! Check your email and verify your account before logging in.",
                     true
                 );
-
             }
-
         }
 
     } catch (error) {
-
         showMessage(error.message);
-
     } finally {
-
         button.disabled = false;
-
         button.textContent = isLogin ? "Login" : "Create Account";
-
     }
-
 }
 
 
@@ -798,29 +804,20 @@ async function loadUserDashboard(user) {
         .single();
 
     if (error || !profile) {
-
-        showMessage("Your profile could not be loaded. Please contact the administrator.");
-
+        showMessage("Your profile could not be loaded.");
         await supabaseClient.auth.signOut();
-
         return;
     }
 
     currentUser = profile;
 
     if (profile.status !== "approved") {
-
-        showMessage(
-            "Your account is waiting for administrator approval."
-        );
-
+        showMessage("Your account is waiting for administrator approval.");
         await supabaseClient.auth.signOut();
-
         return;
     }
 
     document.getElementById("authBox").classList.add("hidden");
-
     document.getElementById("dashboard").classList.remove("hidden");
 
     document.getElementById("welcomeUser").textContent =
@@ -832,18 +829,35 @@ async function loadUserDashboard(user) {
     document.getElementById("userStatus").textContent =
         "Account status: " + profile.status;
 
+    const isStaff =
+        profile.role === "admin" || profile.role === "teacher";
+
+    document.getElementById("adminPanel").classList.toggle(
+        "hidden", profile.role !== "admin"
+    );
+
+    document.getElementById("attendancePanel").classList.remove("hidden");
+
+    document.getElementById("staffAttendance").classList.toggle(
+        "hidden", !isStaff
+    );
+
+    document.getElementById("studentAttendance").classList.toggle(
+        "hidden", isStaff
+    );
+
     if (profile.role === "admin") {
-
-        document.getElementById("adminPanel").classList.remove("hidden");
-
-        loadAdminUsers();
-
-    } else {
-
-        document.getElementById("adminPanel").classList.add("hidden");
-
+        await loadAdminUsers();
     }
 
+    if (isStaff) {
+        document.getElementById("attendanceDate").value =
+            new Date().toLocaleDateString("en-CA");
+
+        await loadAttendanceStudents();
+    } else {
+        await loadMyAttendance();
+    }
 }
 
 
@@ -853,7 +867,8 @@ async function loadAdminUsers() {
 
     const table = document.getElementById("usersTable");
 
-    table.innerHTML = "<tr><td colspan='5'>Loading users...</td></tr>";
+    table.innerHTML =
+        "<tr><td colspan='5'>Loading users...</td></tr>";
 
     const { data: users, error } = await supabaseClient
         .from("profiles")
@@ -861,12 +876,9 @@ async function loadAdminUsers() {
         .order("full_name");
 
     if (error) {
-
         table.innerHTML =
             "<tr><td colspan='5'>Could not load users: " +
-            escapeHTML(error.message) +
-            "</td></tr>";
-
+            escapeHTML(error.message) + "</td></tr>";
         return;
     }
 
@@ -883,47 +895,32 @@ async function loadAdminUsers() {
         emailCell.textContent = user.email || "";
 
         const roleCell = document.createElement("td");
-
         const roleSelect = document.createElement("select");
 
         ["student", "teacher", "admin"].forEach(role => {
-
             const option = document.createElement("option");
-
             option.value = role;
-
             option.textContent = role;
-
-            if (role === user.role) option.selected = true;
-
+            option.selected = role === user.role;
             roleSelect.appendChild(option);
-
         });
 
         roleCell.appendChild(roleSelect);
 
         const statusCell = document.createElement("td");
-
         const statusSelect = document.createElement("select");
 
         ["pending", "approved", "rejected"].forEach(status => {
-
             const option = document.createElement("option");
-
             option.value = status;
-
             option.textContent = status;
-
-            if (status === user.status) option.selected = true;
-
+            option.selected = status === user.status;
             statusSelect.appendChild(option);
-
         });
 
         statusCell.appendChild(statusSelect);
 
         const actionCell = document.createElement("td");
-
         const saveButton = document.createElement("button");
 
         saveButton.textContent = "Save";
@@ -931,24 +928,20 @@ async function loadAdminUsers() {
         saveButton.onclick = async () => {
 
             if (user.id === currentUser.id) {
-
                 document.getElementById("adminMessage").textContent =
                     "You cannot change your own access.";
-
                 return;
             }
 
             const newRole = roleSelect.value;
-
             const newStatus = statusSelect.value;
 
             if (newRole === "admin" &&
-                !confirm("Are you sure you want to give this user administrator access?")) {
+                !confirm("Give this user administrator access?")) {
                 return;
             }
 
             saveButton.disabled = true;
-
             saveButton.textContent = "Saving...";
 
             const { error } = await supabaseClient.rpc(
@@ -961,23 +954,16 @@ async function loadAdminUsers() {
             );
 
             if (error) {
-
                 document.getElementById("adminMessage").textContent =
                     "Error: " + error.message;
-
             } else {
-
                 document.getElementById("adminMessage").textContent =
                     "User access updated successfully!";
-
                 await loadAdminUsers();
-
             }
 
             saveButton.disabled = false;
-
             saveButton.textContent = "Save";
-
         };
 
         actionCell.appendChild(saveButton);
@@ -989,14 +975,222 @@ async function loadAdminUsers() {
         row.appendChild(actionCell);
 
         table.appendChild(row);
-
     });
-
 }
 
 
-function escapeHTML(value) {
+/* ATTENDANCE: LOAD APPROVED STUDENTS */
 
+async function loadAttendanceStudents() {
+
+    if (!currentUser ||
+        !["admin", "teacher"].includes(currentUser.role)) return;
+
+    const table = document.getElementById("attendanceStudents");
+    const message = document.getElementById("staffAttendanceMessage");
+
+    table.innerHTML =
+        "<tr><td colspan='4'>Loading students...</td></tr>";
+
+    message.textContent = "";
+
+    const date = document.getElementById("attendanceDate").value;
+
+    if (!date) {
+        message.textContent = "Please select an attendance date.";
+        table.innerHTML = "";
+        return;
+    }
+
+    const { data: students, error } = await supabaseClient
+        .from("profiles")
+        .select("id, full_name, email")
+        .eq("role", "student")
+        .eq("status", "approved")
+        .order("full_name");
+
+    if (error) {
+        table.innerHTML = "";
+        message.textContent = "Could not load students: " + error.message;
+        return;
+    }
+
+    const { data: records, error: attendanceError } =
+        await supabaseClient
+            .from("attendance")
+            .select("student_id, attendance_status")
+            .eq("attendance_date", date);
+
+    if (attendanceError) {
+        table.innerHTML = "";
+        message.textContent =
+            "Could not load attendance: " + attendanceError.message;
+        return;
+    }
+
+    table.innerHTML = "";
+
+    if (!students || students.length === 0) {
+        table.innerHTML =
+            "<tr><td colspan='4'>No approved students found.</td></tr>";
+        return;
+    }
+
+    students.forEach(student => {
+
+        const existing = records.find(
+            record => record.student_id === student.id
+        );
+
+        const row = document.createElement("tr");
+
+        const nameCell = document.createElement("td");
+        nameCell.textContent = student.full_name || "Unnamed student";
+
+        const emailCell = document.createElement("td");
+        emailCell.textContent = student.email || "";
+
+        const statusCell = document.createElement("td");
+        const select = document.createElement("select");
+
+        ["present", "late", "absent"].forEach(status => {
+            const option = document.createElement("option");
+            option.value = status;
+            option.textContent =
+                status.charAt(0).toUpperCase() + status.slice(1);
+
+            select.appendChild(option);
+        });
+
+        if (existing) {
+            select.value = existing.attendance_status;
+        } else {
+            select.value = "present";
+        }
+
+        statusCell.appendChild(select);
+
+        const actionCell = document.createElement("td");
+        const saveButton = document.createElement("button");
+
+        saveButton.textContent = existing ? "Update" : "Save";
+
+        saveButton.onclick = async () => {
+
+            const status = select.value;
+
+            saveButton.disabled = true;
+            saveButton.textContent = "Saving...";
+
+            const { error } = await supabaseClient
+                .from("attendance")
+                .upsert({
+                    student_id: student.id,
+                    attendance_date: date,
+                    attendance_status: status,
+                    marked_by: currentUser.id
+                }, {
+                    onConflict: "student_id,attendance_date"
+                });
+
+            if (error) {
+
+                message.textContent =
+                    "Error saving attendance: " + error.message;
+
+            } else {
+
+                message.textContent =
+                    "Attendance saved for " +
+                    (student.full_name || "student") + "!";
+
+                await loadAttendanceStudents();
+                return;
+            }
+
+            saveButton.disabled = false;
+            saveButton.textContent = existing ? "Update" : "Save";
+        };
+
+        actionCell.appendChild(saveButton);
+
+        row.appendChild(nameCell);
+        row.appendChild(emailCell);
+        row.appendChild(statusCell);
+        row.appendChild(actionCell);
+
+        table.appendChild(row);
+    });
+}
+
+
+/* STUDENT: VIEW OWN ATTENDANCE */
+
+async function loadMyAttendance() {
+
+    if (!currentUser) return;
+
+    const table = document.getElementById("myAttendanceTable");
+    const message = document.getElementById("studentAttendanceMessage");
+
+    table.innerHTML =
+        "<tr><td colspan='3'>Loading attendance...</td></tr>";
+
+    message.textContent = "";
+
+    const { data: records, error } = await supabaseClient
+        .from("attendance")
+        .select("attendance_date, attendance_status, marked_at")
+        .order("attendance_date", { ascending: false });
+
+    if (error) {
+        table.innerHTML = "";
+        message.textContent =
+            "Could not load attendance: " + error.message;
+        return;
+    }
+
+    table.innerHTML = "";
+
+    if (!records || records.length === 0) {
+        table.innerHTML =
+            "<tr><td colspan='3'>No attendance records yet.</td></tr>";
+        return;
+    }
+
+    records.forEach(record => {
+
+        const row = document.createElement("tr");
+
+        const dateCell = document.createElement("td");
+        dateCell.textContent = record.attendance_date;
+
+        const statusCell = document.createElement("td");
+
+        const status = record.attendance_status;
+
+        statusCell.textContent =
+            status.charAt(0).toUpperCase() + status.slice(1);
+
+        statusCell.className = "status-" + status;
+
+        const timeCell = document.createElement("td");
+
+        timeCell.textContent =
+            new Date(record.marked_at).toLocaleString();
+
+        row.appendChild(dateCell);
+        row.appendChild(statusCell);
+        row.appendChild(timeCell);
+
+        table.appendChild(row);
+    });
+}
+
+
+/* SAFE TEXT */
+
+function escapeHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, character => ({
         "&": "&amp;",
         "<": "&lt;",
@@ -1004,7 +1198,6 @@ function escapeHTML(value) {
         '"': "&quot;",
         "'": "&#39;"
     })[character]);
-
 }
 
 
@@ -1017,13 +1210,9 @@ async function logout() {
     currentUser = null;
 
     document.getElementById("dashboard").classList.add("hidden");
-
     document.getElementById("authBox").classList.remove("hidden");
 
-    document.getElementById("adminPanel").classList.add("hidden");
-
     document.getElementById("authMessage").style.display = "none";
-
 }
 
 
@@ -1031,31 +1220,26 @@ async function logout() {
 
 async function checkExistingSession() {
 
-    const { data, error } = await supabaseClient.auth.getSession();
+    const { data, error } =
+        await supabaseClient.auth.getSession();
 
     if (!error && data.session) {
-
         await loadUserDashboard(data.session.user);
-
     }
-
 }
 
 
 /* AUTH STATE */
 
-supabaseClient.auth.onAuthStateChange((event, session) => {
+supabaseClient.auth.onAuthStateChange((event) => {
 
     if (event === "SIGNED_OUT") {
 
         currentUser = null;
 
         document.getElementById("dashboard").classList.add("hidden");
-
         document.getElementById("authBox").classList.remove("hidden");
-
     }
-
 });
 
 
