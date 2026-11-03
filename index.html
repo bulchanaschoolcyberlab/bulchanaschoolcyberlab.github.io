@@ -1,21 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bulchana School CyberLab</title>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
-const SUPABASE_URL = "https://gdawpyrjscrocjxdsphl.supabase.co";
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
 
-const SUPABASE_KEY = "sb_publishable_V1ftP1gprlI0KJqeLD6e5w_Tl00butF";
+body {
+    background: #07111f;
+    color: white;
+    line-height: 1.6;
+}
+
+header {
+    background: #0d1b2e;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #00e5ff;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #00e5ff;
+}
+
+.hero {
+    min-height: 480px;
+    padding: 100px 8%;
+    text-align: center;
+    background: linear-gradient(135deg, #07111f, #12345a);
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero h1 span {
+    color: #00e5ff;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: auto;
+    color: #cbd5e1;
+}
+
+.button {
+    display: inline-block;
+    background: #00cfe8;
+    color: #07111f;
+    padding: 12px 25px;
+    margin: 20px 8px;
+    border: none;
+    border-radius: 7px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: white;
+}
+
+section {
+    padding: 65px 8%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 35px;
+    color: #00e5ff;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #11243a;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #203c5c;
+}
+
+.card h3 {
+    color: #00e5ff;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #cbd5e1;
+}
+
+.about {
+    background: #0d1b2e;
+}
+
+.about p {
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
+    color: #cbd5e1;
+}
+
+.auth-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.auth-box {
+    background: #11243a;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.auth-box h3 {
+    color: #00e5ff;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 13px;
+    border: 1px solid #38516c;
+    border-radius: 6px;
+    background: #07111f;
+    color: white;
+}
+
+.auth-box button {
+    width: 100%;
+}
+
+.message {
+    margin-top: 12px;
+    color: #00e5ff;
+    overflow-wrap: anywhere;
+}
+
+#dashboard {
+    background: #0d1b2e;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
+    color: #00e5ff;
+}
+
+footer {
+    text-align: center;
+    background: #030914;
+    padding: 25px;
+    color: #94a3b8;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media(max-width: 600px) {
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">⚡ BULCHANA CYBERLAB</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#courses">Courses</a>
+        <a href="#about">About</a>
+        <a href="#register">Register</a>
+        <a href="#login">Login</a>
+    </nav>
+</header>
+
+<!-- HOMEPAGE -->
+<section class="hero" id="home">
+    <h1>Welcome to <span>Bulchana School CyberLab</span></h1>
+
+    <p>
+        Empowering Students Through Technology.
+        Discover coding, computer skills, cybersecurity,
+        digital safety and innovation.
+    </p>
+
+    <a href="#courses" class="button">Explore Courses</a>
+    <a href="#register" class="button">Join CyberLab</a>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+    <h2 class="section-title">Our Learning Programs</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>💻 Programming</h3>
+            <p>
+                Learn Python, HTML, CSS and JavaScript
+                through practical coding exercises.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🖥️ Computer Skills</h3>
+            <p>
+                Discover computer basics, software,
+                operating systems and digital tools.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🛡️ Cybersecurity</h3>
+            <p>
+                Understand cybersecurity, ethical hacking,
+                online threats and digital protection.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🌐 Digital Safety</h3>
+            <p>
+                Learn how to identify phishing, scams,
+                identity theft and cyberbullying.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🚀 Technology & Innovation</h3>
+            <p>
+                Explore modern technology, artificial
+                intelligence and creative projects.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🏆 Practical Projects</h3>
+            <p>
+                Improve your skills through challenges,
+                teamwork, competitions and projects.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <h2 class="section-title">About CyberLab</h2>
+
+    <p>
+        Bulchana School CyberLab is an educational technology
+        platform designed to make teaching and learning easier,
+        more interactive and more accessible.
+
+        It helps teachers organize courses, share learning
+        materials, give assignments and quizzes, and monitor
+        student progress.
+
+        Students can learn coding, computer skills,
+        cybersecurity and digital safety through lessons,
+        videos, practical exercises and projects.
+
+        Our goal is to connect teachers and students through
+        technology, improve communication and prepare learners
+        for the digital future.
+
+        We don't replace teachers; we empower them with
+        technology to make education more effective.
+    </p>
+</section>
+
+<!-- REGISTRATION AND LOGIN -->
+<section id="register">
+    <h2 class="section-title">Join Bulchana CyberLab</h2>
+
+    <div class="auth-container">
+
+        <div class="auth-box">
+            <h3>📝 Student Registration</h3>
+
+            <form id="registrationForm">
+
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="Full Name"
+                    required
+                >
+
+                <input
+                    type="email"
+                    id="studentEmail"
+                    placeholder="Email Address"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="studentPassword"
+                    placeholder="Create Password"
+                    minlength="6"
+                    required
+                >
+
+                <button class="button" type="submit" id="registerButton">
+                    Create Account
+                </button>
+
+            </form>
+
+            <p class="message" id="registrationMessage"></p>
+        </div>
+
+        <div class="auth-box" id="login">
+            <h3>🔐 Student Login</h3>
+
+            <form id="loginForm">
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Email Address"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Password"
+                    required
+                >
+
+                <button class="button" type="submit" id="loginButton">
+                    Login
+                </button>
+
+            </form>
+
+            <p class="message" id="loginMessage"></p>
+        </div>
+
+    </div>
+</section>
+
+<!-- STUDENT DASHBOARD -->
+<section id="dashboard" hidden>
+
+    <div class="dashboard-header">
+        <h2 id="welcomeName">Welcome, Student!</h2>
+        <p id="profileEmail"></p>
+
+        <button class="button" id="logoutButton">
+            Logout
+        </button>
+
+        <p class="message" id="logoutMessage"></p>
+    </div>
+
+    <h2 class="section-title">🎓 Student Dashboard</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>📚 My Courses</h3>
+            <p>Explore your available learning programs.</p>
+        </div>
+
+        <div class="card">
+            <h3>📝 Assignments</h3>
+            <p>Your learning activities and exercises.</p>
+        </div>
+
+        <div class="card">
+            <h3>🏆 Achievements</h3>
+            <p>Your certificates and learning achievements.</p>
+        </div>
+
+        <div class="card">
+            <h3>📅 Attendance</h3>
+            <p>Your attendance records will appear here.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 Bulchana School CyberLab</p>
+    <p>Empowering Students Through Technology.</p>
+</footer>
+
+<script>
+
+// SUPABASE CONNECTION
+
+const SUPABASE_URL =
+"https://gdawpyrjscrocjxdsphl.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_V1ftP1gprlI0KJqeLD6e5w_Tl00butF";
 
 const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
 
-// SHOW DASHBOARD
-function showDashboard(user) {
-    document.getElementById("welcomeName").textContent =
-        "Welcome, " + (user.user_metadata?.full_name || "Student") + "! 👋";
 
-    document.getElementById("profileEmail").textContent = user.email;
+// SHOW DASHBOARD
+
+function showDashboard(user) {
+
+    document.getElementById("welcomeName").textContent =
+        "Welcome, " +
+        (user.user_metadata?.full_name || "Student") +
+        "! 👋";
+
+    document.getElementById("profileEmail").textContent =
+        user.email || "";
 
     document.getElementById("dashboard").hidden = false;
     document.getElementById("login").hidden = true;
@@ -26,77 +484,131 @@ function showDashboard(user) {
     });
 }
 
+
 // REGISTRATION
-document.getElementById("registrationForm").addEventListener("submit", async function(event) {
+
+document.getElementById("registrationForm")
+.addEventListener("submit", async function(event) {
+
     event.preventDefault();
 
-    const message = document.getElementById("registrationMessage");
-    const button = document.getElementById("registerButton");
+    const message =
+        document.getElementById("registrationMessage");
+
+    const button =
+        document.getElementById("registerButton");
 
     button.disabled = true;
-    message.textContent = "Creating account...";
+    message.textContent = "Creating your account...";
 
     try {
-        const { error } = await supabaseClient.auth.signUp({
-            email: document.getElementById("studentEmail").value.trim(),
-            password: document.getElementById("studentPassword").value,
+
+        const { error } =
+        await supabaseClient.auth.signUp({
+
+            email: document.getElementById("studentEmail")
+                .value.trim(),
+
+            password: document.getElementById("studentPassword")
+                .value,
+
             options: {
                 data: {
-                    full_name: document.getElementById("studentName").value.trim()
+                    full_name: document.getElementById("studentName")
+                        .value.trim()
                 }
             }
+
         });
 
         if (error) {
             message.textContent = error.message;
         } else {
             message.textContent =
-                "Account created! Check your email to verify it.";
+                "Account created! Check your email to verify your account.";
 
             document.getElementById("registrationForm").reset();
         }
+
     } catch (error) {
+
         message.textContent = error.message;
+
     } finally {
+
         button.disabled = false;
+
     }
+
 });
 
+
 // LOGIN
-document.getElementById("loginForm").addEventListener("submit", async function(event) {
+
+document.getElementById("loginForm")
+.addEventListener("submit", async function(event) {
+
     event.preventDefault();
 
-    const message = document.getElementById("loginMessage");
-    const button = document.getElementById("loginButton");
+    const message =
+        document.getElementById("loginMessage");
+
+    const button =
+        document.getElementById("loginButton");
 
     button.disabled = true;
     message.textContent = "Logging in...";
 
     try {
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
-            email: document.getElementById("loginEmail").value.trim(),
-            password: document.getElementById("loginPassword").value
+
+        const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+
+            email: document.getElementById("loginEmail")
+                .value.trim(),
+
+            password: document.getElementById("loginPassword")
+                .value
+
         });
 
         if (error) {
+
             message.textContent = error.message;
+
         } else {
+
             message.textContent = "Login successful!";
+
             showDashboard(data.user);
+
         }
+
     } catch (error) {
+
         message.textContent = error.message;
+
     } finally {
+
         button.disabled = false;
+
     }
+
 });
 
+
 // LOGOUT
-document.getElementById("logoutButton").addEventListener("click", async function() {
-    const message = document.getElementById("logoutMessage");
+
+document.getElementById("logoutButton")
+.addEventListener("click", async function() {
+
+    const message =
+        document.getElementById("logoutMessage");
 
     try {
-        const { error } = await supabaseClient.auth.signOut();
+
+        const { error } =
+        await supabaseClient.auth.signOut();
 
         if (error) {
             message.textContent = error.message;
@@ -109,7 +621,6 @@ document.getElementById("logoutButton").addEventListener("click", async function
 
         document.getElementById("loginForm").reset();
 
-        message.textContent = "";
         document.getElementById("loginMessage").textContent =
             "You have logged out successfully.";
 
@@ -118,14 +629,22 @@ document.getElementById("logoutButton").addEventListener("click", async function
         });
 
     } catch (error) {
+
         message.textContent = error.message;
+
     }
+
 });
 
-// RESTORE LOGIN SESSION
+
+// RESTORE EXISTING LOGIN SESSION
+
 async function checkExistingSession() {
+
     try {
-        const { data, error } = await supabaseClient.auth.getSession();
+
+        const { data, error } =
+        await supabaseClient.auth.getSession();
 
         if (error) {
             console.error(error);
@@ -137,10 +656,16 @@ async function checkExistingSession() {
         }
 
     } catch (error) {
-        console.error(error);
+
+        console.error("Session error:", error);
+
     }
+
 }
 
 checkExistingSession();
 
 </script>
+
+</body>
+</html>
