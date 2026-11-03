@@ -31,6 +31,8 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background: white;
     color: var(--navy);
+    width: 100%;
+    overflow-x: hidden;
 }
 
 /* NAVIGATION */
@@ -316,6 +318,7 @@ button:disabled {
 }
 
 .dashboard {
+    width: 100%;
     max-width: 950px;
     margin: 25px auto;
     background: white;
@@ -355,14 +358,15 @@ button:disabled {
     display: none !important;
 }
 
-/* ATTENDANCE */
+/* ATTENDANCE - ADDITION ONLY */
 
 .attendance-panel {
-    margin-top: 35px;
-    padding: 25px;
-    border: 1px solid #cfe0ff;
-    border-radius: 15px;
+    width: 100%;
+    margin-top: 30px;
+    padding: 20px;
     background: #f8fbff;
+    border: 1px solid #d1e3ff;
+    border-radius: 15px;
 }
 
 .attendance-panel h3 {
@@ -373,8 +377,20 @@ button:disabled {
     line-height: 1.6;
 }
 
+.attendance-date {
+    display: block;
+    max-width: 220px;
+}
+
+.attendance-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 .attendance-table {
     width: 100%;
+    min-width: 520px;
     border-collapse: collapse;
     margin-top: 15px;
 }
@@ -384,6 +400,7 @@ button:disabled {
     padding: 12px;
     border-bottom: 1px solid #dce7f7;
     text-align: left;
+    font-size: 14px;
 }
 
 .attendance-table th {
@@ -391,16 +408,15 @@ button:disabled {
 }
 
 .attendance-table select {
-    min-width: 110px;
+    min-width: 105px;
+    margin: 0;
 }
 
 .attendance-message {
     margin-top: 15px;
+    font-size: 14px;
     font-weight: bold;
-}
-
-.attendance-date {
-    max-width: 230px;
+    overflow-wrap: anywhere;
 }
 
 /* FOOTER */
@@ -461,7 +477,12 @@ footer {
     }
 
     .dashboard {
-        overflow-x: auto;
+        padding: 20px;
+        overflow: hidden;
+    }
+
+    .attendance-panel {
+        padding: 14px;
     }
 }
 </style>
@@ -676,18 +697,18 @@ footer {
 
         </div>
 
-        <!-- ATTENDANCE PANEL -->
+        <!-- ATTENDANCE SECTION -->
 
         <div id="attendancePanel" class="attendance-panel hidden">
 
             <h3>📋 Attendance Management</h3>
 
-            <!-- STAFF ATTENDANCE -->
+            <!-- TEACHER AND ADMIN VIEW -->
 
             <div id="staffAttendance" class="hidden">
 
                 <p>
-                    Select a date and mark each approved student's attendance.
+                    Select a date and record each approved student's attendance.
                 </p>
 
                 <label for="attendanceDate">
@@ -700,7 +721,7 @@ footer {
                     class="attendance-date"
                 >
 
-                <div style="overflow-x:auto;">
+                <div class="attendance-table-wrapper">
 
                     <table class="attendance-table">
 
@@ -708,7 +729,7 @@ footer {
                             <tr>
                                 <th>Student Name</th>
                                 <th>Email</th>
-                                <th>Attendance</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -723,22 +744,19 @@ footer {
 
                 </div>
 
-                <p
-                    id="staffAttendanceMessage"
-                    class="attendance-message"
-                ></p>
+                <p id="staffAttendanceMessage" class="attendance-message"></p>
 
             </div>
 
-            <!-- STUDENT ATTENDANCE -->
+            <!-- STUDENT VIEW -->
 
             <div id="studentAttendance" class="hidden">
 
                 <p>
-                    Here you can view your personal attendance history.
+                    View your personal attendance history here.
                 </p>
 
-                <div style="overflow-x:auto;">
+                <div class="attendance-table-wrapper">
 
                     <table class="attendance-table">
 
@@ -760,10 +778,7 @@ footer {
 
                 </div>
 
-                <p
-                    id="studentAttendanceMessage"
-                    class="attendance-message"
-                ></p>
+                <p id="studentAttendanceMessage" class="attendance-message"></p>
 
             </div>
 
@@ -804,19 +819,16 @@ const supabaseClient = window.supabase.createClient(
 /* AUTHENTICATION */
 
 let isLogin = false;
-
 let currentUser = null;
+
 
 function showMessage(message, success = false) {
 
     const box = document.getElementById("authMessage");
 
     box.style.display = "block";
-
     box.style.background = success ? "#d9fbe5" : "#ffe0e0";
-
     box.style.color = success ? "#126b32" : "#a00000";
-
     box.textContent = message;
 }
 
@@ -851,9 +863,7 @@ function toggleAuth() {
 async function handleAuth() {
 
     const name = document.getElementById("fullName").value.trim();
-
     const email = document.getElementById("email").value.trim();
-
     const password = document.getElementById("password").value;
 
     if (!email || !password) {
@@ -869,7 +879,6 @@ async function handleAuth() {
     const button = document.getElementById("authButton");
 
     button.disabled = true;
-
     button.textContent = "Please wait...";
 
     try {
@@ -913,7 +922,6 @@ async function handleAuth() {
                 );
 
             }
-
         }
 
     } catch (error) {
@@ -923,11 +931,9 @@ async function handleAuth() {
     } finally {
 
         button.disabled = false;
-
         button.textContent = isLogin ? "Login" : "Create Account";
 
     }
-
 }
 
 
@@ -945,10 +951,11 @@ async function loadUserDashboard(user) {
 
     if (error || !profile) {
 
-        showMessage("Your profile could not be loaded. Please contact the administrator.");
+        showMessage(
+            "Your profile could not be loaded. Please contact the administrator."
+        );
 
         await supabaseClient.auth.signOut();
-
         return;
     }
 
@@ -961,12 +968,10 @@ async function loadUserDashboard(user) {
         );
 
         await supabaseClient.auth.signOut();
-
         return;
     }
 
     document.getElementById("authBox").classList.add("hidden");
-
     document.getElementById("dashboard").classList.remove("hidden");
 
     document.getElementById("welcomeUser").textContent =
@@ -981,7 +986,6 @@ async function loadUserDashboard(user) {
     if (profile.role === "admin") {
 
         document.getElementById("adminPanel").classList.remove("hidden");
-
         loadAdminUsers();
 
     } else {
@@ -990,14 +994,13 @@ async function loadUserDashboard(user) {
 
     }
 
-    /* LOAD ATTENDANCE FOR APPROVED USERS */
+    /* SHOW ATTENDANCE ACCORDING TO ROLE */
+
+    document.getElementById("attendancePanel").classList.remove("hidden");
 
     if (profile.role === "admin" || profile.role === "teacher") {
 
-        document.getElementById("attendancePanel").classList.remove("hidden");
-
         document.getElementById("staffAttendance").classList.remove("hidden");
-
         document.getElementById("studentAttendance").classList.add("hidden");
 
         document.getElementById("attendanceDate").value = getLocalDate();
@@ -1006,10 +1009,7 @@ async function loadUserDashboard(user) {
 
     } else {
 
-        document.getElementById("attendancePanel").classList.remove("hidden");
-
         document.getElementById("staffAttendance").classList.add("hidden");
-
         document.getElementById("studentAttendance").classList.remove("hidden");
 
         loadMyAttendance();
@@ -1055,15 +1055,12 @@ async function loadAdminUsers() {
         emailCell.textContent = user.email || "";
 
         const roleCell = document.createElement("td");
-
         const roleSelect = document.createElement("select");
 
         ["student", "teacher", "admin"].forEach(role => {
 
             const option = document.createElement("option");
-
             option.value = role;
-
             option.textContent = role;
 
             if (role === user.role) option.selected = true;
@@ -1075,15 +1072,12 @@ async function loadAdminUsers() {
         roleCell.appendChild(roleSelect);
 
         const statusCell = document.createElement("td");
-
         const statusSelect = document.createElement("select");
 
         ["pending", "approved", "rejected"].forEach(status => {
 
             const option = document.createElement("option");
-
             option.value = status;
-
             option.textContent = status;
 
             if (status === user.status) option.selected = true;
@@ -1095,7 +1089,6 @@ async function loadAdminUsers() {
         statusCell.appendChild(statusSelect);
 
         const actionCell = document.createElement("td");
-
         const saveButton = document.createElement("button");
 
         saveButton.textContent = "Save";
@@ -1111,16 +1104,16 @@ async function loadAdminUsers() {
             }
 
             const newRole = roleSelect.value;
-
             const newStatus = statusSelect.value;
 
-            if (newRole === "admin" &&
-                !confirm("Are you sure you want to give this user administrator access?")) {
+            if (
+                newRole === "admin" &&
+                !confirm("Are you sure you want to give this user administrator access?")
+            ) {
                 return;
             }
 
             saveButton.disabled = true;
-
             saveButton.textContent = "Saving...";
 
             const { error } = await supabaseClient.rpc(
@@ -1147,7 +1140,6 @@ async function loadAdminUsers() {
             }
 
             saveButton.disabled = false;
-
             saveButton.textContent = "Save";
 
         };
@@ -1167,26 +1159,21 @@ async function loadAdminUsers() {
 }
 
 
-/* ATTENDANCE FUNCTIONS */
-
-/* GET LOCAL DATE */
+/* ATTENDANCE: LOCAL DATE */
 
 function getLocalDate() {
 
     const now = new Date();
 
     const year = now.getFullYear();
-
     const month = String(now.getMonth() + 1).padStart(2, "0");
-
     const day = String(now.getDate()).padStart(2, "0");
 
     return `${year}-${month}-${day}`;
-
 }
 
 
-/* LOAD APPROVED STUDENTS FOR STAFF */
+/* ATTENDANCE: LOAD STUDENTS */
 
 async function loadAttendanceStudents() {
 
@@ -1194,19 +1181,17 @@ async function loadAttendanceStudents() {
 
     const message = document.getElementById("staffAttendanceMessage");
 
-    table.innerHTML =
-        "<tr><td colspan='4'>Loading students...</td></tr>";
+    const date = document.getElementById("attendanceDate").value;
 
     message.textContent = "";
 
-    const date = document.getElementById("attendanceDate").value;
-
     if (!date) {
-
-        message.textContent = "Please select an attendance date.";
-
+        message.textContent = "Please select a date.";
         return;
     }
+
+    table.innerHTML =
+        "<tr><td colspan='4'>Loading students...</td></tr>";
 
     try {
 
@@ -1250,11 +1235,9 @@ async function loadAttendanceStudents() {
             const row = document.createElement("tr");
 
             const nameCell = document.createElement("td");
-
             nameCell.textContent = student.full_name || "No name";
 
             const emailCell = document.createElement("td");
-
             emailCell.textContent = student.email || "";
 
             const statusCell = document.createElement("td");
@@ -1271,9 +1254,7 @@ async function loadAttendanceStudents() {
                     status.charAt(0).toUpperCase() + status.slice(1);
 
                 if (status === currentStatus) {
-
                     option.selected = true;
-
                 }
 
                 statusSelect.appendChild(option);
@@ -1293,12 +1274,9 @@ async function loadAttendanceStudents() {
                 if (!currentUser) return;
 
                 saveButton.disabled = true;
-
                 saveButton.textContent = "Saving...";
 
                 message.textContent = "";
-
-                const selectedStatus = statusSelect.value;
 
                 try {
 
@@ -1308,7 +1286,7 @@ async function loadAttendanceStudents() {
                             {
                                 student_id: student.id,
                                 attendance_date: date,
-                                attendance_status: selectedStatus,
+                                attendance_status: statusSelect.value,
                                 marked_by: currentUser.id
                             },
                             {
@@ -1319,17 +1297,14 @@ async function loadAttendanceStudents() {
                     if (error) throw error;
 
                     message.textContent =
-                        "Attendance saved for " +
-                        (student.full_name || "student") +
-                        " successfully!";
+                        "Attendance saved successfully for " +
+                        (student.full_name || "student") + "!";
 
                     saveButton.textContent = "Updated";
 
                 } catch (error) {
 
-                    message.textContent =
-                        "Error: " + error.message;
-
+                    message.textContent = "Error: " + error.message;
                     saveButton.textContent = "Retry";
 
                 } finally {
@@ -1354,7 +1329,7 @@ async function loadAttendanceStudents() {
     } catch (error) {
 
         table.innerHTML =
-            "<tr><td colspan='4'>Could not load attendance: " +
+            "<tr><td colspan='4'>Could not load students: " +
             escapeHTML(error.message) +
             "</td></tr>";
 
@@ -1363,7 +1338,7 @@ async function loadAttendanceStudents() {
 }
 
 
-/* RELOAD WHEN STAFF CHANGES THE DATE */
+/* RELOAD ATTENDANCE WHEN DATE CHANGES */
 
 document.getElementById("attendanceDate").addEventListener(
     "change",
@@ -1371,7 +1346,7 @@ document.getElementById("attendanceDate").addEventListener(
 );
 
 
-/* STUDENT: LOAD PERSONAL ATTENDANCE */
+/* STUDENT: VIEW OWN ATTENDANCE */
 
 async function loadMyAttendance() {
 
@@ -1411,7 +1386,6 @@ async function loadMyAttendance() {
             const row = document.createElement("tr");
 
             const dateCell = document.createElement("td");
-
             dateCell.textContent = record.attendance_date;
 
             const statusCell = document.createElement("td");
