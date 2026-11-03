@@ -10,10 +10,10 @@
 
 <style>
 :root {
-    --blue: #1769e0;
-    --navy: #102344;
-    --light: #f3f7ff;
-    --text: #26344a;
+    --blue: #2563eb;
+    --navy: #172b4d;
+    --light: #f8fafc;
+    --text: #334155;
     --muted: #64748b;
 }
 
@@ -26,20 +26,20 @@
 }
 
 body {
-    background: white;
+    background: #ffffff;
     color: var(--text);
     line-height: 1.7;
 }
 
 header {
-    background: white;
+    background: #ffffff;
     padding: 16px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 15px;
-    box-shadow: 0 2px 15px rgba(0,0,0,.07);
+    box-shadow: 0 2px 15px rgba(15,23,42,.06);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -48,7 +48,7 @@ header {
 .logo {
     font-size: 21px;
     font-weight: 800;
-    color: var(--blue);
+    color: var(--navy);
 }
 
 nav {
@@ -82,14 +82,20 @@ nav a:hover {
 }
 
 .button:hover {
-    background: var(--navy);
+    background: #1e40af;
     transform: translateY(-2px);
+}
+
+.button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    transform: none;
 }
 
 .hero {
     padding: 110px 8%;
     text-align: center;
-    background: linear-gradient(135deg, #eaf3ff, #ffffff, #dceaff);
+    background: linear-gradient(135deg, #ffffff, #f8fafc, #eff6ff);
 }
 
 .hero h1 {
@@ -138,21 +144,21 @@ section {
 }
 
 .card {
-    background: white;
+    background: #ffffff;
     padding: 27px;
     border-radius: 14px;
-    border: 1px solid #e5edf7;
-    box-shadow: 0 5px 20px rgba(20,60,110,.06);
+    border: 1px solid #e8edf5;
+    box-shadow: 0 5px 20px rgba(15,23,42,.04);
     transition: .3s;
 }
 
 .card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 25px rgba(20,60,110,.12);
+    box-shadow: 0 12px 25px rgba(15,23,42,.09);
 }
 
 .card h3 {
-    color: var(--blue);
+    color: var(--navy);
     margin-bottom: 12px;
     font-size: 19px;
 }
@@ -163,7 +169,7 @@ section {
 }
 
 .about {
-    background: var(--light);
+    background: #f8fafc;
 }
 
 .about p {
@@ -183,11 +189,11 @@ section {
 }
 
 .auth-box {
-    background: white;
+    background: #ffffff;
     padding: 30px;
     border-radius: 14px;
-    box-shadow: 0 5px 25px rgba(0,0,0,.07);
-    border: 1px solid #e5edf7;
+    box-shadow: 0 5px 25px rgba(15,23,42,.06);
+    border: 1px solid #e8edf5;
 }
 
 .auth-box h3 {
@@ -199,11 +205,11 @@ input {
     width: 100%;
     padding: 14px;
     margin-bottom: 15px;
-    border: 1px solid #d7e0ed;
+    border: 1px solid #dbe2ea;
     border-radius: 7px;
     outline: none;
     font-size: 15px;
-    background: #f9fbff;
+    background: #ffffff;
     color: var(--navy);
 }
 
@@ -223,7 +229,7 @@ input:focus {
 }
 
 #dashboard {
-    background: var(--light);
+    background: #f8fafc;
 }
 
 .dashboard-header {
@@ -232,18 +238,18 @@ input:focus {
 }
 
 .dashboard-header h2 {
-    color: var(--blue);
+    color: var(--navy);
 }
 
 footer {
-    background: var(--navy);
+    background: #172b4d;
     color: white;
     text-align: center;
     padding: 30px;
 }
 
 footer p {
-    color: #cbd5e1;
+    color: #dbe4f0;
 }
 
 [hidden] {
