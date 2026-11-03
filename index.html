@@ -3,294 +3,412 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Bulchana School CyberLab</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 :root {
-    --blue: #1769e0;
-    --dark: #102442;
-    --light: #f4f8ff;
+    --blue: #0866e8;
+    --dark-blue: #062d79;
+    --navy: #071d50;
+    --light-blue: #e7f1ff;
     --white: #ffffff;
-    --muted: #64748b;
-    --border: #e1e8f0;
-    --green: #15965b;
-    --red: #d83b48;
 }
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: var(--light);
-    color: var(--dark);
-    line-height: 1.6;
+    font-family: Arial, Helvetica, sans-serif;
+    background: white;
+    color: var(--navy);
 }
 
+/* NAVIGATION */
+
 header {
-    background: var(--white);
-    padding: 16px 7%;
+    background: #dceaff;
+    padding: 14px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--border);
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 15px;
+    border-bottom: 1px solid #b8d5ff;
 }
 
 .logo {
-    font-size: 21px;
-    font-weight: bold;
-    color: var(--blue);
+    font-size: 25px;
+    font-weight: 800;
+    color: #073b91;
+}
+
+.logo span {
+    color: #0875ed;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 nav a {
     text-decoration: none;
-    color: var(--dark);
-    margin-left: 18px;
+    color: var(--navy);
     font-weight: bold;
+    padding: 12px 18px;
+    border-radius: 30px;
 }
 
-button {
-    border: none;
-    border-radius: 8px;
-    padding: 11px 17px;
-    cursor: pointer;
-    font-weight: bold;
+nav a:hover,
+nav a.active {
     background: var(--blue);
     color: white;
 }
 
-button:hover {
-    opacity: .88;
-}
-
-button:disabled {
-    opacity: .5;
-    cursor: not-allowed;
-}
-
-.secondary {
-    background: #e7efff;
-    color: var(--blue);
-}
-
-.danger {
-    background: var(--red);
-}
-
-.success {
-    background: var(--green);
-}
-
-.container {
-    width: 86%;
-    max-width: 1150px;
-    margin: auto;
-}
-
-/* SOFT BLUE TOP SECTION */
+/* HERO SECTION */
 
 .hero {
-    padding: 85px 10%;
-    text-align: center;
-    background: linear-gradient(
-        135deg,
-        #dceaff,
-        #f0f6ff,
-        #ffffff
-    );
-    border-bottom: 3px solid #1769e0;
+    min-height: 420px;
+    padding: 65px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    color: white;
+    background:
+        radial-gradient(circle at 75% 35%, #20a0ff 0%, transparent 35%),
+        linear-gradient(120deg, #062a80, #0759d9 60%, #168aff);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-text {
+    max-width: 650px;
+    z-index: 1;
 }
 
 .hero h1 {
-    font-size: clamp(30px, 5vw, 48px);
-    margin-bottom: 15px;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.08;
+    margin-bottom: 18px;
 }
 
 .hero h1 span {
-    color: var(--blue);
+    color: #73d5ff;
+}
+
+.tagline {
+    font-size: 24px;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 20px;
 }
 
 .hero p {
-    max-width: 700px;
-    margin: auto;
-    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 550px;
+    margin-bottom: 25px;
 }
 
-section {
-    padding: 55px 0;
+.join-button {
+    display: inline-block;
+    background: #0755f5;
+    color: white;
+    text-decoration: none;
+    padding: 15px 35px;
+    border-radius: 35px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid #8acbff;
+    transition: 0.3s;
+}
+
+.join-button:hover {
+    background: white;
+    color: #0755d9;
+    transform: translateY(-3px);
+}
+
+.hero-art {
+    font-size: 145px;
+    min-width: 220px;
+    text-align: center;
+    filter: drop-shadow(0 15px 20px #001b55);
+}
+
+/* EXPLORE SECTION */
+
+.explore {
+    padding: 35px 5% 65px;
+    background: linear-gradient(
+        to bottom,
+        #dceaff 0%,
+        #edf5ff 25%,
+        #ffffff 75%
+    );
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
-
-.card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 13px;
-    padding: 23px;
-    box-shadow: 0 5px 18px rgba(20, 50, 90, .04);
-}
-
-.card h3 {
+.section-title h2 {
+    font-size: 38px;
+    color: #082b77;
     margin-bottom: 10px;
-    color: var(--blue);
 }
 
-.card p {
-    color: var(--muted);
+.section-title p {
+    font-size: 20px;
 }
 
-.form-box {
-    max-width: 480px;
-    margin: 20px auto;
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.course-card {
+    background: rgba(255,255,255,0.96);
+    border: 1px solid #d1e3ff;
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 5px 12px rgba(0,60,150,0.10);
+    transition: 0.3s;
+}
+
+.course-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,80,200,0.17);
+}
+
+.course-icon {
+    font-size: 55px;
+}
+
+.course-card h3 {
+    color: #082d79;
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.course-card p {
+    color: #263b66;
+    line-height: 1.5;
+}
+
+/* ABOUT */
+
+.about {
+    padding: 65px 8%;
+    text-align: center;
     background: white;
-    padding: 28px;
-    border-radius: 14px;
-    border: 1px solid var(--border);
+}
+
+.about h2 {
+    font-size: 34px;
+    margin-bottom: 20px;
+    color: #082d79;
+}
+
+.about p {
+    max-width: 850px;
+    margin: auto;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+/* ACCOUNT */
+
+.account {
+    padding: 60px 5%;
+    background: #edf5ff;
+}
+
+.account h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.auth-box {
+    max-width: 450px;
+    background: white;
+    margin: auto;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,50,130,0.12);
+}
+
+.auth-box h3 {
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 input, select {
     width: 100%;
-    padding: 12px;
+    padding: 13px;
     margin: 8px 0 15px;
-    border: 1px solid var(--border);
-    border-radius: 7px;
+    border: 1px solid #c8d9f2;
+    border-radius: 9px;
     font-size: 15px;
 }
 
-label {
+button {
+    cursor: pointer;
+    border: none;
+    background: var(--blue);
+    color: white;
+    padding: 13px 20px;
+    border-radius: 9px;
+    font-size: 15px;
     font-weight: bold;
-    font-size: 14px;
 }
 
-.form-box button {
+button:hover {
+    background: #064db0;
+}
+
+.auth-box button {
     width: 100%;
+    margin-top: 5px;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.auth-switch a {
+    color: var(--blue);
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .message {
-    margin-top: 12px;
+    margin-top: 15px;
     padding: 10px;
-    border-radius: 7px;
+    border-radius: 8px;
+    text-align: center;
     display: none;
-    overflow-wrap: anywhere;
 }
 
-.info {
+.dashboard {
+    max-width: 950px;
+    margin: 25px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,50,130,0.10);
+}
+
+.dashboard h3 {
+    color: #073b91;
+    margin-bottom: 15px;
+}
+
+.dashboard table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.dashboard th,
+.dashboard td {
+    border-bottom: 1px solid #dce7f7;
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.dashboard th {
     background: #eaf2ff;
-    color: #174a9b;
 }
 
-.error {
-    background: #ffe9e9;
-    color: #a51d2a;
-}
-
-.success-message {
-    background: #e3f8ec;
-    color: #146c3b;
+.user-actions select {
+    min-width: 110px;
 }
 
 .hidden {
     display: none !important;
 }
 
-.dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-bottom: 25px;
-}
-
-.table-wrap {
-    overflow-x: auto;
-    background: white;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 650px;
-}
-
-th, td {
-    padding: 13px;
-    text-align: left;
-    border-bottom: 1px solid var(--border);
-}
-
-th {
-    background: #edf4ff;
-}
-
-.badge {
-    display: inline-block;
-    padding: 4px 9px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.approved {
-    background: #d9f7e5;
-    color: #13713c;
-}
-
-.pending {
-    background: #fff0cb;
-    color: #916000;
-}
-
-.rejected {
-    background: #ffe0e0;
-    color: #a51d2a;
-}
+/* FOOTER */
 
 footer {
-    background: var(--dark);
+    background: #06265f;
     color: white;
     text-align: center;
-    padding: 30px 10px;
+    padding: 25px 15px;
+    line-height: 1.8;
 }
 
-footer p {
-    color: #c6d4e9;
+@media(max-width: 850px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 6%;
+    }
+
+    .hero-art {
+        font-size: 100px;
+    }
+
+    .course-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-@media(max-width: 600px) {
+@media(max-width: 550px) {
     header {
-        padding: 15px 5%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
     }
 
     nav a {
-        margin-left: 8px;
-        font-size: 13px;
+        padding: 9px 11px;
+        font-size: 14px;
     }
 
-    .container {
-        width: 92%;
+    .course-grid {
+        grid-template-columns: 1fr;
     }
 
-    .hero {
-        padding: 60px 5%;
+    .course-card {
+        padding: 20px;
+    }
+
+    .section-title h2 {
+        font-size: 29px;
+    }
+
+    .hero h1 {
+        font-size: 39px;
+    }
+
+    .dashboard {
+        overflow-x: auto;
     }
 }
 </style>
@@ -298,305 +416,238 @@ footer p {
 
 <body>
 
+<!-- NAVIGATION -->
+
 <header>
-    <div class="logo">💻 Bulchana CyberLab</div>
+    <div class="logo">💻 Bulchana <span>CyberLab</span></div>
 
     <nav>
-        <a href="#home">Home</a>
-        <a href="#courses">Courses</a>
+        <a href="#home" class="active">⌂ Home</a>
+        <a href="#courses">🎓 Courses</a>
         <a href="#about">About</a>
         <a href="#account">Account</a>
     </nav>
 </header>
 
-<main>
+<!-- HERO -->
 
 <section class="hero" id="home">
-    <h1>Welcome to <span>Bulchana School CyberLab</span></h1>
 
-    <p>
-        Empowering Students Through Technology.
-        Learn programming, computer skills, cybersecurity,
-        digital safety and innovation.
-    </p>
+    <div class="hero-text">
+        <h1>
+            Welcome to<br>
+            Bulchana School <span>CyberLab</span>
+        </h1>
 
-    <br>
-    <a href="#account">
-        <button>Join CyberLab</button>
-    </a>
-</section>
-
-<section id="courses">
-    <div class="container">
-        <div class="section-title">
-            <h2>Explore Our Learning Areas</h2>
-            <p>Learn today. Build tomorrow.</p>
+        <div class="tagline">
+            Empowering Students Through Technology.
         </div>
 
-        <div class="grid">
-            <div class="card">
-                <h3>🐍 Python Programming</h3>
+        <p>
+            Learn programming, computer skills, cybersecurity,
+            digital safety and innovation.
+        </p>
+
+        <a href="#account" class="join-button">
+            🚀 Join CyberLab →
+        </a>
+    </div>
+
+    <div class="hero-art">
+        💻🔐
+    </div>
+
+</section>
+
+<!-- COURSES -->
+
+<section class="explore" id="courses">
+
+    <div class="section-title">
+        <h2>Explore Our Learning Areas</h2>
+        <p>Learn today. Build tomorrow.</p>
+    </div>
+
+    <div class="course-grid">
+
+        <div class="course-card">
+            <div class="course-icon">🐍</div>
+            <div>
+                <h3>Python Programming</h3>
                 <p>Learn programming fundamentals and build useful projects.</p>
             </div>
+        </div>
 
-            <div class="card">
-                <h3>🌐 Web Development</h3>
+        <div class="course-card">
+            <div class="course-icon">🌐</div>
+            <div>
+                <h3>Web Development</h3>
                 <p>Explore HTML, CSS and JavaScript.</p>
             </div>
+        </div>
 
-            <div class="card">
-                <h3>🔐 Cybersecurity</h3>
+        <div class="course-card">
+            <div class="course-icon">🛡️</div>
+            <div>
+                <h3>Cybersecurity</h3>
                 <p>Understand ethical hacking and online protection.</p>
             </div>
+        </div>
 
-            <div class="card">
-                <h3>💻 Computer Skills</h3>
+        <div class="course-card">
+            <div class="course-icon">🖥️</div>
+            <div>
+                <h3>Computer Skills</h3>
                 <p>Develop essential digital and computer skills.</p>
             </div>
+        </div>
 
-            <div class="card">
-                <h3>🛡️ Digital Safety</h3>
+        <div class="course-card">
+            <div class="course-icon">✅</div>
+            <div>
+                <h3>Digital Safety</h3>
                 <p>Learn how to protect yourself and others online.</p>
             </div>
+        </div>
 
-            <div class="card">
-                <h3>🚀 Innovation</h3>
+        <div class="course-card">
+            <div class="course-icon">🚀</div>
+            <div>
+                <h3>Innovation</h3>
                 <p>Turn your ideas into practical technology projects.</p>
             </div>
         </div>
-    </div>
-</section>
-
-<section id="about">
-    <div class="container">
-        <div class="section-title">
-            <h2>About Bulchana CyberLab</h2>
-        </div>
-
-        <div class="card">
-            <p>
-                Bulchana School CyberLab is an educational technology
-                platform designed to make teaching and learning easier,
-                more interactive and more accessible.
-            </p>
-
-            <br>
-
-            <p>
-                It helps teachers organize learning activities and
-                supports students in developing coding, computer skills,
-                cybersecurity awareness and digital safety.
-            </p>
-
-            <br>
-
-            <p>
-                Our goal is to connect teachers and students through
-                technology and prepare learners for the digital future.
-            </p>
-
-            <br>
-
-            <strong>
-                We don't replace teachers; we empower them with technology
-                to make education more effective.
-            </strong>
-        </div>
-    </div>
-</section>
-
-<section id="account">
-    <div class="container">
-
-        <div id="authArea">
-
-            <div class="section-title">
-                <h2>Join Bulchana CyberLab</h2>
-                <p>Create an account or log in.</p>
-            </div>
-
-            <div class="form-box">
-                <h3>Create Student Account</h3>
-
-                <form id="registerForm">
-                    <label>Full Name</label>
-                    <input type="text" id="registerName"
-                        placeholder="Enter your full name" required>
-
-                    <label>Email Address</label>
-                    <input type="email" id="registerEmail"
-                        placeholder="Enter your email" required>
-
-                    <label>Password</label>
-                    <input type="password" id="registerPassword"
-                        placeholder="Create a password"
-                        minlength="6" required>
-
-                    <button type="submit" id="registerButton">
-                        Create Account
-                    </button>
-                </form>
-
-                <div id="registerMessage" class="message"></div>
-            </div>
-
-            <div class="form-box">
-                <h3>Student / Staff Login</h3>
-
-                <form id="loginForm">
-                    <label>Email Address</label>
-                    <input type="email" id="loginEmail"
-                        placeholder="Enter your email" required>
-
-                    <label>Password</label>
-                    <input type="password" id="loginPassword"
-                        placeholder="Enter your password" required>
-
-                    <button type="submit" id="loginButton">
-                        Login
-                    </button>
-                </form>
-
-                <div id="loginMessage" class="message"></div>
-            </div>
-        </div>
-
-        <!-- STUDENT DASHBOARD -->
-
-        <div id="studentDashboard" class="hidden">
-            <div class="dashboard-header">
-                <div>
-                    <h2>Student Dashboard</h2>
-                    <p id="studentWelcome"></p>
-                </div>
-
-                <button class="danger" onclick="logout()">Logout</button>
-            </div>
-
-            <div class="grid">
-                <div class="card">
-                    <h3>👤 My Profile</h3>
-                    <p id="studentName"></p>
-                    <p id="studentEmail"></p>
-                    <p id="studentRole"></p>
-                    <p id="studentStatus"></p>
-                </div>
-
-                <div class="card">
-                    <h3>📚 Learning</h3>
-                    <p>Your learning areas will be available as courses are added.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- ADMIN DASHBOARD -->
-
-        <div id="adminDashboard" class="hidden">
-            <div class="dashboard-header">
-                <div>
-                    <h2>🛡️ Administrator Dashboard</h2>
-                    <p id="adminWelcome"></p>
-                </div>
-
-                <button class="danger" onclick="logout()">Logout</button>
-            </div>
-
-            <div class="grid">
-                <div class="card">
-                    <h3>👥 Total Users</h3>
-                    <h2 id="totalUsers">0</h2>
-                </div>
-
-                <div class="card">
-                    <h3>⏳ Pending Accounts</h3>
-                    <h2 id="pendingUsers">0</h2>
-                </div>
-
-                <div class="card">
-                    <h3>👨‍🏫 Teachers</h3>
-                    <h2 id="totalTeachers">0</h2>
-                </div>
-            </div>
-
-            <br>
-
-            <div class="card">
-                <div class="dashboard-header">
-                    <h3>Student and User Management</h3>
-
-                    <button onclick="loadUsers()" class="secondary">
-                        Refresh Users
-                    </button>
-                </div>
-
-                <div id="adminMessage" class="message"></div>
-
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                                <th>Manage</th>
-                            </tr>
-                        </thead>
-
-                        <tbody id="usersTable">
-                            <tr>
-                                <td colspan="5">Loading users...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- TEACHER DASHBOARD -->
-
-        <div id="teacherDashboard" class="hidden">
-            <div class="dashboard-header">
-                <div>
-                    <h2>👨‍🏫 Teacher Dashboard</h2>
-                    <p id="teacherWelcome"></p>
-                </div>
-
-                <button class="danger" onclick="logout()">Logout</button>
-            </div>
-
-            <div class="card">
-                <h3>Teacher Workspace</h3>
-                <p>
-                    Teaching tools, courses, lessons, assignments
-                    and attendance features will be connected
-                    in the next development stage.
-                </p>
-            </div>
-        </div>
 
     </div>
+
 </section>
 
-</main>
+<!-- ABOUT -->
+
+<section class="about" id="about">
+
+    <h2>About Bulchana School CyberLab</h2>
+
+    <p>
+        Bulchana School CyberLab is an educational technology
+        platform designed to make teaching and learning easier,
+        more interactive and more accessible.
+
+        It helps teachers organize courses, share learning
+        materials, give assignments and quizzes, and monitor
+        student progress.
+
+        Students can learn coding, computer skills,
+        cybersecurity and digital safety through lessons,
+        practical exercises and projects.
+
+        Our goal is to connect teachers and students through
+        technology and prepare learners for the digital future.
+        <br><br>
+        <strong>
+            We don't replace teachers; we empower them with
+            technology to make education more effective.
+        </strong>
+    </p>
+
+</section>
+
+<!-- ACCOUNT -->
+
+<section class="account" id="account">
+
+    <h2>CyberLab Account</h2>
+
+    <!-- AUTHENTICATION FORM -->
+
+    <div class="auth-box" id="authBox">
+
+        <h3 id="authTitle">Create Your Account</h3>
+
+        <div id="nameField">
+            <input type="text" id="fullName" placeholder="Full name">
+        </div>
+
+        <input type="email" id="email" placeholder="Email address">
+
+        <input type="password" id="password" placeholder="Password">
+
+        <button id="authButton" onclick="handleAuth()">
+            Create Account
+        </button>
+
+        <div class="auth-switch">
+            <span id="switchText">Already have an account?</span>
+            <a onclick="toggleAuth()" id="switchLink">Login</a>
+        </div>
+
+        <div class="message" id="authMessage"></div>
+
+    </div>
+
+    <!-- USER DASHBOARD -->
+
+    <div class="dashboard hidden" id="dashboard">
+
+        <h3 id="welcomeUser">Welcome!</h3>
+
+        <p id="userRole"></p>
+
+        <p id="userStatus"></p>
+
+        <br>
+
+        <div id="adminPanel" class="hidden">
+
+            <h3>Admin Dashboard</h3>
+
+            <p>Manage registered CyberLab users below.</p>
+
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="usersTable"></tbody>
+                </table>
+            </div>
+
+            <p id="adminMessage"></p>
+
+        </div>
+
+        <button onclick="logout()" style="margin-top:20px;">
+            Logout
+        </button>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
 
 <footer>
     <h3>Bulchana School CyberLab</h3>
-    <p>IT Department | Technology | Innovation</p>
     <p>Empowering Students Through Technology.</p>
-    <br>
+    <p>IT Department | Technology | Innovation</p>
     <p>© 2026 Bulchana School CyberLab. All rights reserved.</p>
 </footer>
 
+
 <script>
 
-// 1. SUPABASE CONNECTION
+/* SUPABASE CONNECTION */
 
-const SUPABASE_URL =
-"https://gdawpyrjscrocjxdsphl.supabase.co";
+const SUPABASE_URL = "https://gdawpyrjscrocjxdsphl.supabase.co";
 
-const SUPABASE_KEY =
-"sb_publishable_V1ftP1gprlI0KJqeLD6e5w_Tl00butF";
+const SUPABASE_KEY = "sb_publishable_V1ftP1gprlI0KJqeLD6e5w_Tl00butF";
 
 const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
@@ -604,112 +655,141 @@ const supabaseClient = window.supabase.createClient(
 );
 
 
-// 2. MESSAGE SYSTEM
+/* AUTHENTICATION */
 
-function showMessage(id, message, type = "info") {
-    const box = document.getElementById(id);
-    box.textContent = message;
-    box.className = "message " + type;
+let isLogin = false;
+
+let currentUser = null;
+
+function showMessage(message, success = false) {
+
+    const box = document.getElementById("authMessage");
+
     box.style.display = "block";
-}
 
-function hideMessage(id) {
-    document.getElementById(id).style.display = "none";
-}
+    box.style.background = success ? "#d9fbe5" : "#ffe0e0";
 
+    box.style.color = success ? "#126b32" : "#a00000";
 
-// 3. HIDE DASHBOARDS
-
-function hideAllDashboards() {
-    document.getElementById("authArea").classList.add("hidden");
-    document.getElementById("studentDashboard").classList.add("hidden");
-    document.getElementById("teacherDashboard").classList.add("hidden");
-    document.getElementById("adminDashboard").classList.add("hidden");
+    box.textContent = message;
 }
 
 
-// 4. REGISTRATION
+function toggleAuth() {
 
-document.getElementById("registerForm")
-.addEventListener("submit", async function(event) {
-    event.preventDefault();
+    isLogin = !isLogin;
 
-    const name = document.getElementById("registerName").value.trim();
-    const email = document.getElementById("registerEmail").value.trim();
-    const password = document.getElementById("registerPassword").value;
+    document.getElementById("authTitle").textContent =
+        isLogin ? "Login to CyberLab" : "Create Your Account";
 
-    const button = document.getElementById("registerButton");
+    document.getElementById("authButton").textContent =
+        isLogin ? "Login" : "Create Account";
+
+    document.getElementById("nameField").classList.toggle(
+        "hidden",
+        isLogin
+    );
+
+    document.getElementById("switchText").textContent =
+        isLogin ? "Don't have an account?" : "Already have an account?";
+
+    document.getElementById("switchLink").textContent =
+        isLogin ? "Register" : "Login";
+
+    document.getElementById("authMessage").style.display = "none";
+}
+
+
+/* REGISTER AND LOGIN */
+
+async function handleAuth() {
+
+    const name = document.getElementById("fullName").value.trim();
+
+    const email = document.getElementById("email").value.trim();
+
+    const password = document.getElementById("password").value;
+
+    if (!email || !password) {
+        showMessage("Please enter your email and password.");
+        return;
+    }
+
+    if (!isLogin && !name) {
+        showMessage("Please enter your full name.");
+        return;
+    }
+
+    const button = document.getElementById("authButton");
 
     button.disabled = true;
-    button.textContent = "Creating account...";
+
+    button.textContent = "Please wait...";
 
     try {
-        const { data, error } = await supabaseClient.auth.signUp({
-            email: email,
-            password: password,
-            options: {
-                data: {
-                    full_name: name
-                }
+
+        if (isLogin) {
+
+            const { data, error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password
+                });
+
+            if (error) throw error;
+
+            await loadUserDashboard(data.user);
+
+        } else {
+
+            const { data, error } =
+                await supabaseClient.auth.signUp({
+                    email,
+                    password,
+                    options: {
+                        data: {
+                            full_name: name
+                        }
+                    }
+                });
+
+            if (error) throw error;
+
+            if (data.session) {
+
+                await loadUserDashboard(data.user);
+
+            } else {
+
+                showMessage(
+                    "Registration successful! Please check your email and verify your account before logging in.",
+                    true
+                );
+
             }
-        });
 
-        if (error) throw error;
+        }
 
-        showMessage(
-            "registerMessage",
-            "Account created! Check your email and verify your account before logging in.",
-            "success-message"
-        );
+    } catch (error) {
 
-        document.getElementById("registerForm").reset();
+        showMessage(error.message);
 
-    } catch(error) {
-        showMessage("registerMessage", error.message, "error");
     } finally {
+
         button.disabled = false;
-        button.textContent = "Create Account";
+
+        button.textContent = isLogin ? "Login" : "Create Account";
+
     }
-});
+
+}
 
 
-// 5. LOGIN
-
-document.getElementById("loginForm")
-.addEventListener("submit", async function(event) {
-    event.preventDefault();
-
-    const email = document.getElementById("loginEmail").value.trim();
-    const password = document.getElementById("loginPassword").value;
-
-    const button = document.getElementById("loginButton");
-
-    button.disabled = true;
-    button.textContent = "Logging in...";
-
-    try {
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
-            email: email,
-            password: password
-        });
-
-        if (error) throw error;
-
-        await loadUserDashboard(data.user);
-
-    } catch(error) {
-        showMessage("loginMessage", error.message, "error");
-    } finally {
-        button.disabled = false;
-        button.textContent = "Login";
-    }
-});
-
-
-// 6. LOAD USER PROFILE
+/* LOAD USER PROFILE */
 
 async function loadUserDashboard(user) {
-    hideAllDashboards();
+
+    if (!user) return;
 
     const { data: profile, error } = await supabaseClient
         .from("profiles")
@@ -717,274 +797,267 @@ async function loadUserDashboard(user) {
         .eq("id", user.id)
         .single();
 
-    if (error) {
-        await supabaseClient.auth.signOut();
-        document.getElementById("authArea").classList.remove("hidden");
+    if (error || !profile) {
 
-        showMessage(
-            "loginMessage",
-            "Could not load your profile: " + error.message,
-            "error"
-        );
+        showMessage("Your profile could not be loaded. Please contact the administrator.");
+
+        await supabaseClient.auth.signOut();
+
         return;
     }
+
+    currentUser = profile;
 
     if (profile.status !== "approved") {
-        await supabaseClient.auth.signOut();
-        document.getElementById("authArea").classList.remove("hidden");
 
         showMessage(
-            "loginMessage",
-            "Your account is " + profile.status +
-            ". Please contact the school administrator.",
-            "info"
+            "Your account is waiting for administrator approval."
         );
+
+        await supabaseClient.auth.signOut();
+
         return;
     }
 
+    document.getElementById("authBox").classList.add("hidden");
+
+    document.getElementById("dashboard").classList.remove("hidden");
+
+    document.getElementById("welcomeUser").textContent =
+        "Welcome, " + (profile.full_name || "Student") + "!";
+
+    document.getElementById("userRole").textContent =
+        "Your role: " + profile.role;
+
+    document.getElementById("userStatus").textContent =
+        "Account status: " + profile.status;
+
     if (profile.role === "admin") {
-        document.getElementById("adminDashboard").classList.remove("hidden");
 
-        document.getElementById("adminWelcome").textContent =
-            "Welcome, " + (profile.full_name || "Administrator");
+        document.getElementById("adminPanel").classList.remove("hidden");
 
-        await loadUsers();
-
-    } else if (profile.role === "teacher") {
-        document.getElementById("teacherDashboard").classList.remove("hidden");
-
-        document.getElementById("teacherWelcome").textContent =
-            "Welcome, " + (profile.full_name || "Teacher");
+        loadAdminUsers();
 
     } else {
-        document.getElementById("studentDashboard").classList.remove("hidden");
 
-        document.getElementById("studentWelcome").textContent =
-            "Welcome, " + (profile.full_name || "Student");
+        document.getElementById("adminPanel").classList.add("hidden");
 
-        document.getElementById("studentName").textContent =
-            "Name: " + (profile.full_name || "Not provided");
-
-        document.getElementById("studentEmail").textContent =
-            "Email: " + profile.email;
-
-        document.getElementById("studentRole").textContent =
-            "Role: " + profile.role;
-
-        document.getElementById("studentStatus").textContent =
-            "Status: " + profile.status;
     }
+
 }
 
 
-// 7. ADMIN LOAD USERS
+/* ADMIN: LOAD USERS */
 
-async function loadUsers() {
+async function loadAdminUsers() {
+
     const table = document.getElementById("usersTable");
 
-    table.innerHTML =
-        "<tr><td colspan='5'>Loading users...</td></tr>";
+    table.innerHTML = "<tr><td colspan='5'>Loading users...</td></tr>";
 
     const { data: users, error } = await supabaseClient
         .from("profiles")
         .select("id, full_name, email, role, status")
-        .order("created_at", { ascending: false });
+        .order("full_name");
 
     if (error) {
+
         table.innerHTML =
             "<tr><td colspan='5'>Could not load users: " +
-            escapeHTML(error.message) + "</td></tr>";
-        return;
-    }
+            escapeHTML(error.message) +
+            "</td></tr>";
 
-    document.getElementById("totalUsers").textContent = users.length;
-
-    document.getElementById("pendingUsers").textContent =
-        users.filter(user => user.status === "pending").length;
-
-    document.getElementById("totalTeachers").textContent =
-        users.filter(user => user.role === "teacher").length;
-
-    if (users.length === 0) {
-        table.innerHTML =
-            "<tr><td colspan='5'>No users found.</td></tr>";
         return;
     }
 
     table.innerHTML = "";
 
     users.forEach(user => {
+
         const row = document.createElement("tr");
 
-        const name = document.createElement("td");
-        name.textContent = user.full_name || "No name";
+        const nameCell = document.createElement("td");
+        nameCell.textContent = user.full_name || "No name";
 
-        const email = document.createElement("td");
-        email.textContent = user.email || "";
+        const emailCell = document.createElement("td");
+        emailCell.textContent = user.email || "";
 
-        const role = document.createElement("td");
-        role.textContent = user.role;
+        const roleCell = document.createElement("td");
 
-        const status = document.createElement("td");
-        const badge = document.createElement("span");
+        const roleSelect = document.createElement("select");
 
-        badge.className = "badge " + user.status;
-        badge.textContent = user.status;
+        ["student", "teacher", "admin"].forEach(role => {
 
-        status.appendChild(badge);
+            const option = document.createElement("option");
 
-        const actions = document.createElement("td");
+            option.value = role;
 
-        if (user.role === "admin") {
-            actions.textContent = "Administrator";
-        } else {
-            const select = document.createElement("select");
+            option.textContent = role;
 
-            select.innerHTML = `
-                <option value="student|approved">Approve student</option>
-                <option value="student|pending">Set pending</option>
-                <option value="student|rejected">Reject student</option>
-                <option value="teacher|approved">Make teacher</option>
-                <option value="admin|approved">Make admin</option>
-            `;
+            if (role === user.role) option.selected = true;
 
-            select.value = user.role + "|" + user.status;
+            roleSelect.appendChild(option);
 
-            const saveButton = document.createElement("button");
+        });
+
+        roleCell.appendChild(roleSelect);
+
+        const statusCell = document.createElement("td");
+
+        const statusSelect = document.createElement("select");
+
+        ["pending", "approved", "rejected"].forEach(status => {
+
+            const option = document.createElement("option");
+
+            option.value = status;
+
+            option.textContent = status;
+
+            if (status === user.status) option.selected = true;
+
+            statusSelect.appendChild(option);
+
+        });
+
+        statusCell.appendChild(statusSelect);
+
+        const actionCell = document.createElement("td");
+
+        const saveButton = document.createElement("button");
+
+        saveButton.textContent = "Save";
+
+        saveButton.onclick = async () => {
+
+            if (user.id === currentUser.id) {
+
+                document.getElementById("adminMessage").textContent =
+                    "You cannot change your own access.";
+
+                return;
+            }
+
+            const newRole = roleSelect.value;
+
+            const newStatus = statusSelect.value;
+
+            if (newRole === "admin" &&
+                !confirm("Are you sure you want to give this user administrator access?")) {
+                return;
+            }
+
+            saveButton.disabled = true;
+
+            saveButton.textContent = "Saving...";
+
+            const { error } = await supabaseClient.rpc(
+                "admin_update_user_access",
+                {
+                    target_user_id: user.id,
+                    new_role: newRole,
+                    new_status: newStatus
+                }
+            );
+
+            if (error) {
+
+                document.getElementById("adminMessage").textContent =
+                    "Error: " + error.message;
+
+            } else {
+
+                document.getElementById("adminMessage").textContent =
+                    "User access updated successfully!";
+
+                await loadAdminUsers();
+
+            }
+
+            saveButton.disabled = false;
+
             saveButton.textContent = "Save";
-            saveButton.style.marginTop = "5px";
 
-            saveButton.addEventListener("click", function() {
-                const parts = select.value.split("|");
-
-                updateUserAccess(user.id, parts[0], parts[1]);
-            });
-
-            actions.appendChild(select);
-            actions.appendChild(saveButton);
-        }
-
-        row.appendChild(name);
-        row.appendChild(email);
-        row.appendChild(role);
-        row.appendChild(status);
-        row.appendChild(actions);
-
-        table.appendChild(row);
-    });
-}
-
-
-// 8. ADMIN UPDATE USER ACCESS
-
-async function updateUserAccess(userId, newRole, newStatus) {
-    if (newRole === "admin") {
-        const confirmed = confirm(
-            "Are you sure you want to give this person administrator access?"
-        );
-
-        if (!confirmed) return;
-    }
-
-    if (!confirm("Save this user's new role and account status?")) return;
-
-    showMessage("adminMessage", "Updating user...", "info");
-
-    const { data, error } = await supabaseClient.rpc(
-        "admin_update_user_access",
-        {
-            target_user_id: userId,
-            new_role: newRole,
-            new_status: newStatus
-        }
-    );
-
-    if (error) {
-        showMessage("adminMessage", error.message, "error");
-        return;
-    }
-
-    if (!data) {
-        showMessage("adminMessage", "No user was updated.", "error");
-        return;
-    }
-
-    showMessage(
-        "adminMessage",
-        "User access updated successfully!",
-        "success-message"
-    );
-
-    await loadUsers();
-}
-
-
-// 9. HTML ESCAPE
-
-function escapeHTML(value) {
-    return String(value).replace(/[&<>"']/g, function(character) {
-        const replacements = {
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#39;"
         };
 
-        return replacements[character];
+        actionCell.appendChild(saveButton);
+
+        row.appendChild(nameCell);
+        row.appendChild(emailCell);
+        row.appendChild(roleCell);
+        row.appendChild(statusCell);
+        row.appendChild(actionCell);
+
+        table.appendChild(row);
+
     });
+
 }
 
 
-// 10. LOGOUT
+function escapeHTML(value) {
+
+    return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[character]);
+
+}
+
+
+/* LOGOUT */
 
 async function logout() {
-    const { error } = await supabaseClient.auth.signOut();
 
-    if (error) {
-        alert(error.message);
-        return;
-    }
+    await supabaseClient.auth.signOut();
 
-    hideAllDashboards();
+    currentUser = null;
 
-    document.getElementById("authArea").classList.remove("hidden");
+    document.getElementById("dashboard").classList.add("hidden");
 
-    document.getElementById("loginForm").reset();
-    document.getElementById("registerForm").reset();
+    document.getElementById("authBox").classList.remove("hidden");
 
-    window.location.hash = "home";
+    document.getElementById("adminPanel").classList.add("hidden");
+
+    document.getElementById("authMessage").style.display = "none";
+
 }
 
 
-// 11. RESTORE LOGIN SESSION
+/* RESTORE LOGIN SESSION */
 
 async function checkExistingSession() {
+
     const { data, error } = await supabaseClient.auth.getSession();
 
-    if (error) {
-        console.error(error.message);
-        return;
+    if (!error && data.session) {
+
+        await loadUserDashboard(data.session.user);
+
     }
 
-    if (data.session) {
-        await loadUserDashboard(data.session.user);
-    }
 }
 
 
-// 12. AUTHENTICATION CHANGES
+/* AUTH STATE */
 
-supabaseClient.auth.onAuthStateChange(function(event, session) {
+supabaseClient.auth.onAuthStateChange((event, session) => {
+
     if (event === "SIGNED_OUT") {
-        hideAllDashboards();
 
-        document.getElementById("authArea").classList.remove("hidden");
+        currentUser = null;
+
+        document.getElementById("dashboard").classList.add("hidden");
+
+        document.getElementById("authBox").classList.remove("hidden");
+
     }
+
 });
 
-
-// 13. START WEBSITE
 
 checkExistingSession();
 
