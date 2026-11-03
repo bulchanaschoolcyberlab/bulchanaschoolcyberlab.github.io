@@ -9,6 +9,14 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+:root {
+    --blue: #1769e0;
+    --navy: #102344;
+    --light: #f3f7ff;
+    --text: #26344a;
+    --muted: #64748b;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -18,151 +26,189 @@
 }
 
 body {
-    background: #07111f;
-    color: white;
-    line-height: 1.6;
+    background: white;
+    color: var(--text);
+    line-height: 1.7;
 }
 
 header {
-    background: #0d1b2e;
-    padding: 18px 7%;
+    background: white;
+    padding: 16px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 15px;
+    box-shadow: 0 2px 15px rgba(0,0,0,.07);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo {
-    font-size: 22px;
-    font-weight: bold;
-    color: #00e5ff;
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--blue);
 }
 
 nav {
     display: flex;
+    gap: 20px;
     flex-wrap: wrap;
-    gap: 15px;
 }
 
 nav a {
-    color: white;
     text-decoration: none;
+    color: var(--navy);
     font-size: 14px;
+    font-weight: bold;
 }
 
 nav a:hover {
-    color: #00e5ff;
-}
-
-.hero {
-    min-height: 480px;
-    padding: 100px 8%;
-    text-align: center;
-    background: linear-gradient(135deg, #07111f, #12345a);
-}
-
-.hero h1 {
-    font-size: 42px;
-    margin-bottom: 15px;
-}
-
-.hero h1 span {
-    color: #00e5ff;
-}
-
-.hero p {
-    max-width: 650px;
-    margin: auto;
-    color: #cbd5e1;
+    color: var(--blue);
 }
 
 .button {
     display: inline-block;
-    background: #00cfe8;
-    color: #07111f;
     padding: 12px 25px;
-    margin: 20px 8px;
+    background: var(--blue);
+    color: white;
     border: none;
-    border-radius: 7px;
-    font-weight: bold;
+    border-radius: 8px;
     text-decoration: none;
+    font-weight: bold;
     cursor: pointer;
+    transition: .3s;
 }
 
 .button:hover {
-    background: white;
+    background: var(--navy);
+    transform: translateY(-2px);
+}
+
+.hero {
+    padding: 110px 8%;
+    text-align: center;
+    background: linear-gradient(135deg, #eaf3ff, #ffffff, #dceaff);
+}
+
+.hero h1 {
+    font-size: clamp(32px, 5vw, 55px);
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: var(--blue);
+}
+
+.hero p {
+    max-width: 700px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 17px;
+}
+
+.hero-buttons {
+    margin-top: 25px;
 }
 
 section {
-    padding: 65px 8%;
+    padding: 75px 8%;
 }
 
 .section-title {
     text-align: center;
-    font-size: 30px;
-    margin-bottom: 35px;
-    color: #00e5ff;
+    font-size: 32px;
+    color: var(--navy);
+    margin-bottom: 12px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 40px;
 }
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
 }
 
 .card {
-    background: #11243a;
-    padding: 25px;
-    border-radius: 12px;
-    border: 1px solid #203c5c;
+    background: white;
+    padding: 27px;
+    border-radius: 14px;
+    border: 1px solid #e5edf7;
+    box-shadow: 0 5px 20px rgba(20,60,110,.06);
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(20,60,110,.12);
 }
 
 .card h3 {
-    color: #00e5ff;
-    margin-bottom: 10px;
+    color: var(--blue);
+    margin-bottom: 12px;
+    font-size: 19px;
 }
 
 .card p {
-    color: #cbd5e1;
+    color: var(--muted);
+    font-size: 15px;
 }
 
 .about {
-    background: #0d1b2e;
+    background: var(--light);
 }
 
 .about p {
     max-width: 850px;
     margin: auto;
     text-align: center;
-    color: #cbd5e1;
+    color: var(--muted);
+    font-size: 16px;
 }
 
 .auth-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 25px;
+    max-width: 950px;
+    margin: auto;
 }
 
 .auth-box {
-    background: #11243a;
-    padding: 25px;
-    border-radius: 12px;
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 5px 25px rgba(0,0,0,.07);
+    border: 1px solid #e5edf7;
 }
 
 .auth-box h3 {
-    color: #00e5ff;
+    color: var(--navy);
     margin-bottom: 20px;
 }
 
 input {
     width: 100%;
-    padding: 13px;
-    margin-bottom: 13px;
-    border: 1px solid #38516c;
-    border-radius: 6px;
-    background: #07111f;
-    color: white;
+    padding: 14px;
+    margin-bottom: 15px;
+    border: 1px solid #d7e0ed;
+    border-radius: 7px;
+    outline: none;
+    font-size: 15px;
+    background: #f9fbff;
+    color: var(--navy);
+}
+
+input:focus {
+    border-color: var(--blue);
 }
 
 .auth-box button {
@@ -171,39 +217,40 @@ input {
 
 .message {
     margin-top: 12px;
-    color: #00e5ff;
+    color: var(--blue);
+    font-size: 14px;
     overflow-wrap: anywhere;
 }
 
 #dashboard {
-    background: #0d1b2e;
+    background: var(--light);
 }
 
 .dashboard-header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 .dashboard-header h2 {
-    color: #00e5ff;
+    color: var(--blue);
 }
 
 footer {
+    background: var(--navy);
+    color: white;
     text-align: center;
-    background: #030914;
-    padding: 25px;
-    color: #94a3b8;
+    padding: 30px;
+}
+
+footer p {
+    color: #cbd5e1;
 }
 
 [hidden] {
     display: none !important;
 }
 
-@media(max-width: 600px) {
-    .hero h1 {
-        font-size: 30px;
-    }
-
+@media(max-width: 650px) {
     header {
         justify-content: center;
         text-align: center;
@@ -211,6 +258,19 @@ footer {
 
     nav {
         justify-content: center;
+        gap: 13px;
+    }
+
+    .hero {
+        padding: 75px 6%;
+    }
+
+    section {
+        padding: 55px 6%;
+    }
+
+    .section-title {
+        font-size: 27px;
     }
 }
 </style>
@@ -225,28 +285,43 @@ footer {
         <a href="#home">Home</a>
         <a href="#courses">Courses</a>
         <a href="#about">About</a>
-        <a href="#register">Register</a>
+        <a href="#register">Join Us</a>
         <a href="#login">Login</a>
     </nav>
 </header>
 
-<!-- HOMEPAGE -->
+<!-- HERO -->
+
 <section class="hero" id="home">
-    <h1>Welcome to <span>Bulchana School CyberLab</span></h1>
+
+    <h1>
+        Explore the Future of
+        <span>Technology</span>
+    </h1>
 
     <p>
-        Empowering Students Through Technology.
-        Discover coding, computer skills, cybersecurity,
-        digital safety and innovation.
+        Welcome to Bulchana School CyberLab.
+        Learn programming, computer skills, cybersecurity
+        and digital innovation. Your journey into technology
+        starts here.
     </p>
 
-    <a href="#courses" class="button">Explore Courses</a>
-    <a href="#register" class="button">Join CyberLab</a>
+    <div class="hero-buttons">
+        <a href="#courses" class="button">Explore Courses</a>
+        <a href="#register" class="button">Join CyberLab</a>
+    </div>
+
 </section>
 
 <!-- COURSES -->
+
 <section id="courses">
-    <h2 class="section-title">Our Learning Programs</h2>
+
+    <h2 class="section-title">Explore Our Programs</h2>
+
+    <p class="section-subtitle">
+        Develop practical skills for the digital world.
+    </p>
 
     <div class="cards">
 
@@ -261,48 +336,51 @@ footer {
         <div class="card">
             <h3>🖥️ Computer Skills</h3>
             <p>
-                Discover computer basics, software,
-                operating systems and digital tools.
+                Understand computer fundamentals,
+                operating systems and essential software.
             </p>
         </div>
 
         <div class="card">
             <h3>🛡️ Cybersecurity</h3>
             <p>
-                Understand cybersecurity, ethical hacking,
-                online threats and digital protection.
+                Explore ethical hacking, cybersecurity
+                fundamentals and online protection.
             </p>
         </div>
 
         <div class="card">
             <h3>🌐 Digital Safety</h3>
             <p>
-                Learn how to identify phishing, scams,
+                Learn to recognize phishing, scams,
                 identity theft and cyberbullying.
             </p>
         </div>
 
         <div class="card">
-            <h3>🚀 Technology & Innovation</h3>
+            <h3>🤖 Technology & AI</h3>
             <p>
-                Explore modern technology, artificial
-                intelligence and creative projects.
+                Discover artificial intelligence,
+                modern technology and innovation.
             </p>
         </div>
 
         <div class="card">
             <h3>🏆 Practical Projects</h3>
             <p>
-                Improve your skills through challenges,
-                teamwork, competitions and projects.
+                Build your skills through challenges,
+                teamwork and creative projects.
             </p>
         </div>
 
     </div>
+
 </section>
 
 <!-- ABOUT -->
+
 <section class="about" id="about">
+
     <h2 class="section-title">About CyberLab</h2>
 
     <p>
@@ -310,31 +388,38 @@ footer {
         platform designed to make teaching and learning easier,
         more interactive and more accessible.
 
-        It helps teachers organize courses, share learning
-        materials, give assignments and quizzes, and monitor
-        student progress.
+        It connects teachers and students through technology.
+        Students can learn coding, computer skills, cybersecurity
+        and digital safety through lessons, videos, exercises
+        and practical projects.
 
-        Students can learn coding, computer skills,
-        cybersecurity and digital safety through lessons,
-        videos, practical exercises and projects.
+        Our goal is to prepare learners for the digital future.
 
-        Our goal is to connect teachers and students through
-        technology, improve communication and prepare learners
-        for the digital future.
+        <br><br>
 
+        <strong>
         We don't replace teachers; we empower them with
         technology to make education more effective.
+        </strong>
     </p>
+
 </section>
 
-<!-- REGISTRATION AND LOGIN -->
+<!-- REGISTRATION -->
+
 <section id="register">
-    <h2 class="section-title">Join Bulchana CyberLab</h2>
+
+    <h2 class="section-title">Become a CyberLab Student</h2>
+
+    <p class="section-subtitle">
+        Create your account and start your learning journey.
+    </p>
 
     <div class="auth-container">
 
         <div class="auth-box">
-            <h3>📝 Student Registration</h3>
+
+            <h3>📝 Create Your Account</h3>
 
             <form id="registrationForm">
 
@@ -361,16 +446,20 @@ footer {
                 >
 
                 <button class="button" type="submit" id="registerButton">
-                    Create Account
+                    Join CyberLab
                 </button>
 
             </form>
 
             <p class="message" id="registrationMessage"></p>
+
         </div>
 
+        <!-- LOGIN -->
+
         <div class="auth-box" id="login">
-            <h3>🔐 Student Login</h3>
+
+            <h3>🔐 Welcome Back</h3>
 
             <form id="loginForm">
 
@@ -395,16 +484,21 @@ footer {
             </form>
 
             <p class="message" id="loginMessage"></p>
+
         </div>
 
     </div>
+
 </section>
 
 <!-- STUDENT DASHBOARD -->
+
 <section id="dashboard" hidden>
 
     <div class="dashboard-header">
+
         <h2 id="welcomeName">Welcome, Student!</h2>
+
         <p id="profileEmail"></p>
 
         <button class="button" id="logoutButton">
@@ -412,25 +506,30 @@ footer {
         </button>
 
         <p class="message" id="logoutMessage"></p>
+
     </div>
 
     <h2 class="section-title">🎓 Student Dashboard</h2>
+
+    <p class="section-subtitle">
+        Welcome to your learning space.
+    </p>
 
     <div class="cards">
 
         <div class="card">
             <h3>📚 My Courses</h3>
-            <p>Explore your available learning programs.</p>
+            <p>Your learning programs will appear here.</p>
         </div>
 
         <div class="card">
             <h3>📝 Assignments</h3>
-            <p>Your learning activities and exercises.</p>
+            <p>Access your learning activities.</p>
         </div>
 
         <div class="card">
             <h3>🏆 Achievements</h3>
-            <p>Your certificates and learning achievements.</p>
+            <p>Celebrate your learning achievements.</p>
         </div>
 
         <div class="card">
@@ -443,8 +542,13 @@ footer {
 </section>
 
 <footer>
-    <p>© 2026 Bulchana School CyberLab</p>
+
+    <p><strong>Bulchana School CyberLab</strong></p>
+
     <p>Empowering Students Through Technology.</p>
+
+    <p>© 2026 Bulchana School CyberLab. All rights reserved.</p>
+
 </footer>
 
 <script>
@@ -482,6 +586,7 @@ function showDashboard(user) {
     document.getElementById("dashboard").scrollIntoView({
         behavior: "smooth"
     });
+
 }
 
 
@@ -522,12 +627,16 @@ document.getElementById("registrationForm")
         });
 
         if (error) {
+
             message.textContent = error.message;
+
         } else {
+
             message.textContent =
                 "Account created! Check your email to verify your account.";
 
             document.getElementById("registrationForm").reset();
+
         }
 
     } catch (error) {
@@ -611,8 +720,10 @@ document.getElementById("logoutButton")
         await supabaseClient.auth.signOut();
 
         if (error) {
+
             message.textContent = error.message;
             return;
+
         }
 
         document.getElementById("dashboard").hidden = true;
@@ -637,7 +748,7 @@ document.getElementById("logoutButton")
 });
 
 
-// RESTORE EXISTING LOGIN SESSION
+// RESTORE LOGIN SESSION
 
 async function checkExistingSession() {
 
