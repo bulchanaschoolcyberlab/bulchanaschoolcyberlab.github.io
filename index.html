@@ -10,8 +10,6 @@ const supabaseClient = window.supabase.createClient(
     SUPABASE_KEY
 );
 
-alert("CyberLab JavaScript is running!");
-
 // SHOW DASHBOARD
 function showDashboard(user) {
     document.getElementById("welcomeName").textContent =
@@ -52,7 +50,9 @@ document.getElementById("registrationForm").addEventListener("submit", async fun
         if (error) {
             message.textContent = error.message;
         } else {
-            message.textContent = "Account created! Check your email to verify it.";
+            message.textContent =
+                "Account created! Check your email to verify it.";
+
             document.getElementById("registrationForm").reset();
         }
     } catch (error) {
@@ -106,14 +106,17 @@ document.getElementById("logoutButton").addEventListener("click", async function
         document.getElementById("dashboard").hidden = true;
         document.getElementById("login").hidden = false;
         document.getElementById("register").hidden = false;
+
         document.getElementById("loginForm").reset();
 
         message.textContent = "";
-        document.getElementById("loginMessage").textContent = "You have logged out successfully.";
+        document.getElementById("loginMessage").textContent =
+            "You have logged out successfully.";
 
         document.getElementById("login").scrollIntoView({
             behavior: "smooth"
         });
+
     } catch (error) {
         message.textContent = error.message;
     }
@@ -132,6 +135,7 @@ async function checkExistingSession() {
         if (data.session) {
             showDashboard(data.session.user);
         }
+
     } catch (error) {
         console.error(error);
     }
