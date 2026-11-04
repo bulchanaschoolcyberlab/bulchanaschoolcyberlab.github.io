@@ -44,8 +44,6 @@ button { cursor:pointer; }
 a { text-decoration:none; color:inherit; }
 .hidden,.app-screen-hidden { display:none !important; }
 
-/* NAVIGATION */
-
 header {
     background:rgba(255,255,255,.97);
     border-bottom:1px solid var(--border);
@@ -829,26 +827,31 @@ footer p + p {
             <h3>Python Programming</h3>
             <p>Learn Python from the basics and develop your problem-solving skills.</p>
         </div>
+
         <div class="course-card">
             <div class="course-icon">🌐</div>
             <h3>Web Development</h3>
             <p>Explore HTML, CSS and JavaScript to build websites.</p>
         </div>
+
         <div class="course-card">
             <div class="course-icon">🛡️</div>
             <h3>Cybersecurity</h3>
             <p>Understand online threats, security concepts and ethical practices.</p>
         </div>
+
         <div class="course-card">
             <div class="course-icon">💻</div>
             <h3>Computer Skills</h3>
             <p>Develop essential computer knowledge and digital skills.</p>
         </div>
+
         <div class="course-card">
             <div class="course-icon">🔐</div>
             <h3>Digital Safety</h3>
             <p>Learn to protect your information and stay safe online.</p>
         </div>
+
         <div class="course-card">
             <div class="course-icon">🚀</div>
             <h3>Innovation</h3>
@@ -864,7 +867,9 @@ footer p + p {
         <h2>📚 Available Courses</h2>
         <p>Explore courses published by our teachers.</p>
     </div>
+
     <div id="publishedCourseMessage" class="message"></div>
+
     <div id="publishedCoursesGrid" class="course-grid">
         <div class="empty-state">Loading available courses...</div>
     </div>
@@ -876,9 +881,12 @@ footer p + p {
     <div class="dashboard-actions">
         <button class="btn btn-small" onclick="closeCourseViewer()">← Back to courses</button>
     </div>
+
     <h2 id="viewerCourseTitle">Course title</h2>
     <p id="viewerCourseDescription" class="dashboard-description"></p>
+
     <h3>📚 Course Lessons</h3>
+
     <div id="viewerLessons">
         <div class="empty-state">Loading lessons...</div>
     </div>
@@ -890,6 +898,7 @@ footer p + p {
     <div class="dashboard-actions">
         <button class="btn btn-small" onclick="backToCourse()">← Back to course</button>
     </div>
+
     <span class="course-category" id="individualLessonOrder">LESSON</span>
     <h2 id="individualLessonTitle">Lesson title</h2>
     <p id="individualLessonDescription" class="dashboard-description"></p>
@@ -903,19 +912,26 @@ footer p + p {
     <div class="about-box">
         <div>
             <h2>About Bulchana School CyberLab</h2>
+
             <p>
                 Bulchana School CyberLab is an educational technology
                 platform designed to make teaching and learning easier,
                 more interactive and more accessible.
             </p>
+
             <p>
                 It connects teachers and students through technology,
                 supporting digital learning, practical skills and
                 preparation for the future.
             </p>
-            <p><strong>We don't replace teachers; we empower them with technology to make education more effective.</strong></p>
+
+            <p>
+                <strong>We don't replace teachers; we empower them with technology to make education more effective.</strong>
+            </p>
+
             <a href="#" class="btn" onclick="showAppScreen('account');return false;">Join CyberLab →</a>
         </div>
+
         <div class="about-visual">🎓💻</div>
     </div>
 </section>
@@ -923,6 +939,7 @@ footer p + p {
 <!-- ACCOUNT SCREEN -->
 
 <section class="account-section app-screen-hidden" id="account">
+
     <div class="account-card" id="authCard">
         <h2>🛡️ CyberLab Account</h2>
         <p class="account-subtitle">Access your learning account</p>
@@ -939,11 +956,14 @@ footer p + p {
                 <label>Email address</label>
                 <input type="email" id="loginEmail" placeholder="Enter your email" required>
             </div>
+
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" id="loginPassword" placeholder="Enter your password" required>
             </div>
+
             <button class="btn full-width" type="submit" id="loginButton">Login</button>
+
             <a href="#" class="small-link" onclick="forgotPassword(event)">Forgot password?</a>
         </form>
 
@@ -952,14 +972,17 @@ footer p + p {
                 <label>Full name</label>
                 <input type="text" id="registerName" placeholder="Enter your full name" required>
             </div>
+
             <div class="form-group">
                 <label>Email address</label>
                 <input type="email" id="registerEmail" placeholder="Enter your email" required>
             </div>
+
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" id="registerPassword" placeholder="At least 6 characters" minlength="6" required>
             </div>
+
             <button class="btn full-width" type="submit" id="registerButton">Create Account</button>
         </form>
     </div>
@@ -973,10 +996,12 @@ footer p + p {
                 <span>Account role</span>
                 <strong id="userRole">Student</strong>
             </div>
+
             <div class="stat-card">
                 <span>Account status</span>
                 <strong id="userStatus">Approved</strong>
             </div>
+
             <div class="stat-card">
                 <span>Attendance records</span>
                 <strong id="attendanceCount">0</strong>
@@ -984,6 +1009,7 @@ footer p + p {
         </div>
 
         <p id="profileMessage" class="message"></p>
+
         <div class="dashboard-actions">
             <button class="btn btn-danger" onclick="logout()">Logout</button>
         </div>
@@ -997,9 +1023,20 @@ footer p + p {
     <p class="dashboard-description">Manage registered users and account access.</p>
 
     <div class="dashboard-grid">
-        <div class="stat-card"><span>Registered users</span><strong id="totalUsers">0</strong></div>
-        <div class="stat-card"><span>Students</span><strong id="totalStudents">0</strong></div>
-        <div class="stat-card"><span>Staff</span><strong id="totalStaff">0</strong></div>
+        <div class="stat-card">
+            <span>Registered users</span>
+            <strong id="totalUsers">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Students</span>
+            <strong id="totalStudents">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Staff</span>
+            <strong id="totalStaff">0</strong>
+        </div>
     </div>
 
     <h3>Registered Users</h3>
@@ -1008,8 +1045,15 @@ footer p + p {
     <div class="table-wrap">
         <table>
             <thead>
-                <tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Actions</th></tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
             </thead>
+
             <tbody id="adminUsersBody">
                 <tr><td colspan="5">Loading users...</td></tr>
             </tbody>
@@ -1021,7 +1065,10 @@ footer p + p {
 
 <section id="courseManagerPanel" class="dashboard app-screen-hidden hidden">
     <h2>📚 Course Manager</h2>
-    <p class="dashboard-description">Create courses, organize lessons and publish learning materials for students.</p>
+
+    <p class="dashboard-description">
+        Create courses, organize lessons and publish learning materials for students.
+    </p>
 
     <div id="courseManagerMessage" class="message"></div>
 
@@ -1046,6 +1093,7 @@ footer p + p {
                     <label>Category</label>
                     <input type="text" id="courseCategory" placeholder="Programming, Cybersecurity...">
                 </div>
+
                 <div class="form-group">
                     <label>Thumbnail image URL</label>
                     <input type="url" id="courseThumbnail" placeholder="https://example.com/image.jpg">
@@ -1059,12 +1107,16 @@ footer p + p {
 
             <div class="dashboard-actions">
                 <button type="submit" class="btn" id="saveCourseButton">Save Course</button>
-                <button type="button" class="btn btn-small btn-danger hidden" id="cancelCourseEdit" onclick="resetCourseForm()">Cancel Edit</button>
+
+                <button type="button" class="btn btn-small btn-danger hidden" id="cancelCourseEdit" onclick="resetCourseForm()">
+                    Cancel Edit
+                </button>
             </div>
         </form>
     </div>
 
     <h3>Manage Your Courses</h3>
+
     <div id="managedCourses">
         <div class="empty-state">Loading courses...</div>
     </div>
@@ -1097,6 +1149,7 @@ footer p + p {
                     <label>Video URL</label>
                     <input type="url" id="lessonVideo" placeholder="https://...">
                 </div>
+
                 <div class="form-group">
                     <label>Learning material URL</label>
                     <input type="url" id="lessonFile" placeholder="https://...">
@@ -1115,7 +1168,10 @@ footer p + p {
 
             <div class="dashboard-actions">
                 <button type="submit" class="btn" id="saveLessonButton">Save Lesson</button>
-                <button type="button" class="btn btn-small btn-danger" onclick="closeLessonEditor()">Close Editor</button>
+
+                <button type="button" class="btn btn-small btn-danger" onclick="closeLessonEditor()">
+                    Close Editor
+                </button>
             </div>
         </form>
     </div>
@@ -1150,9 +1206,18 @@ footer p + p {
         <div id="attendanceMessage" class="message"></div>
 
         <h3>Attendance Records</h3>
+
         <div class="table-wrap">
             <table>
-                <thead><tr><th>Student</th><th>Date</th><th>Status</th><th>Marked at</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Marked at</th>
+                    </tr>
+                </thead>
+
                 <tbody id="staffAttendanceBody">
                     <tr><td colspan="4">Loading attendance...</td></tr>
                 </tbody>
@@ -1162,9 +1227,17 @@ footer p + p {
 
     <div id="studentAttendance" class="hidden">
         <h3>My Attendance History</h3>
+
         <div class="table-wrap">
             <table>
-                <thead><tr><th>Date</th><th>Status</th><th>Marked at</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Marked at</th>
+                    </tr>
+                </thead>
+
                 <tbody id="studentAttendanceBody">
                     <tr><td colspan="3">Loading attendance...</td></tr>
                 </tbody>
@@ -1180,7 +1253,10 @@ footer p + p {
 </footer>
 
 <script>
-/* SUPABASE CONNECTION */
+
+/* =====================================================
+   SUPABASE CONNECTION
+===================================================== */
 
 const SUPABASE_URL = "https://gdawpyrjscrocjxdsphl.supabase.co";
 const SUPABASE_KEY = "sb_publishable_V1ftP1gprlI0KJqeLD6e5w_Tl00butF";
@@ -1214,12 +1290,25 @@ const appScreens = [
     "siteFooter"
 ];
 
+/* These are route names, not HTML element IDs. */
+const validRoutes = [
+    "home",
+    "courses",
+    "courseViewer",
+    "individualLessonPage",
+    "about",
+    "account"
+];
+
 function renderAppScreen(screen) {
     currentAppScreen = screen;
 
     appScreens.forEach(id => {
         const element = document.getElementById(id);
-        if (element) element.classList.add("app-screen-hidden");
+
+        if (element) {
+            element.classList.add("app-screen-hidden");
+        }
     });
 
     if (screen === "home") {
@@ -1260,19 +1349,28 @@ function renderAppScreen(screen) {
     }
 
     document.querySelectorAll(".nav-links a").forEach(link => {
-        link.classList.toggle("active", link.dataset.screen === screen ||
-            (screen === "courseViewer" && link.dataset.screen === "courses") ||
-            (screen === "individualLessonPage" && link.dataset.screen === "courses"));
+        link.classList.toggle(
+            "active",
+            link.dataset.screen === screen ||
+            (
+                (screen === "courseViewer" || screen === "individualLessonPage") &&
+                link.dataset.screen === "courses"
+            )
+        );
     });
 
     window.scrollTo(0, 0);
 }
 
 function showAppScreen(screen, addHistory = true) {
-    if (!appScreens.includes(screen)) return;
+    if (!validRoutes.includes(screen)) return;
 
     if (addHistory) {
-        history.pushState({ appScreen:screen }, "", "#" + screen);
+        history.pushState(
+            { appScreen:screen },
+            "",
+            "#" + screen
+        );
     }
 
     renderAppScreen(screen);
@@ -1280,13 +1378,21 @@ function showAppScreen(screen, addHistory = true) {
 
 window.addEventListener("popstate", event => {
     const screen = event.state?.appScreen || "home";
-    renderAppScreen(screen);
+
+    if (validRoutes.includes(screen)) {
+        renderAppScreen(screen);
+    } else {
+        renderAppScreen("home");
+    }
 });
 
-/* HELPERS */
+/* =====================================================
+   HELPERS
+===================================================== */
 
 function showMessage(id, message, type = "success") {
     const element = document.getElementById(id);
+
     if (!element) return;
 
     element.textContent = message;
@@ -1295,6 +1401,7 @@ function showMessage(id, message, type = "success") {
 
 function clearMessage(id) {
     const element = document.getElementById(id);
+
     if (element) {
         element.textContent = "";
         element.className = "message";
@@ -1318,7 +1425,10 @@ function normalized(value) {
 function formatDate(value) {
     if (!value) return "—";
 
-    const date = new Date(value + (String(value).length === 10 ? "T00:00:00" : ""));
+    const date = new Date(
+        value + (String(value).length === 10 ? "T00:00:00" : "")
+    );
+
     return isNaN(date) ? value : date.toLocaleDateString();
 }
 
@@ -1326,6 +1436,7 @@ function formatDateTime(value) {
     if (!value) return "—";
 
     const date = new Date(value);
+
     return isNaN(date) ? value : date.toLocaleString();
 }
 
@@ -1342,6 +1453,7 @@ function safeExternalURL(value) {
         }
 
         return url.href;
+
     } catch {
         return "";
     }
@@ -1355,7 +1467,9 @@ function isApprovedStaff() {
         (role === "admin" || role === "teacher");
 }
 
-/* AUTH TABS */
+/* =====================================================
+   AUTH TABS
+===================================================== */
 
 function showAuth(type) {
     const isLogin = type === "login";
@@ -1369,12 +1483,15 @@ function showAuth(type) {
     clearMessage("authMessage");
 }
 
-/* REGISTER */
+/* =====================================================
+   REGISTER
+===================================================== */
 
 document.getElementById("registerForm").addEventListener("submit", async function(event) {
     event.preventDefault();
 
     const button = document.getElementById("registerButton");
+
     button.disabled = true;
     button.textContent = "Creating account...";
 
@@ -1402,20 +1519,25 @@ document.getElementById("registerForm").addEventListener("submit", async functio
         } else if (data.session) {
             await loadUserProfile(data.user);
         }
+
     } catch (error) {
         showMessage("authMessage", error.message, "error");
+
     } finally {
         button.disabled = false;
         button.textContent = "Create Account";
     }
 });
 
-/* LOGIN */
+/* =====================================================
+   LOGIN
+===================================================== */
 
 document.getElementById("loginForm").addEventListener("submit", async function(event) {
     event.preventDefault();
 
     const button = document.getElementById("loginButton");
+
     button.disabled = true;
     button.textContent = "Logging in...";
 
@@ -1431,15 +1553,19 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         if (error) throw error;
 
         await loadUserProfile(data.user);
+
     } catch (error) {
         showMessage("authMessage", error.message, "error");
+
     } finally {
         button.disabled = false;
         button.textContent = "Login";
     }
 });
 
-/* PASSWORD RESET */
+/* =====================================================
+   PASSWORD RESET
+===================================================== */
 
 async function forgotPassword(event) {
     event.preventDefault();
@@ -1458,14 +1584,21 @@ async function forgotPassword(event) {
     if (error) {
         showMessage("authMessage", error.message, "error");
     } else {
-        showMessage("authMessage", "Password reset instructions have been sent if that email is registered.", "success");
+        showMessage(
+            "authMessage",
+            "Password reset instructions have been sent if that email is registered.",
+            "success"
+        );
     }
 }
 
-/* LOAD PROFILE */
+/* =====================================================
+   LOAD USER PROFILE
+===================================================== */
 
 async function loadUserProfile(user) {
     currentUser = user;
+
     showAppScreen("account");
 
     document.getElementById("authCard").classList.add("hidden");
@@ -1481,12 +1614,20 @@ async function loadUserProfile(user) {
         .maybeSingle();
 
     if (error) {
-        showMessage("profileMessage", "Could not load your profile: " + error.message, "error");
+        showMessage(
+            "profileMessage",
+            "Could not load your profile: " + error.message,
+            "error"
+        );
         return;
     }
 
     if (!profile) {
-        showMessage("profileMessage", "Your profile is not available yet. Please contact an administrator.", "error");
+        showMessage(
+            "profileMessage",
+            "Your profile is not available yet. Please contact an administrator.",
+            "error"
+        );
         return;
     }
 
@@ -1504,16 +1645,31 @@ async function loadUserProfile(user) {
     const approved = status === "approved";
     const staff = role === "admin" || role === "teacher";
 
-    document.getElementById("adminPanel").classList.toggle("hidden", !(role === "admin" && approved));
-    document.getElementById("attendancePanel").classList.toggle("hidden", !approved);
-    document.getElementById("courseManagerPanel").classList.toggle("hidden", !(staff && approved));
+    document.getElementById("adminPanel").classList.toggle(
+        "hidden",
+        !(role === "admin" && approved)
+    );
+
+    document.getElementById("attendancePanel").classList.toggle(
+        "hidden",
+        !approved
+    );
+
+    document.getElementById("courseManagerPanel").classList.toggle(
+        "hidden",
+        !(staff && approved)
+    );
 
     if (!approved) {
+        document.getElementById("staffAttendance").classList.add("hidden");
+        document.getElementById("studentAttendance").classList.add("hidden");
+
         showMessage(
             "profileMessage",
             "Your account is waiting for approval. Please contact your school administrator.",
             "error"
         );
+
         return;
     }
 
@@ -1526,26 +1682,35 @@ async function loadUserProfile(user) {
     if (staff) {
         document.getElementById("staffAttendance").classList.remove("hidden");
         document.getElementById("studentAttendance").classList.add("hidden");
+
         await loadStudentOptions();
         await loadStaffAttendance();
         await loadCourseManager();
+
     } else {
         document.getElementById("staffAttendance").classList.add("hidden");
         document.getElementById("studentAttendance").classList.remove("hidden");
+
         await loadStudentAttendance();
     }
 
     await updateAttendanceCount();
+
     showAppScreen("account", false);
 }
 
-/* ADMIN USERS */
+/* =====================================================
+   ADMIN USERS
+===================================================== */
 
 async function loadAdminUsers() {
-    if (normalized(currentProfile?.role) !== "admin" ||
-        normalized(currentProfile?.status) !== "approved") return;
+    if (
+        normalized(currentProfile?.role) !== "admin" ||
+        normalized(currentProfile?.status) !== "approved"
+    ) return;
 
     const body = document.getElementById("adminUsersBody");
+
     body.innerHTML = '<tr><td colspan="5">Loading users...</td></tr>';
 
     const { data,error } = await supabaseClient
@@ -1562,10 +1727,14 @@ async function loadAdminUsers() {
     const users = data || [];
 
     document.getElementById("totalUsers").textContent = users.length;
+
     document.getElementById("totalStudents").textContent =
         users.filter(user => normalized(user.role) === "student").length;
+
     document.getElementById("totalStaff").textContent =
-        users.filter(user => ["teacher","admin"].includes(normalized(user.role))).length;
+        users.filter(user =>
+            ["teacher","admin"].includes(normalized(user.role))
+        ).length;
 
     if (!users.length) {
         body.innerHTML = '<tr><td colspan="5">No registered users found.</td></tr>';
@@ -1588,9 +1757,21 @@ async function loadAdminUsers() {
         <tr>
             <td>${escapeHTML(user.full_name || "—")}</td>
             <td>${escapeHTML(user.email || "—")}</td>
-            <td><select id="role-${user.id}" aria-label="User role">${roleOptions}</select></td>
-            <td><select id="status-${user.id}" aria-label="User status">${statusOptions}</select></td>
-            <td><button class="btn btn-small" onclick="updateUserAccess('${user.id}')">Save</button></td>
+            <td>
+                <select id="role-${user.id}" aria-label="User role">
+                    ${roleOptions}
+                </select>
+            </td>
+            <td>
+                <select id="status-${user.id}" aria-label="User status">
+                    ${statusOptions}
+                </select>
+            </td>
+            <td>
+                <button class="btn btn-small" onclick="updateUserAccess('${user.id}')">
+                    Save
+                </button>
+            </td>
         </tr>`;
     }).join("");
 }
@@ -1599,7 +1780,11 @@ async function loadAdminUsers() {
 
 async function updateUserAccess(userId) {
     if (userId === currentUser.id) {
-        showMessage("adminMessage", "You cannot change your own role or status here.", "error");
+        showMessage(
+            "adminMessage",
+            "You cannot change your own role or status here.",
+            "error"
+        );
         return;
     }
 
@@ -1618,6 +1803,7 @@ async function updateUserAccess(userId) {
     }
 
     showMessage("adminMessage", "User access updated successfully.", "success");
+
     await loadAdminUsers();
 }
 
@@ -1629,6 +1815,7 @@ async function loadCourseManager() {
     if (!isApprovedStaff()) return;
 
     const container = document.getElementById("managedCourses");
+
     container.innerHTML = '<div class="empty-state">Loading courses...</div>';
 
     const { data,error } = await supabaseClient
@@ -1638,14 +1825,24 @@ async function loadCourseManager() {
 
     if (error) {
         container.innerHTML = "";
-        showMessage("courseManagerMessage", "Could not load courses: " + error.message, "error");
+
+        showMessage(
+            "courseManagerMessage",
+            "Could not load courses: " + error.message,
+            "error"
+        );
+
         return;
     }
 
     managedCourseCache = data || [];
 
     if (!managedCourseCache.length) {
-        container.innerHTML = '<div class="empty-state">No courses created yet. Use the form above to create your first course.</div>';
+        container.innerHTML = `
+            <div class="empty-state">
+                No courses created yet. Use the form above to create your first course.
+            </div>
+        `;
         return;
     }
 
@@ -1654,12 +1851,21 @@ async function loadCourseManager() {
             <h4>${escapeHTML(course.title)}</h4>
             <p>${escapeHTML(course.category || "Uncategorized")}</p>
             <p>${escapeHTML(course.description || "No description provided.")}</p>
-            <p><span class="badge ${course.is_published ? "badge-published" : "badge-draft"}">
-                ${course.is_published ? "Published" : "Draft"}
-            </span></p>
+
+            <p>
+                <span class="badge ${course.is_published ? "badge-published" : "badge-draft"}">
+                    ${course.is_published ? "Published" : "Draft"}
+                </span>
+            </p>
+
             <div class="dashboard-actions">
-                <button class="btn btn-small" onclick="editCourse('${course.id}')">Edit Course</button>
-                <button class="btn btn-small btn-success" onclick="openLessonEditor('${course.id}')">Manage Lessons</button>
+                <button class="btn btn-small" onclick="editCourse('${course.id}')">
+                    Edit Course
+                </button>
+
+                <button class="btn btn-small btn-success" onclick="openLessonEditor('${course.id}')">
+                    Manage Lessons
+                </button>
             </div>
         </div>
     `).join("");
@@ -1671,11 +1877,16 @@ document.getElementById("courseForm").addEventListener("submit", async function(
     event.preventDefault();
 
     if (!isApprovedStaff() || !currentUser) {
-        showMessage("courseManagerMessage", "Only approved teachers and administrators can manage courses.", "error");
+        showMessage(
+            "courseManagerMessage",
+            "Only approved teachers and administrators can manage courses.",
+            "error"
+        );
         return;
     }
 
     const button = document.getElementById("saveCourseButton");
+
     button.disabled = true;
     button.textContent = "Saving...";
 
@@ -1688,7 +1899,9 @@ document.getElementById("courseForm").addEventListener("submit", async function(
     const is_published = document.getElementById("coursePublished").checked;
 
     try {
-        if (!title) throw new Error("Please enter a course title.");
+        if (!title) {
+            throw new Error("Please enter a course title.");
+        }
 
         if (thumbnailInput && !thumbnail_url) {
             throw new Error("Please enter a valid HTTP or HTTPS thumbnail URL.");
@@ -1705,12 +1918,18 @@ document.getElementById("courseForm").addEventListener("submit", async function(
         let result;
 
         if (courseId) {
-            result = await supabaseClient.from("courses").update(courseData).eq("id", courseId);
+            result = await supabaseClient
+                .from("courses")
+                .update(courseData)
+                .eq("id", courseId);
+
         } else {
-            result = await supabaseClient.from("courses").insert({
-                ...courseData,
-                created_by:currentUser.id
-            });
+            result = await supabaseClient
+                .from("courses")
+                .insert({
+                    ...courseData,
+                    created_by:currentUser.id
+                });
         }
 
         if (result.error) throw result.error;
@@ -1722,11 +1941,13 @@ document.getElementById("courseForm").addEventListener("submit", async function(
         );
 
         resetCourseForm();
+
         await loadCourseManager();
         await loadPublishedCourses();
 
     } catch (error) {
         showMessage("courseManagerMessage", error.message, "error");
+
     } finally {
         button.disabled = false;
         button.textContent = "Save Course";
@@ -1739,6 +1960,7 @@ function editCourse(courseId) {
     if (!isApprovedStaff()) return;
 
     const course = managedCourseCache.find(item => item.id === courseId);
+
     if (!course) return;
 
     document.getElementById("editCourseId").value = course.id;
@@ -1750,6 +1972,7 @@ function editCourse(courseId) {
 
     document.getElementById("courseFormHeading").textContent = "Edit Course";
     document.getElementById("saveCourseButton").textContent = "Update Course";
+
     document.getElementById("cancelCourseEdit").classList.remove("hidden");
 
     document.getElementById("courseFormHeading").scrollIntoView({
@@ -1761,17 +1984,22 @@ function editCourse(courseId) {
 function resetCourseForm() {
     document.getElementById("courseForm").reset();
     document.getElementById("editCourseId").value = "";
+
     document.getElementById("courseFormHeading").textContent = "Create a New Course";
     document.getElementById("saveCourseButton").textContent = "Save Course";
+
     document.getElementById("cancelCourseEdit").classList.add("hidden");
 }
 
-/* OPEN LESSON EDITOR */
+/* =====================================================
+   LESSON EDITOR
+===================================================== */
 
 function openLessonEditor(courseId) {
     if (!isApprovedStaff()) return;
 
     const course = managedCourseCache.find(item => item.id === courseId);
+
     if (!course) return;
 
     selectedCourseForLessons = courseId;
@@ -1781,6 +2009,7 @@ function openLessonEditor(courseId) {
     document.getElementById("lessonCourseName").textContent = "Course: " + course.title;
 
     resetLessonForm();
+
     loadManagedLessons(courseId);
 
     document.getElementById("lessonEditor").scrollIntoView({
@@ -1801,11 +2030,16 @@ async function loadManagedLessons(courseId) {
         .order("lesson_order", { ascending:true });
 
     if (error) {
-        showMessage("courseManagerMessage", "Could not load lessons: " + error.message, "error");
+        showMessage(
+            "courseManagerMessage",
+            "Could not load lessons: " + error.message,
+            "error"
+        );
         return;
     }
 
     const course = managedCourseCache.find(item => item.id === courseId);
+
     if (!course) return;
 
     let lessonContainer = document.getElementById("managedLessons");
@@ -1813,6 +2047,7 @@ async function loadManagedLessons(courseId) {
     if (!lessonContainer) {
         lessonContainer = document.createElement("div");
         lessonContainer.id = "managedLessons";
+
         document.getElementById("lessonEditor").after(lessonContainer);
     }
 
@@ -1820,16 +2055,23 @@ async function loadManagedLessons(courseId) {
 
     lessonContainer.innerHTML = `
         <h3>Lessons in ${escapeHTML(course.title)}</h3>
+
         ${
             lessons.length
             ? lessons.map(lesson => `
                 <div class="lesson-item">
                     <h4>${escapeHTML(lesson.lesson_order)}. ${escapeHTML(lesson.title)}</h4>
                     <p>${escapeHTML(lesson.description || "No description")}</p>
-                    <p><span class="badge ${lesson.is_published ? "badge-published" : "badge-draft"}">
-                        ${lesson.is_published ? "Published" : "Draft"}
-                    </span></p>
-                    <button class="btn btn-small" onclick="editLesson('${lesson.id}')">Edit Lesson</button>
+
+                    <p>
+                        <span class="badge ${lesson.is_published ? "badge-published" : "badge-draft"}">
+                            ${lesson.is_published ? "Published" : "Draft"}
+                        </span>
+                    </p>
+
+                    <button class="btn btn-small" onclick="editLesson('${lesson.id}')">
+                        Edit Lesson
+                    </button>
                 </div>
             `).join("")
             : '<div class="empty-state">No lessons in this course yet. Add your first lesson above.</div>'
@@ -1845,11 +2087,16 @@ document.getElementById("lessonForm").addEventListener("submit", async function(
     event.preventDefault();
 
     if (!isApprovedStaff()) {
-        showMessage("courseManagerMessage", "You do not have permission to manage lessons.", "error");
+        showMessage(
+            "courseManagerMessage",
+            "You do not have permission to manage lessons.",
+            "error"
+        );
         return;
     }
 
     const button = document.getElementById("saveLessonButton");
+
     button.disabled = true;
     button.textContent = "Saving...";
 
@@ -1860,8 +2107,10 @@ document.getElementById("lessonForm").addEventListener("submit", async function(
         const title = document.getElementById("lessonTitle").value.trim();
         const description = document.getElementById("lessonDescription").value.trim();
         const lesson_content = document.getElementById("lessonContent").value;
+
         const videoInput = document.getElementById("lessonVideo").value.trim();
         const fileInput = document.getElementById("lessonFile").value.trim();
+
         const video_url = safeExternalURL(videoInput);
         const file_url = safeExternalURL(fileInput);
 
@@ -1898,9 +2147,15 @@ document.getElementById("lessonForm").addEventListener("submit", async function(
         let result;
 
         if (lessonId) {
-            result = await supabaseClient.from("lessons").update(lessonData).eq("id", lessonId);
+            result = await supabaseClient
+                .from("lessons")
+                .update(lessonData)
+                .eq("id", lessonId);
+
         } else {
-            result = await supabaseClient.from("lessons").insert(lessonData);
+            result = await supabaseClient
+                .from("lessons")
+                .insert(lessonData);
         }
 
         if (result.error) throw result.error;
@@ -1912,11 +2167,13 @@ document.getElementById("lessonForm").addEventListener("submit", async function(
         );
 
         resetLessonForm();
+
         await loadManagedLessons(courseId);
         await loadPublishedCourses();
 
     } catch (error) {
         showMessage("courseManagerMessage", error.message, "error");
+
     } finally {
         button.disabled = false;
         button.textContent = "Save Lesson";
@@ -1928,7 +2185,10 @@ document.getElementById("lessonForm").addEventListener("submit", async function(
 function editLesson(lessonId) {
     if (!isApprovedStaff()) return;
 
-    const lesson = (window.managedLessonCache || []).find(item => item.id === lessonId);
+    const lesson = (window.managedLessonCache || []).find(
+        item => item.id === lessonId
+    );
+
     if (!lesson) return;
 
     document.getElementById("editLessonId").value = lesson.id;
@@ -1952,9 +2212,11 @@ function editLesson(lessonId) {
 
 function resetLessonForm() {
     document.getElementById("lessonForm").reset();
+
     document.getElementById("editLessonId").value = "";
     document.getElementById("lessonCourseId").value = selectedCourseForLessons || "";
     document.getElementById("lessonOrder").value = 1;
+
     document.getElementById("lessonFormHeading").textContent = "Add a Lesson";
     document.getElementById("saveLessonButton").textContent = "Save Lesson";
 }
@@ -1963,7 +2225,10 @@ function closeLessonEditor() {
     document.getElementById("lessonEditor").classList.add("hidden");
 
     const lessons = document.getElementById("managedLessons");
-    if (lessons) lessons.remove();
+
+    if (lessons) {
+        lessons.remove();
+    }
 
     selectedCourseForLessons = null;
 }
@@ -1982,7 +2247,12 @@ async function loadPublishedCourses() {
         .order("created_at", { ascending:false });
 
     if (error) {
-        container.innerHTML = '<div class="empty-state">Courses could not be loaded right now.</div>';
+        container.innerHTML = `
+            <div class="empty-state">
+                Courses could not be loaded right now.
+            </div>
+        `;
+
         showMessage("publishedCourseMessage", error.message, "error");
         return;
     }
@@ -1990,7 +2260,11 @@ async function loadPublishedCourses() {
     const courses = data || [];
 
     if (!courses.length) {
-        container.innerHTML = '<div class="empty-state">No published courses yet. Please check again later.</div>';
+        container.innerHTML = `
+            <div class="empty-state">
+                No published courses yet. Please check again later.
+            </div>
+        `;
         return;
     }
 
@@ -2001,15 +2275,24 @@ async function loadPublishedCourses() {
 
         return `
             <article class="course-card published-course-card">
+
                 ${
                     imageURL
                     ? `<img src="${escapeHTML(imageURL)}" alt="${escapeHTML(course.title)}" loading="lazy">`
                     : `<div class="course-icon" style="margin:18px">📘</div>`
                 }
+
                 <div class="course-card-content">
-                    <span class="course-category">${escapeHTML(course.category || "Course")}</span>
+                    <span class="course-category">
+                        ${escapeHTML(course.category || "Course")}
+                    </span>
+
                     <h3>${escapeHTML(course.title)}</h3>
-                    <p>${escapeHTML(course.description || "Explore this course and its lessons.")}</p>
+
+                    <p>
+                        ${escapeHTML(course.description || "Explore this course and its lessons.")}
+                    </p>
+
                     <div class="dashboard-actions">
                         <button class="btn btn-small" onclick="openPublishedCourse('${course.id}')">
                             View Course →
@@ -2032,7 +2315,10 @@ async function openPublishedCourse(courseId) {
 
     titleElement.textContent = "Loading course...";
     descriptionElement.textContent = "";
-    lessonsElement.innerHTML = '<div class="empty-state">Loading lessons...</div>';
+
+    lessonsElement.innerHTML = `
+        <div class="empty-state">Loading lessons...</div>
+    `;
 
     const { data:course,error:courseError } = await supabaseClient
         .from("courses")
@@ -2043,7 +2329,13 @@ async function openPublishedCourse(courseId) {
 
     if (courseError || !course) {
         titleElement.textContent = "Course unavailable";
-        lessonsElement.innerHTML = '<div class="empty-state">This course is not available.</div>';
+
+        lessonsElement.innerHTML = `
+            <div class="empty-state">
+                This course is not available.
+            </div>
+        `;
+
         return;
     }
 
@@ -2058,20 +2350,33 @@ async function openPublishedCourse(courseId) {
         .order("lesson_order", { ascending:true });
 
     if (lessonError) {
-        lessonsElement.innerHTML = '<div class="empty-state">Could not load lessons.</div>';
+        lessonsElement.innerHTML = `
+            <div class="empty-state">
+                Could not load lessons.
+            </div>
+        `;
         return;
     }
 
     if (!lessons || !lessons.length) {
-        lessonsElement.innerHTML = '<div class="empty-state">No published lessons are available yet.</div>';
+        lessonsElement.innerHTML = `
+            <div class="empty-state">
+                No published lessons are available yet.
+            </div>
+        `;
         return;
     }
 
     lessonsElement.innerHTML = lessons.map((lesson,index) => `
-        <button type="button" class="lesson-open-button"
+        <button type="button"
+            class="lesson-open-button"
             onclick="openIndividualLesson('${lesson.id}', '${courseId}')">
+
             📘 Lesson ${index + 1}: ${escapeHTML(lesson.title)}
-            <span>${escapeHTML(lesson.description || "Open this lesson →")}</span>
+
+            <span>
+                ${escapeHTML(lesson.description || "Open this lesson →")}
+            </span>
         </button>
     `).join("");
 }
@@ -2109,6 +2414,7 @@ async function openIndividualLesson(lessonId, courseId) {
 
     titleElement.textContent = lesson.title;
     descriptionElement.textContent = lesson.description || "";
+
     contentElement.textContent =
         lesson.lesson_content || "No lesson content has been added yet.";
 
@@ -2121,8 +2427,10 @@ async function openIndividualLesson(lessonId, courseId) {
 
     if (videoURL) {
         links += `
-            <a class="btn" href="${escapeHTML(videoURL)}"
-               target="_blank" rel="noopener noreferrer">
+            <a class="btn"
+               href="${escapeHTML(videoURL)}"
+               target="_blank"
+               rel="noopener noreferrer">
                ▶ Watch video
             </a>
         `;
@@ -2130,8 +2438,10 @@ async function openIndividualLesson(lessonId, courseId) {
 
     if (fileURL) {
         links += `
-            <a class="btn btn-success" href="${escapeHTML(fileURL)}"
-               target="_blank" rel="noopener noreferrer">
+            <a class="btn btn-success"
+               href="${escapeHTML(fileURL)}"
+               target="_blank"
+               rel="noopener noreferrer">
                📄 Open learning material
             </a>
         `;
@@ -2167,25 +2477,39 @@ async function loadStudentOptions() {
         .order("full_name");
 
     if (error) {
-        select.innerHTML = '<option value="">Could not load students</option>';
+        select.innerHTML = `
+            <option value="">Could not load students</option>
+        `;
+
         showMessage("attendanceMessage", error.message, "error");
         return;
     }
 
     if (!data || data.length === 0) {
-        select.innerHTML = '<option value="">No approved students found</option>';
+        select.innerHTML = `
+            <option value="">No approved students found</option>
+        `;
         return;
     }
 
-    select.innerHTML = '<option value="">Select a student</option>' +
+    select.innerHTML =
+        '<option value="">Select a student</option>' +
+
         data.map(student =>
-            `<option value="${student.id}">${escapeHTML(student.full_name || student.email || student.id)}</option>`
+            `<option value="${student.id}">
+                ${escapeHTML(student.full_name || student.email || student.id)}
+            </option>`
         ).join("");
 }
 
 /* MARK ATTENDANCE */
 
 async function markAttendance() {
+    if (!isApprovedStaff() || !currentUser) {
+        showMessage("attendanceMessage", "You do not have permission to mark attendance.", "error");
+        return;
+    }
+
     const studentId = document.getElementById("attendanceStudent").value;
     const status = document.getElementById("attendanceStatus").value;
 
@@ -2211,6 +2535,7 @@ async function markAttendance() {
     }
 
     showMessage("attendanceMessage", "Attendance saved successfully.", "success");
+
     await loadStaffAttendance();
 }
 
@@ -2235,20 +2560,33 @@ async function loadStaffAttendance() {
         .limit(200);
 
     if (error) {
-        body.innerHTML = `<tr><td colspan="4">${escapeHTML(error.message)}</td></tr>`;
+        body.innerHTML = `
+            <tr><td colspan="4">${escapeHTML(error.message)}</td></tr>
+        `;
         return;
     }
 
     if (!data || !data.length) {
-        body.innerHTML = '<tr><td colspan="4">No attendance records yet.</td></tr>';
+        body.innerHTML = `
+            <tr><td colspan="4">No attendance records yet.</td></tr>
+        `;
         return;
     }
 
     body.innerHTML = data.map(record => `
         <tr>
-            <td>${escapeHTML(record.profiles?.full_name || record.profiles?.email || "Student")}</td>
+            <td>
+                ${escapeHTML(record.profiles?.full_name || record.profiles?.email || "Student")}
+            </td>
+
             <td>${escapeHTML(formatDate(record.attendance_date))}</td>
-            <td><span class="badge badge-${escapeHTML(record.attendance_status)}">${escapeHTML(record.attendance_status)}</span></td>
+
+            <td>
+                <span class="badge badge-${escapeHTML(record.attendance_status)}">
+                    ${escapeHTML(record.attendance_status)}
+                </span>
+            </td>
+
             <td>${escapeHTML(formatDateTime(record.marked_at))}</td>
         </tr>
     `).join("");
@@ -2267,19 +2605,29 @@ async function loadStudentAttendance() {
         .limit(200);
 
     if (error) {
-        body.innerHTML = `<tr><td colspan="3">${escapeHTML(error.message)}</td></tr>`;
+        body.innerHTML = `
+            <tr><td colspan="3">${escapeHTML(error.message)}</td></tr>
+        `;
         return;
     }
 
     if (!data || !data.length) {
-        body.innerHTML = '<tr><td colspan="3">No attendance records found.</td></tr>';
+        body.innerHTML = `
+            <tr><td colspan="3">No attendance records found.</td></tr>
+        `;
         return;
     }
 
     body.innerHTML = data.map(record => `
         <tr>
             <td>${escapeHTML(formatDate(record.attendance_date))}</td>
-            <td><span class="badge badge-${escapeHTML(record.attendance_status)}">${escapeHTML(record.attendance_status)}</span></td>
+
+            <td>
+                <span class="badge badge-${escapeHTML(record.attendance_status)}">
+                    ${escapeHTML(record.attendance_status)}
+                </span>
+            </td>
+
             <td>${escapeHTML(formatDateTime(record.marked_at))}</td>
         </tr>
     `).join("");
@@ -2314,9 +2662,11 @@ async function logout() {
     currentProfile = null;
     managedCourseCache = [];
     selectedCourseForLessons = null;
+    window.managedLessonCache = [];
 
     document.getElementById("authCard").classList.remove("hidden");
     document.getElementById("userDashboard").classList.add("hidden");
+
     document.getElementById("adminPanel").classList.add("hidden");
     document.getElementById("attendancePanel").classList.add("hidden");
     document.getElementById("courseManagerPanel").classList.add("hidden");
@@ -2324,19 +2674,32 @@ async function logout() {
     document.getElementById("staffAttendance").classList.add("hidden");
     document.getElementById("studentAttendance").classList.add("hidden");
     document.getElementById("lessonEditor").classList.add("hidden");
-    document.getElementById("courseViewer").classList.add("hidden");
-    document.getElementById("individualLessonPage").classList.add("hidden");
+
+    /*
+       Do not add "hidden" to courseViewer or individualLessonPage.
+       The navigation system controls these screens using
+       app-screen-hidden.
+    */
 
     const managedLessons = document.getElementById("managedLessons");
-    if (managedLessons) managedLessons.remove();
+
+    if (managedLessons) {
+        managedLessons.remove();
+    }
 
     resetCourseForm();
     resetLessonForm();
+
     showAuth("login");
+
+    document.getElementById("loginPassword").value = "";
+
     showAppScreen("account");
 }
 
-/* RESTORE SESSION */
+/* =====================================================
+   RESTORE SESSION
+===================================================== */
 
 async function restoreSession() {
     const { data,error } = await supabaseClient.auth.getSession();
@@ -2351,7 +2714,9 @@ async function restoreSession() {
     }
 }
 
-/* AUTH STATE CHANGES */
+/* =====================================================
+   AUTH STATE CHANGES
+===================================================== */
 
 supabaseClient.auth.onAuthStateChange((event,session) => {
     if (event === "SIGNED_OUT") {
@@ -2360,14 +2725,22 @@ supabaseClient.auth.onAuthStateChange((event,session) => {
     }
 });
 
-/* START WEBSITE */
+/* =====================================================
+   START WEBSITE
+===================================================== */
 
-history.replaceState({ appScreen:"home" }, "", "#home");
+history.replaceState(
+    { appScreen:"home" },
+    "",
+    "#home"
+);
+
 renderAppScreen("home");
 
 loadPublishedCourses();
 restoreSession();
 
 </script>
+
 </body>
 </html>
