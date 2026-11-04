@@ -1,238 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Course | Bulchana School CyberLab</title>
-
-<meta name="description" content="Learn with Bulchana School CyberLab.">
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style>
-:root {
-    --navy: #102a63;
-    --blue: #075bea;
-    --light-blue: #eaf3ff;
-    --text: #172b4d;
-    --muted: #64748b;
-    --border: #dce8f8;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Inter, "Segoe UI", Arial, sans-serif;
-    background: #f7faff;
-    color: var(--text);
-    line-height: 1.7;
-}
-
-header {
-    background: white;
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.navbar {
-    max-width: 1100px;
-    margin: auto;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.brand {
-    color: var(--navy);
-    font-size: 19px;
-    font-weight: 800;
-}
-
-.navbar a {
-    text-decoration: none;
-    color: var(--blue);
-    font-weight: 700;
-}
-
-.container {
-    max-width: 950px;
-    margin: 35px auto;
-    padding: 0 18px;
-}
-
-.back-button {
-    display: inline-block;
-    margin-bottom: 22px;
-    color: var(--blue);
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.course-header {
-    background: linear-gradient(120deg, #071d49, #075bea);
-    color: white;
-    padding: 35px 28px;
-    border-radius: 16px;
-    margin-bottom: 30px;
-}
-
-.course-header h1 {
-    font-size: clamp(26px, 5vw, 38px);
-    line-height: 1.3;
-    margin-bottom: 12px;
-}
-
-.course-header p {
-    color: #e3efff;
-}
-
-.section-title {
-    color: var(--navy);
-    margin-bottom: 18px;
-    font-size: 24px;
-}
-
-.lesson-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 13px;
-    padding: 23px;
-    margin-bottom: 18px;
-    box-shadow: 0 6px 20px rgba(16,42,99,.05);
-}
-
-.lesson-card h2 {
-    color: var(--navy);
-    font-size: 19px;
-    margin-bottom: 8px;
-}
-
-.lesson-description {
-    color: var(--muted);
-    margin-bottom: 12px;
-}
-
-.lesson-content {
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-    line-height: 1.9;
-    margin-top: 15px;
-}
-
-.lesson-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 18px;
-}
-
-.lesson-links a {
-    color: var(--blue);
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.status-message {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px;
-    color: var(--muted);
-}
-
-footer {
-    background: #09265c;
-    color: white;
-    padding: 25px;
-    text-align: center;
-    margin-top: 60px;
-    font-size: 13px;
-}
-
-@media(max-width: 600px) {
-    .container {
-        margin-top: 22px;
-    }
-
-    .course-header {
-        padding: 25px 20px;
-    }
-
-    .lesson-card {
-        padding: 18px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-    <nav class="navbar">
-        <div class="brand">🛡️ Bulchana CyberLab</div>
-        <a href="index.html#courses">Home</a>
-    </nav>
-</header>
-
-<main class="container">
-
-    <a href="index.html#courses" class="back-button">
-        ← Back to Courses
-    </a>
-
-    <section class="course-header">
-        <h1 id="courseTitle">Loading course...</h1>
-        <p id="courseDescription"></p>
-    </section>
-
-    <section>
-        <h2 class="section-title">📚 Course Lessons</h2>
-
-        <div id="lessonsContainer">
-            <div class="status-message">
-                Loading lessons...
-            </div>
-        </div>
-    </section>
-
-</main>
-
-<footer>
-    <p><strong>🛡️ Bulchana School CyberLab</strong></p>
-    <p>Empowering Students Through Technology.</p>
-    <p>© 2026 Bulchana School CyberLab. All rights reserved.</p>
-</footer>
-
 <script>
-
 /* SUPABASE CONNECTION */
 
-const SUPABASE_URL =
-    "https://gdawpyrjscrocjxdsphl.supabase.co";
-
-const SUPABASE_KEY =
-    "sb_publishable_V1ftP1gprlI0KJqeLD6e5w_Tl00butF";
+const SUPABASE_URL = "https://gdawpyrjscrocjxdsphl.supabase.co";
+const SUPABASE_KEY = "sb_publishable_V1ftP1gprlI0KJqeLD6e5w_Tl00butF";
 
 const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
 
+let currentUser = null;
+let currentProfile = null;
+let managedCourseCache = [];
+let selectedCourseForLessons = null;
 
-/* GET COURSE ID FROM URL */
+/* HELPERS */
 
-const courseId = new URLSearchParams(
-    window.location.search
-).get("id");
+function showMessage(id, message, type = "success") {
+    const element = document.getElementById(id);
+    if (!element) return;
 
+    element.textContent = message;
+    element.className = "message show " + type;
+}
+
+function clearMessage(id) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.textContent = "";
+        element.className = "message";
+    }
+}
+
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[character]);
+}
+
+function normalized(value) {
+    return String(value || "").trim().toLowerCase();
+}
+
+function formatDate(value) {
+    if (!value) return "—";
+
+    const date = new Date(value + (String(value).length === 10 ? "T00:00:00" : ""));
+    return isNaN(date) ? value : date.toLocaleDateString();
+}
+
+function formatDateTime(value) {
+    if (!value) return "—";
+
+    const date = new Date(value);
+    return isNaN(date) ? value : date.toLocaleString();
+}
 
 /* SAFE EXTERNAL LINKS */
 
@@ -242,238 +68,964 @@ function safeExternalURL(value) {
     try {
         const url = new URL(value);
 
-        if (
-            url.protocol !== "https:" &&
-            url.protocol !== "http:"
-        ) {
+        if (url.protocol !== "https:" && url.protocol !== "http:") {
             return "";
         }
 
         return url.href;
-
     } catch {
         return "";
     }
 }
 
-
-/* DISPLAY COURSE */
-
-async function loadCourse() {
-
-    const title = document.getElementById("courseTitle");
-
-    const description =
-        document.getElementById("courseDescription");
-
-    const lessonsContainer =
-        document.getElementById("lessonsContainer");
-
-
-    if (!courseId) {
-
-        title.textContent = "Course not found";
-
-        description.textContent =
-            "Please return to the courses page and select a course.";
-
-        lessonsContainer.innerHTML = "";
-
-        return;
-    }
-
-
-    /* GET PUBLISHED COURSE */
-
-    const { data: course, error: courseError } =
-        await supabaseClient
-            .from("courses")
-            .select("id, title, description")
-            .eq("id", courseId)
-            .eq("is_published", true)
-            .maybeSingle();
-
-
-    if (courseError || !course) {
-
-        title.textContent = "Course unavailable";
-
-        description.textContent =
-            "This course could not be found or is not published.";
-
-        lessonsContainer.innerHTML = "";
-
-        return;
-    }
-
-
-    title.textContent = course.title;
-
-    description.textContent =
-        course.description || "";
-
-    document.title =
-        course.title + " | Bulchana School CyberLab";
-
-
-    /* GET PUBLISHED LESSONS */
-
-    const { data: lessons, error: lessonError } =
-        await supabaseClient
-            .from("lessons")
-            .select(`
-                id,
-                title,
-                description,
-                lesson_content,
-                video_url,
-                file_url,
-                lesson_order
-            `)
-            .eq("course_id", courseId)
-            .eq("is_published", true)
-            .order("lesson_order", {
-                ascending: true
-            });
-
-
-    if (lessonError) {
-
-        lessonsContainer.innerHTML = `
-            <div class="status-message">
-                Unable to load lessons. Please try again later.
-            </div>
-        `;
-
-        return;
-    }
-
-
-    if (!lessons || lessons.length === 0) {
-
-        lessonsContainer.innerHTML = `
-            <div class="status-message">
-                No published lessons are available yet.
-            </div>
-        `;
-
-        return;
-    }
-
-
-    /* DISPLAY LESSONS */
-
-    lessonsContainer.innerHTML = "";
-
-    lessons.forEach((lesson, index) => {
-
-        const card = document.createElement("article");
-
-        card.className = "lesson-card";
-
-
-        const heading = document.createElement("h2");
-
-        heading.textContent =
-            "Lesson " + (index + 1) + ": " + lesson.title;
-
-        card.appendChild(heading);
-
-
-        if (lesson.description) {
-
-            const descriptionElement =
-                document.createElement("p");
-
-            descriptionElement.className =
-                "lesson-description";
-
-            descriptionElement.textContent =
-                lesson.description;
-
-            card.appendChild(descriptionElement);
-        }
-
-
-        if (lesson.lesson_content) {
-
-            const content =
-                document.createElement("div");
-
-            content.className = "lesson-content";
-
-            content.textContent =
-                lesson.lesson_content;
-
-            card.appendChild(content);
-        }
-
-
-        const links =
-            document.createElement("div");
-
-        links.className = "lesson-links";
-
-
-        const videoURL =
-            safeExternalURL(lesson.video_url);
-
-        const fileURL =
-            safeExternalURL(lesson.file_url);
-
-
-        if (videoURL) {
-
-            const videoLink =
-                document.createElement("a");
-
-            videoLink.href = videoURL;
-
-            videoLink.textContent =
-                "▶ Watch Lesson Video";
-
-            videoLink.target = "_blank";
-
-            videoLink.rel =
-                "noopener noreferrer";
-
-            links.appendChild(videoLink);
-        }
-
-
-        if (fileURL) {
-
-            const fileLink =
-                document.createElement("a");
-
-            fileLink.href = fileURL;
-
-            fileLink.textContent =
-                "📄 Open Learning Material";
-
-            fileLink.target = "_blank";
-
-            fileLink.rel =
-                "noopener noreferrer";
-
-            links.appendChild(fileLink);
-        }
-
-
-        card.appendChild(links);
-
-        lessonsContainer.appendChild(card);
-
-    });
-
+function isApprovedStaff() {
+    const role = normalized(currentProfile?.role);
+    const status = normalized(currentProfile?.status);
+
+    return status === "approved" &&
+        (role === "admin" || role === "teacher");
 }
 
+/* AUTH TABS */
 
-/* START */
+function showAuth(type) {
+    const isLogin = type === "login";
 
-loadCourse();
+    document.getElementById("loginForm").classList.toggle("hidden", !isLogin);
+    document.getElementById("registerForm").classList.toggle("hidden", isLogin);
+
+    document.getElementById("loginTab").classList.toggle("active", isLogin);
+    document.getElementById("registerTab").classList.toggle("active", !isLogin);
+
+    clearMessage("authMessage");
+}
+
+/* REGISTER */
+
+document.getElementById("registerForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const button = document.getElementById("registerButton");
+    button.disabled = true;
+    button.textContent = "Creating account...";
+
+    const fullName = document.getElementById("registerName").value.trim();
+    const email = document.getElementById("registerEmail").value.trim();
+    const password = document.getElementById("registerPassword").value;
+
+    try {
+        const { data, error } = await supabaseClient.auth.signUp({
+            email,
+            password,
+            options: {
+                data: {
+                    full_name: fullName
+                }
+            }
+        });
+
+        if (error) throw error;
+
+        if (data.user && !data.session) {
+            showMessage(
+                "authMessage",
+                "Registration successful! Please check your email and verify your account before logging in.",
+                "success"
+            );
+        } else if (data.session) {
+            await loadUserProfile(data.user);
+        }
+    } catch (error) {
+        showMessage("authMessage", error.message, "error");
+    } finally {
+        button.disabled = false;
+        button.textContent = "Create Account";
+    }
+});
+
+/* LOGIN */
+
+document.getElementById("loginForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const button = document.getElementById("loginButton");
+    button.disabled = true;
+    button.textContent = "Logging in...";
+
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+
+    try {
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email,
+            password
+        });
+
+        if (error) throw error;
+
+        await loadUserProfile(data.user);
+    } catch (error) {
+        showMessage("authMessage", error.message, "error");
+    } finally {
+        button.disabled = false;
+        button.textContent = "Login";
+    }
+});
+
+/* PASSWORD RESET */
+
+async function forgotPassword(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("loginEmail").value.trim();
+
+    if (!email) {
+        showMessage("authMessage", "Enter your email address first.", "error");
+        return;
+    }
+
+    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.origin
+    });
+
+    if (error) {
+        showMessage("authMessage", error.message, "error");
+    } else {
+        showMessage("authMessage", "Password reset instructions have been sent if that email is registered.", "success");
+    }
+}
+
+/* LOAD PROFILE */
+
+async function loadUserProfile(user) {
+    currentUser = user;
+
+    document.getElementById("authCard").classList.add("hidden");
+    document.getElementById("userDashboard").classList.remove("hidden");
+
+    document.getElementById("welcomeName").textContent =
+        user.user_metadata?.full_name || user.email || "User";
+
+    const { data: profile, error } = await supabaseClient
+        .from("profiles")
+        .select("id, full_name, email, role, status")
+        .eq("id", user.id)
+        .maybeSingle();
+
+    if (error) {
+        showMessage("profileMessage", "Could not load your profile: " + error.message, "error");
+        return;
+    }
+
+    if (!profile) {
+        showMessage("profileMessage", "Your profile is not available yet. Please contact an administrator.", "error");
+        return;
+    }
+
+    currentProfile = profile;
+
+    const role = normalized(profile.role);
+    const status = normalized(profile.status);
+
+    document.getElementById("welcomeName").textContent =
+        profile.full_name || user.email || "User";
+
+    document.getElementById("userRole").textContent = role || "student";
+    document.getElementById("userStatus").textContent = status || "pending";
+
+    const approved = status === "approved";
+    const staff = role === "admin" || role === "teacher";
+
+    document.getElementById("adminPanel").classList.toggle("hidden", !(role === "admin" && approved));
+    document.getElementById("attendancePanel").classList.toggle("hidden", !approved);
+    document.getElementById("courseManagerPanel").classList.toggle("hidden", !(staff && approved));
+
+    if (!approved) {
+        showMessage(
+            "profileMessage",
+            "Your account is waiting for approval. Please contact your school administrator.",
+            "error"
+        );
+        return;
+    }
+
+    clearMessage("profileMessage");
+
+    if (role === "admin") {
+        await loadAdminUsers();
+    }
+
+    if (staff) {
+        document.getElementById("staffAttendance").classList.remove("hidden");
+        document.getElementById("studentAttendance").classList.add("hidden");
+        await loadStudentOptions();
+        await loadStaffAttendance();
+        await loadCourseManager();
+    } else {
+        document.getElementById("staffAttendance").classList.add("hidden");
+        document.getElementById("studentAttendance").classList.remove("hidden");
+        await loadStudentAttendance();
+    }
+
+    await updateAttendanceCount();
+}
+
+/* ADMIN USERS */
+
+async function loadAdminUsers() {
+    if (normalized(currentProfile?.role) !== "admin" ||
+        normalized(currentProfile?.status) !== "approved") return;
+
+    const body = document.getElementById("adminUsersBody");
+    body.innerHTML = '<tr><td colspan="5">Loading users...</td></tr>';
+
+    const { data, error } = await supabaseClient
+        .from("profiles")
+        .select("id, full_name, email, role, status")
+        .order("full_name");
+
+    if (error) {
+        body.innerHTML = `<tr><td colspan="5">${escapeHTML(error.message)}</td></tr>`;
+        showMessage("adminMessage", error.message, "error");
+        return;
+    }
+
+    const users = data || [];
+
+    document.getElementById("totalUsers").textContent = users.length;
+    document.getElementById("totalStudents").textContent =
+        users.filter(user => normalized(user.role) === "student").length;
+    document.getElementById("totalStaff").textContent =
+        users.filter(user => ["teacher", "admin"].includes(normalized(user.role))).length;
+
+    if (!users.length) {
+        body.innerHTML = '<tr><td colspan="5">No registered users found.</td></tr>';
+        return;
+    }
+
+    body.innerHTML = users.map(user => {
+        const role = normalized(user.role);
+        const status = normalized(user.status);
+
+        const roleOptions = ["student", "teacher", "admin"].map(option =>
+            `<option value="${option}" ${role === option ? "selected" : ""}>${option}</option>`
+        ).join("");
+
+        const statusOptions = ["approved", "pending", "rejected"].map(option =>
+            `<option value="${option}" ${status === option ? "selected" : ""}>${option}</option>`
+        ).join("");
+
+        return `
+        <tr>
+            <td>${escapeHTML(user.full_name || "—")}</td>
+            <td>${escapeHTML(user.email || "—")}</td>
+            <td>
+                <select id="role-${user.id}" aria-label="User role">
+                    ${roleOptions}
+                </select>
+            </td>
+            <td>
+                <select id="status-${user.id}" aria-label="User status">
+                    ${statusOptions}
+                </select>
+            </td>
+            <td>
+                <button class="btn btn-small" onclick="updateUserAccess('${user.id}')">
+                    Save
+                </button>
+            </td>
+        </tr>`;
+    }).join("");
+}
+
+/* UPDATE USER ROLE AND STATUS */
+
+async function updateUserAccess(userId) {
+    if (userId === currentUser.id) {
+        showMessage("adminMessage", "You cannot change your own role or status here.", "error");
+        return;
+    }
+
+    const newRole = document.getElementById("role-" + userId).value;
+    const newStatus = document.getElementById("status-" + userId).value;
+
+    const { error } = await supabaseClient.rpc("admin_update_user_access", {
+        target_user_id: userId,
+        new_role: newRole,
+        new_status: newStatus
+    });
+
+    if (error) {
+        showMessage("adminMessage", error.message, "error");
+        return;
+    }
+
+    showMessage("adminMessage", "User access updated successfully.", "success");
+    await loadAdminUsers();
+}
+
+/* =====================================================
+   COURSE MANAGER
+===================================================== */
+
+/* LOAD COURSES FOR STAFF */
+
+async function loadCourseManager() {
+    if (!isApprovedStaff()) return;
+
+    const container = document.getElementById("managedCourses");
+    container.innerHTML = '<div class="empty-state">Loading courses...</div>';
+
+    const { data, error } = await supabaseClient
+        .from("courses")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        container.innerHTML = "";
+        showMessage("courseManagerMessage", "Could not load courses: " + error.message, "error");
+        return;
+    }
+
+    managedCourseCache = data || [];
+
+    if (!managedCourseCache.length) {
+        container.innerHTML = '<div class="empty-state">No courses created yet. Use the form above to create your first course.</div>';
+        return;
+    }
+
+    container.innerHTML = managedCourseCache.map(course => `
+        <div class="lesson-item">
+            <h4>${escapeHTML(course.title)}</h4>
+            <p>${escapeHTML(course.category || "Uncategorized")}</p>
+            <p>${escapeHTML(course.description || "No description provided.")}</p>
+            <p>
+                <span class="badge ${course.is_published ? "badge-published" : "badge-draft"}">
+                    ${course.is_published ? "Published" : "Draft"}
+                </span>
+            </p>
+            <div class="dashboard-actions">
+                <button class="btn btn-small" onclick="editCourse('${course.id}')">Edit Course</button>
+                <button class="btn btn-small btn-success" onclick="openLessonEditor('${course.id}')">Manage Lessons</button>
+            </div>
+        </div>
+    `).join("");
+}
+
+/* CREATE OR UPDATE COURSE */
+
+document.getElementById("courseForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    if (!isApprovedStaff() || !currentUser) {
+        showMessage("courseManagerMessage", "Only approved teachers and administrators can manage courses.", "error");
+        return;
+    }
+
+    const button = document.getElementById("saveCourseButton");
+    button.disabled = true;
+    button.textContent = "Saving...";
+
+    const courseId = document.getElementById("editCourseId").value;
+
+    const title = document.getElementById("courseTitle").value.trim();
+    const description = document.getElementById("courseDescription").value.trim();
+    const category = document.getElementById("courseCategory").value.trim();
+    const thumbnailInput = document.getElementById("courseThumbnail").value.trim();
+    const thumbnail_url = safeExternalURL(thumbnailInput);
+    const is_published = document.getElementById("coursePublished").checked;
+
+    try {
+        if (!title) {
+            throw new Error("Please enter a course title.");
+        }
+
+        if (thumbnailInput && !thumbnail_url) {
+            throw new Error("Please enter a valid HTTP or HTTPS thumbnail URL.");
+        }
+
+        const courseData = {
+            title,
+            description,
+            category,
+            thumbnail_url: thumbnail_url || null,
+            is_published
+        };
+
+        let result;
+
+        if (courseId) {
+            result = await supabaseClient
+                .from("courses")
+                .update(courseData)
+                .eq("id", courseId);
+        } else {
+            result = await supabaseClient
+                .from("courses")
+                .insert({
+                    ...courseData,
+                    created_by: currentUser.id
+                });
+        }
+
+        if (result.error) throw result.error;
+
+        showMessage(
+            "courseManagerMessage",
+            courseId ? "Course updated successfully!" : "Course created successfully!",
+            "success"
+        );
+
+        resetCourseForm();
+        await loadCourseManager();
+        await loadPublishedCourses();
+
+    } catch (error) {
+        showMessage("courseManagerMessage", error.message, "error");
+    } finally {
+        button.disabled = false;
+        button.textContent = "Save Course";
+    }
+});
+
+/* EDIT COURSE */
+
+function editCourse(courseId) {
+    if (!isApprovedStaff()) return;
+
+    const course = managedCourseCache.find(item => item.id === courseId);
+    if (!course) return;
+
+    document.getElementById("editCourseId").value = course.id;
+    document.getElementById("courseTitle").value = course.title || "";
+    document.getElementById("courseDescription").value = course.description || "";
+    document.getElementById("courseCategory").value = course.category || "";
+    document.getElementById("courseThumbnail").value = course.thumbnail_url || "";
+    document.getElementById("coursePublished").checked = !!course.is_published;
+
+    document.getElementById("courseFormHeading").textContent = "Edit Course";
+    document.getElementById("saveCourseButton").textContent = "Update Course";
+    document.getElementById("cancelCourseEdit").classList.remove("hidden");
+
+    document.getElementById("courseFormHeading").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+/* RESET COURSE FORM */
+
+function resetCourseForm() {
+    document.getElementById("courseForm").reset();
+    document.getElementById("editCourseId").value = "";
+    document.getElementById("courseFormHeading").textContent = "Create a New Course";
+    document.getElementById("saveCourseButton").textContent = "Save Course";
+    document.getElementById("cancelCourseEdit").classList.add("hidden");
+}
+
+/* OPEN LESSON EDITOR */
+
+function openLessonEditor(courseId) {
+    if (!isApprovedStaff()) return;
+
+    const course = managedCourseCache.find(item => item.id === courseId);
+    if (!course) return;
+
+    selectedCourseForLessons = courseId;
+
+    document.getElementById("lessonEditor").classList.remove("hidden");
+    document.getElementById("lessonCourseId").value = courseId;
+    document.getElementById("lessonCourseName").textContent = "Course: " + course.title;
+
+    resetLessonForm();
+    loadManagedLessons(courseId);
+
+    document.getElementById("lessonEditor").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+/* LOAD LESSONS FOR STAFF */
+
+async function loadManagedLessons(courseId) {
+    if (!isApprovedStaff()) return;
+
+    const { data, error } = await supabaseClient
+        .from("lessons")
+        .select("*")
+        .eq("course_id", courseId)
+        .order("lesson_order", { ascending: true });
+
+    if (error) {
+        showMessage("courseManagerMessage", "Could not load lessons: " + error.message, "error");
+        return;
+    }
+
+    const course = managedCourseCache.find(item => item.id === courseId);
+    if (!course) return;
+
+    let lessonContainer = document.getElementById("managedLessons");
+
+    if (!lessonContainer) {
+        lessonContainer = document.createElement("div");
+        lessonContainer.id = "managedLessons";
+        document.getElementById("lessonEditor").after(lessonContainer);
+    }
+
+    const lessons = data || [];
+
+    lessonContainer.innerHTML = `
+        <h3>Lessons in ${escapeHTML(course.title)}</h3>
+        ${
+            lessons.length
+            ? lessons.map(lesson => `
+                <div class="lesson-item">
+                    <h4>${escapeHTML(lesson.lesson_order)}. ${escapeHTML(lesson.title)}</h4>
+                    <p>${escapeHTML(lesson.description || "No description")}</p>
+                    <p>
+                        <span class="badge ${lesson.is_published ? "badge-published" : "badge-draft"}">
+                            ${lesson.is_published ? "Published" : "Draft"}
+                        </span>
+                    </p>
+                    <button class="btn btn-small" onclick="editLesson('${lesson.id}')">Edit Lesson</button>
+                </div>
+            `).join("")
+            : '<div class="empty-state">No lessons in this course yet. Add your first lesson above.</div>'
+        }
+    `;
+
+    window.managedLessonCache = lessons;
+}
+
+/* CREATE OR UPDATE LESSON */
+
+document.getElementById("lessonForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    if (!isApprovedStaff()) {
+        showMessage("courseManagerMessage", "You do not have permission to manage lessons.", "error");
+        return;
+    }
+
+    const button = document.getElementById("saveLessonButton");
+    button.disabled = true;
+    button.textContent = "Saving...";
+
+    try {
+        const lessonId = document.getElementById("editLessonId").value;
+        const courseId = document.getElementById("lessonCourseId").value;
+
+        const title = document.getElementById("lessonTitle").value.trim();
+        const description = document.getElementById("lessonDescription").value.trim();
+        const lesson_content = document.getElementById("lessonContent").value;
+        const videoInput = document.getElementById("lessonVideo").value.trim();
+        const fileInput = document.getElementById("lessonFile").value.trim();
+        const video_url = safeExternalURL(videoInput);
+        const file_url = safeExternalURL(fileInput);
+        const lesson_order = Math.max(
+            1,
+            parseInt(document.getElementById("lessonOrder").value, 10) || 1
+        );
+        const is_published = document.getElementById("lessonPublished").checked;
+
+        if (!courseId || !title) {
+            throw new Error("Please select a course and enter a lesson title.");
+        }
+
+        if (videoInput && !video_url) {
+            throw new Error("Please enter a valid HTTP or HTTPS video URL.");
+        }
+
+        if (fileInput && !file_url) {
+            throw new Error("Please enter a valid HTTP or HTTPS learning material URL.");
+        }
+
+        const lessonData = {
+            course_id: courseId,
+            title,
+            description,
+            lesson_content,
+            video_url: video_url || null,
+            file_url: file_url || null,
+            lesson_order,
+            is_published
+        };
+
+        let result;
+
+        if (lessonId) {
+            result = await supabaseClient
+                .from("lessons")
+                .update(lessonData)
+                .eq("id", lessonId);
+        } else {
+            result = await supabaseClient
+                .from("lessons")
+                .insert(lessonData);
+        }
+
+        if (result.error) throw result.error;
+
+        showMessage(
+            "courseManagerMessage",
+            lessonId ? "Lesson updated successfully!" : "Lesson created successfully!",
+            "success"
+        );
+
+        resetLessonForm();
+        await loadManagedLessons(courseId);
+        await loadPublishedCourses();
+
+    } catch (error) {
+        showMessage("courseManagerMessage", error.message, "error");
+    } finally {
+        button.disabled = false;
+        button.textContent = "Save Lesson";
+    }
+});
+
+/* EDIT LESSON */
+
+function editLesson(lessonId) {
+    if (!isApprovedStaff()) return;
+
+    const lesson = (window.managedLessonCache || []).find(item => item.id === lessonId);
+    if (!lesson) return;
+
+    document.getElementById("editLessonId").value = lesson.id;
+    document.getElementById("lessonCourseId").value = lesson.course_id;
+    document.getElementById("lessonTitle").value = lesson.title || "";
+    document.getElementById("lessonDescription").value = lesson.description || "";
+    document.getElementById("lessonContent").value = lesson.lesson_content || "";
+    document.getElementById("lessonVideo").value = lesson.video_url || "";
+    document.getElementById("lessonFile").value = lesson.file_url || "";
+    document.getElementById("lessonOrder").value = lesson.lesson_order || 1;
+    document.getElementById("lessonPublished").checked = !!lesson.is_published;
+
+    document.getElementById("lessonFormHeading").textContent = "Edit Lesson";
+    document.getElementById("saveLessonButton").textContent = "Update Lesson";
+
+    document.getElementById("lessonFormHeading").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+/* RESET LESSON FORM */
+
+function resetLessonForm() {
+    document.getElementById("lessonForm").reset();
+    document.getElementById("editLessonId").value = "";
+    document.getElementById("lessonCourseId").value = selectedCourseForLessons || "";
+    document.getElementById("lessonOrder").value = 1;
+    document.getElementById("lessonFormHeading").textContent = "Add a Lesson";
+    document.getElementById("saveLessonButton").textContent = "Save Lesson";
+}
+
+/* CLOSE LESSON EDITOR */
+
+function closeLessonEditor() {
+    document.getElementById("lessonEditor").classList.add("hidden");
+
+    const lessons = document.getElementById("managedLessons");
+    if (lessons) lessons.remove();
+
+    selectedCourseForLessons = null;
+}
+
+/* =====================================================
+   STUDENT LEARNING AREA
+===================================================== */
+
+/* LOAD PUBLISHED COURSES */
+
+async function loadPublishedCourses() {
+    const container = document.getElementById("publishedCoursesGrid");
+
+    const { data, error } = await supabaseClient
+        .from("courses")
+        .select("id, title, description, category, thumbnail_url")
+        .eq("is_published", true)
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        container.innerHTML = '<div class="empty-state">Courses could not be loaded right now.</div>';
+        showMessage("publishedCourseMessage", error.message, "error");
+        return;
+    }
+
+    const courses = data || [];
+
+    if (!courses.length) {
+        container.innerHTML = '<div class="empty-state">No published courses yet. Please check again later.</div>';
+        return;
+    }
+
+    clearMessage("publishedCourseMessage");
+
+    container.innerHTML = courses.map(course => {
+        const imageURL = safeExternalURL(course.thumbnail_url);
+
+        return `
+            <article class="course-card published-course-card">
+                ${
+                    imageURL
+                    ? `<img src="${escapeHTML(imageURL)}" alt="${escapeHTML(course.title)}" loading="lazy">`
+                    : `<div class="course-icon" style="margin:18px">📘</div>`
+                }
+                <div class="course-card-content">
+                    <span class="course-category">${escapeHTML(course.category || "Course")}</span>
+                    <h3>${escapeHTML(course.title)}</h3>
+                    <p>${escapeHTML(course.description || "Explore this course and its lessons.")}</p>
+                    <div class="dashboard-actions">
+                        <button class="btn btn-small" onclick="openPublishedCourse('${course.id}')">
+                            View Course →
+                        </button>
+                    </div>
+                </div>
+            </article>
+        `;
+    }).join("");
+}
+
+/* OPEN COURSE ON A SEPARATE PAGE */
+
+function openPublishedCourse(courseId) {
+    if (!courseId) {
+        alert("Course ID is missing!");
+        return;
+    }
+
+    window.location.href =
+        "course.html?id=" + encodeURIComponent(courseId);
+}
+
+/* CLOSE COURSE VIEWER */
+
+function closeCourseViewer() {
+    document.getElementById("courseViewer").classList.add("hidden");
+    document.getElementById("courses").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+/* =====================================================
+   ATTENDANCE SYSTEM
+===================================================== */
+
+/* ATTENDANCE: STUDENT OPTIONS */
+
+async function loadStudentOptions() {
+    const select = document.getElementById("attendanceStudent");
+
+    const { data, error } = await supabaseClient
+        .from("profiles")
+        .select("id, full_name, email")
+        .eq("role", "student")
+        .eq("status", "approved")
+        .order("full_name");
+
+    if (error) {
+        select.innerHTML = '<option value="">Could not load students</option>';
+        showMessage("attendanceMessage", error.message, "error");
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        select.innerHTML = '<option value="">No approved students found</option>';
+        return;
+    }
+
+    select.innerHTML = '<option value="">Select a student</option>' +
+        data.map(student =>
+            `<option value="${student.id}">${escapeHTML(student.full_name || student.email || student.id)}</option>`
+        ).join("");
+}
+
+/* MARK ATTENDANCE */
+
+async function markAttendance() {
+    const studentId = document.getElementById("attendanceStudent").value;
+    const status = document.getElementById("attendanceStatus").value;
+
+    if (!studentId) {
+        showMessage("attendanceMessage", "Please select a student.", "error");
+        return;
+    }
+
+    const { error } = await supabaseClient
+        .from("attendance")
+        .upsert({
+            student_id: studentId,
+            attendance_date: new Date().toLocaleDateString("en-CA"),
+            attendance_status: status,
+            marked_by: currentUser.id
+        }, {
+            onConflict: "student_id,attendance_date"
+        });
+
+    if (error) {
+        showMessage("attendanceMessage", error.message, "error");
+        return;
+    }
+
+    showMessage("attendanceMessage", "Attendance saved successfully.", "success");
+
+    await loadStaffAttendance();
+}
+
+/* STAFF ATTENDANCE HISTORY */
+
+async function loadStaffAttendance() {
+    const body = document.getElementById("staffAttendanceBody");
+
+    const { data, error } = await supabaseClient
+        .from("attendance")
+        .select(`
+            id,
+            attendance_date,
+            attendance_status,
+            marked_at,
+            profiles:student_id (
+                full_name,
+                email
+            )
+        `)
+        .order("attendance_date", { ascending: false })
+        .limit(200);
+
+    if (error) {
+        body.innerHTML = `<tr><td colspan="4">${escapeHTML(error.message)}</td></tr>`;
+        return;
+    }
+
+    if (!data || !data.length) {
+        body.innerHTML = '<tr><td colspan="4">No attendance records yet.</td></tr>';
+        return;
+    }
+
+    body.innerHTML = data.map(record => `
+        <tr>
+            <td>${escapeHTML(record.profiles?.full_name || record.profiles?.email || "Student")}</td>
+            <td>${escapeHTML(formatDate(record.attendance_date))}</td>
+            <td><span class="badge badge-${escapeHTML(record.attendance_status)}">${escapeHTML(record.attendance_status)}</span></td>
+            <td>${escapeHTML(formatDateTime(record.marked_at))}</td>
+        </tr>
+    `).join("");
+}
+
+/* STUDENT ATTENDANCE HISTORY */
+
+async function loadStudentAttendance() {
+    const body = document.getElementById("studentAttendanceBody");
+
+    const { data, error } = await supabaseClient
+        .from("attendance")
+        .select("attendance_date, attendance_status, marked_at")
+        .eq("student_id", currentUser.id)
+        .order("attendance_date", { ascending: false })
+        .limit(200);
+
+    if (error) {
+        body.innerHTML = `<tr><td colspan="3">${escapeHTML(error.message)}</td></tr>`;
+        return;
+    }
+
+    if (!data || !data.length) {
+        body.innerHTML = '<tr><td colspan="3">No attendance records found.</td></tr>';
+        return;
+    }
+
+    body.innerHTML = data.map(record => `
+        <tr>
+            <td>${escapeHTML(formatDate(record.attendance_date))}</td>
+            <td><span class="badge badge-${escapeHTML(record.attendance_status)}">${escapeHTML(record.attendance_status)}</span></td>
+            <td>${escapeHTML(formatDateTime(record.marked_at))}</td>
+        </tr>
+    `).join("");
+}
+
+/* ATTENDANCE COUNT */
+
+async function updateAttendanceCount() {
+    const { count, error } = await supabaseClient
+        .from("attendance")
+        .select("*", { count: "exact", head: true })
+        .eq("student_id", currentUser.id);
+
+    if (!error) {
+        document.getElementById("attendanceCount").textContent = count || 0;
+    }
+}
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+async function logout() {
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+        alert(error.message);
+        return;
+    }
+
+    currentUser = null;
+    currentProfile = null;
+    managedCourseCache = [];
+    selectedCourseForLessons = null;
+
+    document.getElementById("authCard").classList.remove("hidden");
+    document.getElementById("userDashboard").classList.add("hidden");
+    document.getElementById("adminPanel").classList.add("hidden");
+    document.getElementById("attendancePanel").classList.add("hidden");
+    document.getElementById("courseManagerPanel").classList.add("hidden");
+
+    document.getElementById("staffAttendance").classList.add("hidden");
+    document.getElementById("studentAttendance").classList.add("hidden");
+
+    document.getElementById("lessonEditor").classList.add("hidden");
+
+    const managedLessons = document.getElementById("managedLessons");
+    if (managedLessons) managedLessons.remove();
+
+    resetCourseForm();
+    resetLessonForm();
+
+    showAuth("login");
+
+    window.location.hash = "account";
+}
+
+/* RESTORE SESSION */
+
+async function restoreSession() {
+    const { data, error } = await supabaseClient.auth.getSession();
+
+    if (error) {
+        console.error("Session error:", error.message);
+        return;
+    }
+
+    if (data.session?.user) {
+        await loadUserProfile(data.session.user);
+    }
+}
+
+/* AUTH STATE CHANGES */
+
+supabaseClient.auth.onAuthStateChange((event, session) => {
+    if (event === "SIGNED_OUT") {
+        currentUser = null;
+        currentProfile = null;
+    }
+});
+
+/* START WEBSITE */
+
+loadPublishedCourses();
+restoreSession();
 
 </script>
-
-</body>
-</html>
