@@ -10,877 +10,870 @@
 
 <style>
 :root {
-    --navy: #102a63;
-    --blue: #075bea;
-    --blue-dark: #0645b5;
-    --light-blue: #eaf3ff;
-    --text: #172b4d;
-    --muted: #64748b;
-    --white: #ffffff;
-    --border: #dce8f8;
-    --green: #15803d;
-    --red: #dc2626;
-    --shadow: 0 8px 25px rgba(16, 42, 99, .08);
+    --navy:#102a63;
+    --blue:#075bea;
+    --blue-dark:#0645b5;
+    --light-blue:#eaf3ff;
+    --text:#172b4d;
+    --muted:#64748b;
+    --white:#ffffff;
+    --border:#dce8f8;
+    --green:#15803d;
+    --red:#dc2626;
+    --shadow:0 8px 25px rgba(16,42,99,.08);
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior:smooth; }
 
 body {
-    font-family: Inter, "Segoe UI", Arial, sans-serif;
-    background: #f7faff;
-    color: var(--text);
-    font-size: 15px;
-    line-height: 1.6;
+    font-family:Inter,"Segoe UI",Arial,sans-serif;
+    background:#f7faff;
+    color:var(--text);
+    font-size:15px;
+    line-height:1.6;
 }
 
-button, input, select, textarea {
-    font: inherit;
-}
-
-button {
-    cursor: pointer;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.hidden {
-    display: none !important;
-}
+button,input,select,textarea { font:inherit; }
+button { cursor:pointer; }
+a { text-decoration:none;color:inherit; }
+.hidden { display:none!important; }
 
 /* NAVIGATION */
 
 header {
-    background: rgba(255,255,255,.97);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    background:rgba(255,255,255,.97);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
 .navbar {
-    max-width: 1250px;
-    margin: auto;
-    padding: 12px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    max-width:1250px;
+    margin:auto;
+    padding:12px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
 
 .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--navy);
-    font-weight: 800;
-    font-size: 20px;
-    line-height: 1.1;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--navy);
+    font-weight:800;
+    font-size:20px;
+    line-height:1.1;
 }
 
 .brand-icon {
-    width: 43px;
-    height: 43px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #0a65f5, #102a63);
-    color: white;
-    display: grid;
-    place-items: center;
-    font-size: 23px;
+    width:43px;
+    height:43px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#0a65f5,#102a63);
+    color:white;
+    display:grid;
+    place-items:center;
+    font-size:23px;
 }
 
 .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display:flex;
+    align-items:center;
+    gap:8px;
 }
 
 .nav-links a {
-    padding: 9px 14px;
-    border-radius: 25px;
-    color: var(--navy);
-    font-weight: 600;
-    font-size: 14px;
-    transition: .2s;
+    padding:9px 14px;
+    border-radius:25px;
+    color:var(--navy);
+    font-weight:600;
+    font-size:14px;
+    transition:.2s;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: white;
-    background: var(--blue);
+    color:white;
+    background:var(--blue);
 }
 
 /* HERO */
 
 .hero {
     background:
-        radial-gradient(circle at 78% 25%, rgba(35,145,255,.45), transparent 28%),
-        linear-gradient(120deg, #071d49, #0646ad 65%, #0879ee);
-    color: white;
-    overflow: hidden;
-    position: relative;
+        radial-gradient(circle at 78% 25%,rgba(35,145,255,.45),transparent 28%),
+        linear-gradient(120deg,#071d49,#0646ad 65%,#0879ee);
+    color:white;
+    overflow:hidden;
+    position:relative;
 }
 
 .hero::after {
-    content: "";
-    position: absolute;
-    width: 450px;
-    height: 450px;
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 50%;
-    right: -120px;
-    top: -180px;
+    content:"";
+    position:absolute;
+    width:450px;
+    height:450px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:50%;
+    right:-120px;
+    top:-180px;
 }
 
 .hero-inner {
-    max-width: 1200px;
-    margin: auto;
-    min-height: 390px;
-    padding: 65px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 35px;
-    position: relative;
-    z-index: 1;
+    max-width:1200px;
+    margin:auto;
+    min-height:390px;
+    padding:65px 30px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:35px;
+    position:relative;
+    z-index:1;
 }
 
-.hero-content {
-    max-width: 650px;
-}
+.hero-content { max-width:650px; }
 
 .eyebrow {
-    color: #9dcaff;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
+    color:#9dcaff;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:12px;
 }
 
 .hero h1 {
-    font-size: clamp(32px, 4vw, 48px);
-    line-height: 1.13;
-    margin-bottom: 15px;
-    letter-spacing: -.8px;
+    font-size:clamp(32px,4vw,48px);
+    line-height:1.13;
+    margin-bottom:15px;
+    letter-spacing:-.8px;
 }
 
 .hero h2 {
-    font-size: 19px;
-    font-weight: 600;
-    margin-bottom: 10px;
+    font-size:19px;
+    font-weight:600;
+    margin-bottom:10px;
 }
 
 .hero p {
-    max-width: 560px;
-    color: #e3efff;
-    font-size: 15px;
-    margin-bottom: 25px;
+    max-width:560px;
+    color:#e3efff;
+    font-size:15px;
+    margin-bottom:25px;
 }
 
 .hero-art {
-    width: 310px;
-    height: 250px;
-    flex-shrink: 0;
-    border: 1px solid rgba(255,255,255,.2);
-    border-radius: 28px;
-    background: rgba(255,255,255,.09);
-    display: grid;
-    place-items: center;
-    font-size: 105px;
-    box-shadow: 0 20px 50px rgba(0,0,0,.15);
-    backdrop-filter: blur(10px);
+    width:310px;
+    height:250px;
+    flex-shrink:0;
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:28px;
+    background:rgba(255,255,255,.09);
+    display:grid;
+    place-items:center;
+    font-size:105px;
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+    backdrop-filter:blur(10px);
 }
 
 /* BUTTONS */
 
 .btn {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    background: var(--blue);
-    color: white;
-    border: 0;
-    border-radius: 9px;
-    padding: 11px 19px;
-    font-size: 14px;
-    font-weight: 700;
-    transition: .2s;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    background:var(--blue);
+    color:white;
+    border:0;
+    border-radius:9px;
+    padding:11px 19px;
+    font-size:14px;
+    font-weight:700;
+    transition:.2s;
 }
 
 .btn:hover {
-    background: var(--blue-dark);
-    transform: translateY(-1px);
+    background:var(--blue-dark);
+    transform:translateY(-1px);
 }
 
 .btn:disabled {
-    opacity: .6;
-    cursor: not-allowed;
-    transform: none;
+    opacity:.6;
+    cursor:not-allowed;
+    transform:none;
 }
 
-.btn-light {
-    background: white;
-    color: var(--blue);
-}
-
-.btn-light:hover {
-    background: #eaf3ff;
-}
-
-.btn-small {
-    padding: 7px 12px;
-    font-size: 12px;
-}
-
-.btn-danger {
-    background: var(--red);
-}
-
-.btn-success {
-    background: var(--green);
-}
+.btn-light { background:white;color:var(--blue); }
+.btn-light:hover { background:#eaf3ff; }
+.btn-small { padding:7px 12px;font-size:12px; }
+.btn-danger { background:var(--red); }
+.btn-success { background:var(--green); }
 
 /* SECTIONS */
 
 .section {
-    max-width: 1200px;
-    margin: auto;
-    padding: 55px 24px;
+    max-width:1200px;
+    margin:auto;
+    padding:55px 24px;
 }
 
 .section-heading {
-    text-align: center;
-    margin-bottom: 30px;
+    text-align:center;
+    margin-bottom:30px;
 }
 
 .section-heading h2 {
-    color: var(--navy);
-    font-size: 29px;
-    line-height: 1.3;
-    margin-bottom: 5px;
+    color:var(--navy);
+    font-size:29px;
+    line-height:1.3;
+    margin-bottom:5px;
 }
 
 .section-heading p {
-    color: var(--muted);
-    font-size: 14px;
+    color:var(--muted);
+    font-size:14px;
 }
 
 /* LEARNING CARDS */
 
 .course-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
 }
 
 .course-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 25px 20px;
-    box-shadow: var(--shadow);
-    transition: .25s;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:25px 20px;
+    box-shadow:var(--shadow);
+    transition:.25s;
 }
 
 .course-card:hover {
-    transform: translateY(-4px);
-    border-color: #9cc4ff;
+    transform:translateY(-4px);
+    border-color:#9cc4ff;
 }
 
 .course-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 13px;
-    background: var(--light-blue);
-    display: grid;
-    place-items: center;
-    font-size: 27px;
-    margin-bottom: 15px;
+    width:52px;
+    height:52px;
+    border-radius:13px;
+    background:var(--light-blue);
+    display:grid;
+    place-items:center;
+    font-size:27px;
+    margin-bottom:15px;
 }
 
 .course-card h3 {
-    font-size: 17px;
-    color: var(--navy);
-    margin-bottom: 7px;
+    font-size:17px;
+    color:var(--navy);
+    margin-bottom:7px;
 }
 
 .course-card p {
-    color: var(--muted);
-    font-size: 13px;
+    color:var(--muted);
+    font-size:13px;
 }
 
-/* PUBLISHED COURSES INSIDE PYTHON CARD */
+/* CLICKABLE PYTHON THUMBNAIL */
 
 .python-course-card {
-    grid-column: 1 / -1;
+    grid-column:1/-1;
+    padding:0;
+    overflow:hidden;
+}
+
+.python-card-toggle {
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    text-align:left;
+    padding:25px 20px;
+    border:0;
+    background:white;
+    color:var(--text);
+    cursor:pointer;
+}
+
+.python-card-toggle:hover {
+    background:#f7faff;
+}
+
+.python-card-toggle:focus-visible {
+    outline:3px solid var(--blue);
+    outline-offset:-4px;
+}
+
+.python-card-toggle .course-icon {
+    flex-shrink:0;
+    margin:0;
+    width:65px;
+    height:65px;
+    font-size:34px;
+}
+
+.python-card-info {
+    flex:1;
+}
+
+.python-card-info h3 {
+    font-size:19px;
+    color:var(--navy);
+    margin-bottom:5px;
+}
+
+.python-card-info p {
+    color:var(--muted);
+    font-size:13px;
+}
+
+.python-open-indicator {
+    color:var(--blue);
+    font-size:25px;
+    font-weight:800;
+    transition:transform .25s;
+}
+
+.python-course-card.expanded .python-open-indicator {
+    transform:rotate(180deg);
+}
+
+.python-courses-area {
+    padding:0 20px 22px;
+    border-top:1px solid var(--border);
 }
 
 .python-courses-heading {
-    margin-top: 22px;
-    padding-top: 18px;
-    border-top: 1px solid var(--border);
+    padding-top:18px;
 }
 
 .python-courses-heading h3 {
-    color: var(--navy);
-    font-size: 19px;
-    margin-bottom: 4px;
+    color:var(--navy);
+    font-size:19px;
+    margin-bottom:4px;
 }
 
 .python-courses-heading p {
-    color: var(--muted);
-    font-size: 13px;
+    color:var(--muted);
+    font-size:13px;
 }
 
 .python-courses-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 14px;
-    margin-top: 15px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:14px;
+    margin-top:15px;
 }
 
 .python-courses-grid .published-course-card {
-    min-width: 0;
+    min-width:0;
 }
 
 /* DYNAMIC COURSE CARDS */
 
 .published-course-card {
-    overflow: hidden;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
+    overflow:hidden;
+    padding:0;
+    display:flex;
+    flex-direction:column;
 }
 
 .published-course-card img {
-    width: 100%;
-    height: 165px;
-    object-fit: cover;
-    background: var(--light-blue);
+    width:100%;
+    height:165px;
+    object-fit:cover;
+    background:var(--light-blue);
 }
 
 .published-course-card .course-card-content {
-    padding: 18px;
-    flex: 1;
+    padding:18px;
+    flex:1;
 }
 
 .course-category {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--blue);
-    background: var(--light-blue);
-    padding: 4px 9px;
-    border-radius: 20px;
-    margin-bottom: 10px;
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    color:var(--blue);
+    background:var(--light-blue);
+    padding:4px 9px;
+    border-radius:20px;
+    margin-bottom:10px;
 }
 
 /* ABOUT */
 
 .about-box {
-    background: linear-gradient(120deg, #eaf3ff, white);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 30px;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 25px;
-    align-items: center;
+    background:linear-gradient(120deg,#eaf3ff,white);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:30px;
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:25px;
+    align-items:center;
 }
 
 .about-box h2 {
-    font-size: 25px;
-    color: var(--navy);
-    margin-bottom: 12px;
+    font-size:25px;
+    color:var(--navy);
+    margin-bottom:12px;
 }
 
 .about-box p {
-    color: #526581;
-    margin-bottom: 15px;
+    color:#526581;
+    margin-bottom:15px;
 }
 
 .about-visual {
-    min-height: 180px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #0b4eb4, #0785f5);
-    display: grid;
-    place-items: center;
-    color: white;
-    font-size: 75px;
+    min-height:180px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#0b4eb4,#0785f5);
+    display:grid;
+    place-items:center;
+    color:white;
+    font-size:75px;
 }
 
 /* ACCOUNT */
 
 .account-section {
-    background: #f0f6ff;
-    padding: 55px 20px;
+    background:#f0f6ff;
+    padding:55px 20px;
 }
 
 .account-card {
-    max-width: 510px;
-    margin: auto;
-    padding: 28px;
-    border-radius: 17px;
-    background: white;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
+    max-width:510px;
+    margin:auto;
+    padding:28px;
+    border-radius:17px;
+    background:white;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
 }
 
 .account-card h2 {
-    text-align: center;
-    color: var(--navy);
-    font-size: 23px;
-    margin-bottom: 5px;
+    text-align:center;
+    color:var(--navy);
+    font-size:23px;
+    margin-bottom:5px;
 }
 
 .account-subtitle {
-    text-align: center;
-    color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 22px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:22px;
 }
 
 .tabs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background: #edf4ff;
-    padding: 4px;
-    border-radius: 9px;
-    margin-bottom: 18px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    background:#edf4ff;
+    padding:4px;
+    border-radius:9px;
+    margin-bottom:18px;
 }
 
 .tab {
-    border: 0;
-    background: transparent;
-    padding: 9px;
-    border-radius: 7px;
-    color: var(--navy);
-    font-weight: 600;
+    border:0;
+    background:transparent;
+    padding:9px;
+    border-radius:7px;
+    color:var(--navy);
+    font-weight:600;
 }
 
 .tab.active {
-    background: white;
-    color: var(--blue);
-    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    background:white;
+    color:var(--blue);
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
 }
 
-.form-group {
-    margin-bottom: 13px;
-}
+.form-group { margin-bottom:13px; }
 
 .form-group label {
-    display: block;
-    font-weight: 600;
-    font-size: 13px;
-    margin-bottom: 5px;
+    display:block;
+    font-weight:600;
+    font-size:13px;
+    margin-bottom:5px;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-    width: 100%;
-    padding: 11px 12px;
-    border: 1px solid #d8e3f2;
-    border-radius: 8px;
-    outline: none;
-    background: #fbfdff;
-    color: var(--text);
+    width:100%;
+    padding:11px 12px;
+    border:1px solid #d8e3f2;
+    border-radius:8px;
+    outline:none;
+    background:#fbfdff;
+    color:var(--text);
 }
 
 .form-group textarea {
-    min-height: 110px;
-    resize: vertical;
+    min-height:110px;
+    resize:vertical;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(7,91,234,.08);
+    border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(7,91,234,.08);
 }
 
-.full-width {
-    width: 100%;
-}
+.full-width { width:100%; }
 
 .message {
-    padding: 10px 12px;
-    border-radius: 8px;
-    font-size: 13px;
-    margin: 12px 0;
-    display: none;
+    padding:10px 12px;
+    border-radius:8px;
+    font-size:13px;
+    margin:12px 0;
+    display:none;
 }
 
-.message.show {
-    display: block;
-}
-
-.message.error {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.message.success {
-    background: #dcfce7;
-    color: #166534;
-}
+.message.show { display:block; }
+.message.error { background:#fee2e2;color:#991b1b; }
+.message.success { background:#dcfce7;color:#166534; }
 
 .small-link {
-    display: block;
-    text-align: center;
-    color: var(--blue);
-    font-size: 13px;
-    margin-top: 13px;
+    display:block;
+    text-align:center;
+    color:var(--blue);
+    font-size:13px;
+    margin-top:13px;
 }
 
 /* DASHBOARDS */
 
 .dashboard {
-    max-width: 1200px;
-    margin: 35px auto;
-    padding: 25px;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    box-shadow: var(--shadow);
+    max-width:1200px;
+    margin:35px auto;
+    padding:25px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    box-shadow:var(--shadow);
 }
 
 .dashboard h2 {
-    color: var(--navy);
-    font-size: 23px;
-    margin-bottom: 5px;
+    color:var(--navy);
+    font-size:23px;
+    margin-bottom:5px;
 }
 
 .dashboard-description {
-    color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 20px;
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:20px;
 }
 
 .dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    margin: 20px 0;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:20px 0;
 }
 
 .stat-card {
-    padding: 17px;
-    background: #f0f6ff;
-    border: 1px solid var(--border);
-    border-radius: 11px;
+    padding:17px;
+    background:#f0f6ff;
+    border:1px solid var(--border);
+    border-radius:11px;
 }
 
 .stat-card span {
-    color: var(--muted);
-    font-size: 12px;
+    color:var(--muted);
+    font-size:12px;
 }
 
 .stat-card strong {
-    display: block;
-    color: var(--navy);
-    font-size: 25px;
+    display:block;
+    color:var(--navy);
+    font-size:25px;
 }
 
 .table-wrap {
-    width: 100%;
-    overflow-x: auto;
-    margin: 15px 0 25px;
+    width:100%;
+    overflow-x:auto;
+    margin:15px 0 25px;
 }
 
 table {
-    width: 100%;
-    min-width: 620px;
-    border-collapse: collapse;
-    font-size: 13px;
+    width:100%;
+    min-width:620px;
+    border-collapse:collapse;
+    font-size:13px;
 }
 
-th, td {
-    padding: 11px 12px;
-    border-bottom: 1px solid #e8eef7;
-    text-align: left;
+th,td {
+    padding:11px 12px;
+    border-bottom:1px solid #e8eef7;
+    text-align:left;
 }
 
 th {
-    color: var(--navy);
-    background: #eff5ff;
-    font-weight: 700;
+    color:var(--navy);
+    background:#eff5ff;
+    font-weight:700;
 }
 
-td {
-    color: #465873;
-}
+td { color:#465873; }
 
 .badge {
-    display: inline-block;
-    padding: 4px 9px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 700;
-    background: #eaf3ff;
-    color: var(--blue);
+    display:inline-block;
+    padding:4px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:700;
+    background:#eaf3ff;
+    color:var(--blue);
 }
 
 .badge-approved,
 .badge-present,
 .badge-published {
-    background: #dcfce7;
-    color: #166534;
+    background:#dcfce7;
+    color:#166534;
 }
 
 .badge-pending,
 .badge-late,
 .badge-draft {
-    background: #fef3c7;
-    color: #92400e;
+    background:#fef3c7;
+    color:#92400e;
 }
 
 .badge-absent,
 .badge-rejected {
-    background: #fee2e2;
-    color: #991b1b;
+    background:#fee2e2;
+    color:#991b1b;
 }
 
 .dashboard-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 15px 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:15px 0;
 }
 
 .dashboard h3 {
-    color: var(--navy);
-    font-size: 17px;
-    margin: 25px 0 10px;
+    color:var(--navy);
+    font-size:17px;
+    margin:25px 0 10px;
 }
 
 .empty-state {
-    padding: 20px;
-    text-align: center;
-    color: var(--muted);
-    background: #f7faff;
-    border-radius: 9px;
-    font-size: 13px;
+    padding:20px;
+    text-align:center;
+    color:var(--muted);
+    background:#f7faff;
+    border-radius:9px;
+    font-size:13px;
 }
 
 .editor-box {
-    background: #f7faff;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    margin: 18px 0;
+    background:#f7faff;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:20px;
+    margin:18px 0;
 }
 
-.editor-box h3 {
-    margin-top: 0;
-}
+.editor-box h3 { margin-top:0; }
 
 .editor-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 15px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 15px;
 }
 
 .check-row {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    margin: 12px 0;
-    font-size: 13px;
-    font-weight: 600;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    margin:12px 0;
+    font-size:13px;
+    font-weight:600;
 }
 
 .check-row input {
-    width: 17px;
-    height: 17px;
+    width:17px;
+    height:17px;
 }
 
 .lesson-item {
-    padding: 16px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    margin: 12px 0;
-    background: white;
+    padding:16px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    margin:12px 0;
+    background:white;
 }
 
 .lesson-item h4 {
-    color: var(--navy);
-    margin-bottom: 5px;
+    color:var(--navy);
+    margin-bottom:5px;
 }
 
 .lesson-item p {
-    color: var(--muted);
-    font-size: 13px;
+    color:var(--muted);
+    font-size:13px;
 }
 
 .lesson-content {
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-    background: #f7faff;
-    padding: 15px;
-    border-radius: 9px;
-    margin: 12px 0;
-    font-size: 14px;
+    white-space:pre-wrap;
+    overflow-wrap:anywhere;
+    background:#f7faff;
+    padding:15px;
+    border-radius:9px;
+    margin:12px 0;
+    font-size:14px;
 }
 
 .lesson-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 12px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:12px;
 }
 
 .text-link {
-    color: var(--blue);
-    font-size: 13px;
-    font-weight: 700;
+    color:var(--blue);
+    font-size:13px;
+    font-weight:700;
 }
 
 /* FOOTER */
 
 footer {
-    background: #09265c;
-    color: white;
-    padding: 22px 24px;
-    text-align: center;
-    font-size: 13px;
+    background:#09265c;
+    color:white;
+    padding:22px 24px;
+    text-align:center;
+    font-size:13px;
 }
 
-footer p + p {
-    color: #b9d4ff;
-    margin-top: 5px;
+footer p+p {
+    color:#b9d4ff;
+    margin-top:5px;
 }
 
 /* RESPONSIVE */
 
-@media(max-width: 850px) {
-    .hero-inner {
-        min-height: 340px;
-    }
-
+@media(max-width:850px) {
+    .hero-inner { min-height:340px; }
     .hero-art {
-        width: 220px;
-        height: 200px;
-        font-size: 75px;
+        width:220px;
+        height:200px;
+        font-size:75px;
     }
-
-    .course-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .course-grid { grid-template-columns:repeat(2,1fr); }
 }
 
-@media(max-width: 620px) {
+@media(max-width:620px) {
     .navbar {
-        padding: 10px 13px;
-        flex-direction: column;
-        gap: 10px;
+        padding:10px 13px;
+        flex-direction:column;
+        gap:10px;
     }
 
-    .brand {
-        font-size: 18px;
-    }
+    .brand { font-size:18px; }
 
     .nav-links {
-        width: 100%;
-        justify-content: center;
-        gap: 2px;
+        width:100%;
+        justify-content:center;
+        gap:2px;
     }
 
     .nav-links a {
-        padding: 8px 10px;
-        font-size: 12px;
+        padding:8px 10px;
+        font-size:12px;
     }
 
     .hero-inner {
-        padding: 48px 22px;
-        text-align: center;
-        flex-direction: column;
+        padding:48px 22px;
+        text-align:center;
+        flex-direction:column;
     }
 
-    .hero h1 {
-        font-size: 34px;
-    }
+    .hero h1 { font-size:34px; }
 
     .hero-art {
-        width: 190px;
-        height: 150px;
-        font-size: 65px;
+        width:190px;
+        height:150px;
+        font-size:65px;
     }
 
-    .section {
-        padding: 40px 16px;
-    }
+    .section { padding:40px 16px; }
 
-    .section-heading h2 {
-        font-size: 25px;
-    }
+    .section-heading h2 { font-size:25px; }
 
     .course-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 11px;
+        grid-template-columns:1fr 1fr;
+        gap:11px;
     }
 
-    .course-card {
-        padding: 17px 13px;
-    }
+    .course-card { padding:17px 13px; }
 
     .python-course-card {
-        grid-column: 1 / -1;
+        grid-column:1/-1;
+        padding:0;
     }
 
-    .python-courses-grid {
-        grid-template-columns: 1fr;
+    .python-card-toggle {
+        padding:20px 14px;
+        gap:12px;
     }
 
-    .published-course-card {
-        padding: 0;
+    .python-card-toggle .course-icon {
+        width:52px;
+        height:52px;
+        font-size:27px;
     }
 
-    .course-card h3 {
-        font-size: 15px;
-    }
+    .python-card-info h3 { font-size:17px; }
 
-    .course-card p {
-        font-size: 12px;
-    }
+    .python-courses-area { padding:0 13px 17px; }
+
+    .python-courses-grid { grid-template-columns:1fr; }
+
+    .published-course-card { padding:0; }
+
+    .course-card h3 { font-size:15px; }
+    .course-card p { font-size:12px; }
 
     .about-box {
-        grid-template-columns: 1fr;
-        padding: 22px;
+        grid-template-columns:1fr;
+        padding:22px;
     }
 
-    .about-box h2 {
-        font-size: 22px;
-    }
+    .about-box h2 { font-size:22px; }
 
-    .account-card {
-        padding: 21px 16px;
-    }
+    .account-card { padding:21px 16px; }
 
     .dashboard {
-        margin: 20px 10px;
-        padding: 17px 12px;
+        margin:20px 10px;
+        padding:17px 12px;
     }
 
-    .dashboard-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .editor-grid {
-        grid-template-columns: 1fr;
-    }
+    .dashboard-grid { grid-template-columns:1fr 1fr; }
+    .editor-grid { grid-template-columns:1fr; }
 }
 </style>
 </head>
@@ -933,22 +926,43 @@ footer p + p {
 
     <div class="course-grid">
 
-        <!-- PYTHON CARD WITH PUBLISHED COURSES INSIDE -->
+        <!-- CLICKABLE PYTHON THUMBNAIL -->
 
-        <div class="course-card python-course-card">
-            <div class="course-icon">🐍</div>
-            <h3>Python Programming</h3>
-            <p>Learn Python from the basics and develop your problem-solving skills.</p>
+        <div class="course-card python-course-card" id="pythonCourseCard">
 
-            <div class="python-courses-heading">
-                <h3>📚 Available Courses</h3>
-                <p>Explore courses published by our teachers.</p>
-            </div>
+            <button
+                type="button"
+                class="python-card-toggle"
+                id="pythonCardToggle"
+                aria-expanded="false"
+                aria-controls="pythonCoursesArea"
+                onclick="togglePythonCourses()"
+            >
+                <span class="course-icon">🐍</span>
 
-            <div id="publishedCourseMessage" class="message"></div>
+                <span class="python-card-info">
+                    <h3>Python Programming</h3>
+                    <p>Learn Python from the basics and develop your problem-solving skills.</p>
+                </span>
 
-            <div id="publishedCoursesGrid" class="python-courses-grid">
-                <div class="empty-state">Loading available courses...</div>
+                <span class="python-open-indicator" id="pythonOpenIndicator">⌄</span>
+            </button>
+
+            <!-- COURSES APPEAR INSIDE THE PYTHON CARD -->
+
+            <div id="pythonCoursesArea" class="python-courses-area hidden">
+
+                <div class="python-courses-heading">
+                    <h3>📚 Python Courses</h3>
+                    <p>Choose a Python course to start learning.</p>
+                </div>
+
+                <div id="publishedCourseMessage" class="message"></div>
+
+                <div id="publishedCoursesGrid" class="python-courses-grid">
+                    <div class="empty-state">Loading Python courses...</div>
+                </div>
+
             </div>
         </div>
 
@@ -1077,9 +1091,7 @@ footer p + p {
 
     <div id="userDashboard" class="dashboard hidden">
         <h2>Welcome, <span id="welcomeName">Student</span> 👋</h2>
-        <p class="dashboard-description">
-            Your CyberLab account information.
-        </p>
+        <p class="dashboard-description">Your CyberLab account information.</p>
 
         <div class="dashboard-grid">
             <div class="stat-card">
@@ -1110,9 +1122,7 @@ footer p + p {
 
 <section id="adminPanel" class="dashboard hidden">
     <h2>⚙️ Admin Dashboard</h2>
-    <p class="dashboard-description">
-        Manage registered users and account access.
-    </p>
+    <p class="dashboard-description">Manage registered users and account access.</p>
 
     <div class="dashboard-grid">
         <div class="stat-card">
@@ -1150,7 +1160,7 @@ footer p + p {
     </div>
 </section>
 
-<!-- COURSE MANAGER: APPROVED TEACHERS AND ADMINS -->
+<!-- COURSE MANAGER -->
 
 <section id="courseManagerPanel" class="dashboard hidden">
     <h2>📚 Course Manager</h2>
@@ -1159,8 +1169,6 @@ footer p + p {
     </p>
 
     <div id="courseManagerMessage" class="message"></div>
-
-    <!-- COURSE EDITOR -->
 
     <div class="editor-box">
         <h3 id="courseFormHeading">Create a New Course</h3>
@@ -1201,8 +1209,6 @@ footer p + p {
             </div>
         </form>
     </div>
-
-    <!-- EXISTING COURSES -->
 
     <h3>Manage Your Courses</h3>
     <div id="managedCourses">
@@ -1268,9 +1274,7 @@ footer p + p {
 
 <section id="attendancePanel" class="dashboard hidden">
     <h2>📅 Attendance Management</h2>
-    <p class="dashboard-description">
-        Manage and review student attendance.
-    </p>
+    <p class="dashboard-description">Manage and review student attendance.</p>
 
     <div id="staffAttendance" class="hidden">
         <h3>Mark Student Attendance</h3>
@@ -1357,7 +1361,7 @@ let selectedCourseForLessons = null;
 
 /* HELPERS */
 
-function showMessage(id, message, type = "success") {
+function showMessage(id,message,type="success") {
     const element = document.getElementById(id);
     if (!element) return;
 
@@ -1374,12 +1378,12 @@ function clearMessage(id) {
 }
 
 function escapeHTML(value) {
-    return String(value ?? "").replace(/[&<>"']/g, character => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
+    return String(value ?? "").replace(/[&<>"']/g,character => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
     })[character]);
 }
 
@@ -1427,23 +1431,37 @@ function isApprovedStaff() {
         (role === "admin" || role === "teacher");
 }
 
+/* PYTHON THUMBNAIL OPEN/CLOSE */
+
+function togglePythonCourses() {
+    const area = document.getElementById("pythonCoursesArea");
+    const card = document.getElementById("pythonCourseCard");
+    const button = document.getElementById("pythonCardToggle");
+
+    const isOpening = area.classList.contains("hidden");
+
+    area.classList.toggle("hidden",!isOpening);
+    card.classList.toggle("expanded",isOpening);
+    button.setAttribute("aria-expanded",String(isOpening));
+}
+
 /* AUTH TABS */
 
 function showAuth(type) {
     const isLogin = type === "login";
 
-    document.getElementById("loginForm").classList.toggle("hidden", !isLogin);
-    document.getElementById("registerForm").classList.toggle("hidden", isLogin);
+    document.getElementById("loginForm").classList.toggle("hidden",!isLogin);
+    document.getElementById("registerForm").classList.toggle("hidden",isLogin);
 
-    document.getElementById("loginTab").classList.toggle("active", isLogin);
-    document.getElementById("registerTab").classList.toggle("active", !isLogin);
+    document.getElementById("loginTab").classList.toggle("active",isLogin);
+    document.getElementById("registerTab").classList.toggle("active",!isLogin);
 
     clearMessage("authMessage");
 }
 
 /* REGISTER */
 
-document.getElementById("registerForm").addEventListener("submit", async function(event) {
+document.getElementById("registerForm").addEventListener("submit",async function(event) {
     event.preventDefault();
 
     const button = document.getElementById("registerButton");
@@ -1455,13 +1473,11 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     const password = document.getElementById("registerPassword").value;
 
     try {
-        const { data, error } = await supabaseClient.auth.signUp({
+        const {data,error} = await supabaseClient.auth.signUp({
             email,
             password,
-            options: {
-                data: {
-                    full_name: fullName
-                }
+            options:{
+                data:{full_name:fullName}
             }
         });
 
@@ -1476,8 +1492,8 @@ document.getElementById("registerForm").addEventListener("submit", async functio
         } else if (data.session) {
             await loadUserProfile(data.user);
         }
-    } catch (error) {
-        showMessage("authMessage", error.message, "error");
+    } catch(error) {
+        showMessage("authMessage",error.message,"error");
     } finally {
         button.disabled = false;
         button.textContent = "Create Account";
@@ -1486,7 +1502,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
 
 /* LOGIN */
 
-document.getElementById("loginForm").addEventListener("submit", async function(event) {
+document.getElementById("loginForm").addEventListener("submit",async function(event) {
     event.preventDefault();
 
     const button = document.getElementById("loginButton");
@@ -1497,7 +1513,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const password = document.getElementById("loginPassword").value;
 
     try {
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
+        const {data,error} = await supabaseClient.auth.signInWithPassword({
             email,
             password
         });
@@ -1505,8 +1521,8 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         if (error) throw error;
 
         await loadUserProfile(data.user);
-    } catch (error) {
-        showMessage("authMessage", error.message, "error");
+    } catch(error) {
+        showMessage("authMessage",error.message,"error");
     } finally {
         button.disabled = false;
         button.textContent = "Login";
@@ -1521,18 +1537,18 @@ async function forgotPassword(event) {
     const email = document.getElementById("loginEmail").value.trim();
 
     if (!email) {
-        showMessage("authMessage", "Enter your email address first.", "error");
+        showMessage("authMessage","Enter your email address first.","error");
         return;
     }
 
-    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-        redirectTo: window.location.origin
+    const {error} = await supabaseClient.auth.resetPasswordForEmail(email,{
+        redirectTo:window.location.origin
     });
 
     if (error) {
-        showMessage("authMessage", error.message, "error");
+        showMessage("authMessage",error.message,"error");
     } else {
-        showMessage("authMessage", "Password reset instructions have been sent if that email is registered.", "success");
+        showMessage("authMessage","Password reset instructions have been sent if that email is registered.","success");
     }
 }
 
@@ -1547,19 +1563,19 @@ async function loadUserProfile(user) {
     document.getElementById("welcomeName").textContent =
         user.user_metadata?.full_name || user.email || "User";
 
-    const { data: profile, error } = await supabaseClient
+    const {data:profile,error} = await supabaseClient
         .from("profiles")
         .select("id, full_name, email, role, status")
-        .eq("id", user.id)
+        .eq("id",user.id)
         .maybeSingle();
 
     if (error) {
-        showMessage("profileMessage", "Could not load your profile: " + error.message, "error");
+        showMessage("profileMessage","Could not load your profile: " + error.message,"error");
         return;
     }
 
     if (!profile) {
-        showMessage("profileMessage", "Your profile is not available yet. Please contact an administrator.", "error");
+        showMessage("profileMessage","Your profile is not available yet. Please contact an administrator.","error");
         return;
     }
 
@@ -1577,9 +1593,9 @@ async function loadUserProfile(user) {
     const approved = status === "approved";
     const staff = role === "admin" || role === "teacher";
 
-    document.getElementById("adminPanel").classList.toggle("hidden", !(role === "admin" && approved));
-    document.getElementById("attendancePanel").classList.toggle("hidden", !approved);
-    document.getElementById("courseManagerPanel").classList.toggle("hidden", !(staff && approved));
+    document.getElementById("adminPanel").classList.toggle("hidden",!(role === "admin" && approved));
+    document.getElementById("attendancePanel").classList.toggle("hidden",!approved);
+    document.getElementById("courseManagerPanel").classList.toggle("hidden",!(staff && approved));
 
     if (!approved) {
         showMessage(
@@ -1614,20 +1630,22 @@ async function loadUserProfile(user) {
 /* ADMIN USERS */
 
 async function loadAdminUsers() {
-    if (normalized(currentProfile?.role) !== "admin" ||
-        normalized(currentProfile?.status) !== "approved") return;
+    if (
+        normalized(currentProfile?.role) !== "admin" ||
+        normalized(currentProfile?.status) !== "approved"
+    ) return;
 
     const body = document.getElementById("adminUsersBody");
     body.innerHTML = '<tr><td colspan="5">Loading users...</td></tr>';
 
-    const { data, error } = await supabaseClient
+    const {data,error} = await supabaseClient
         .from("profiles")
         .select("id, full_name, email, role, status")
         .order("full_name");
 
     if (error) {
         body.innerHTML = `<tr><td colspan="5">${escapeHTML(error.message)}</td></tr>`;
-        showMessage("adminMessage", error.message, "error");
+        showMessage("adminMessage",error.message,"error");
         return;
     }
 
@@ -1637,7 +1655,7 @@ async function loadAdminUsers() {
     document.getElementById("totalStudents").textContent =
         users.filter(user => normalized(user.role) === "student").length;
     document.getElementById("totalStaff").textContent =
-        users.filter(user => ["teacher", "admin"].includes(normalized(user.role))).length;
+        users.filter(user => ["teacher","admin"].includes(normalized(user.role))).length;
 
     if (!users.length) {
         body.innerHTML = '<tr><td colspan="5">No registered users found.</td></tr>';
@@ -1648,11 +1666,11 @@ async function loadAdminUsers() {
         const role = normalized(user.role);
         const status = normalized(user.status);
 
-        const roleOptions = ["student", "teacher", "admin"].map(option =>
+        const roleOptions = ["student","teacher","admin"].map(option =>
             `<option value="${option}" ${role === option ? "selected" : ""}>${option}</option>`
         ).join("");
 
-        const statusOptions = ["approved", "pending", "rejected"].map(option =>
+        const statusOptions = ["approved","pending","rejected"].map(option =>
             `<option value="${option}" ${status === option ? "selected" : ""}>${option}</option>`
         ).join("");
 
@@ -1683,25 +1701,25 @@ async function loadAdminUsers() {
 
 async function updateUserAccess(userId) {
     if (userId === currentUser.id) {
-        showMessage("adminMessage", "You cannot change your own role or status here.", "error");
+        showMessage("adminMessage","You cannot change your own role or status here.","error");
         return;
     }
 
     const newRole = document.getElementById("role-" + userId).value;
     const newStatus = document.getElementById("status-" + userId).value;
 
-    const { error } = await supabaseClient.rpc("admin_update_user_access", {
-        target_user_id: userId,
-        new_role: newRole,
-        new_status: newStatus
+    const {error} = await supabaseClient.rpc("admin_update_user_access",{
+        target_user_id:userId,
+        new_role:newRole,
+        new_status:newStatus
     });
 
     if (error) {
-        showMessage("adminMessage", error.message, "error");
+        showMessage("adminMessage",error.message,"error");
         return;
     }
 
-    showMessage("adminMessage", "User access updated successfully.", "success");
+    showMessage("adminMessage","User access updated successfully.","success");
     await loadAdminUsers();
 }
 
@@ -1717,14 +1735,14 @@ async function loadCourseManager() {
     const container = document.getElementById("managedCourses");
     container.innerHTML = '<div class="empty-state">Loading courses...</div>';
 
-    const { data, error } = await supabaseClient
+    const {data,error} = await supabaseClient
         .from("courses")
         .select("*")
-        .order("created_at", { ascending: false });
+        .order("created_at",{ascending:false});
 
     if (error) {
         container.innerHTML = "";
-        showMessage("courseManagerMessage", "Could not load courses: " + error.message, "error");
+        showMessage("courseManagerMessage","Could not load courses: " + error.message,"error");
         return;
     }
 
@@ -1755,11 +1773,11 @@ async function loadCourseManager() {
 
 /* CREATE OR UPDATE COURSE */
 
-document.getElementById("courseForm").addEventListener("submit", async function(event) {
+document.getElementById("courseForm").addEventListener("submit",async function(event) {
     event.preventDefault();
 
     if (!isApprovedStaff() || !currentUser) {
-        showMessage("courseManagerMessage", "Only approved teachers and administrators can manage courses.", "error");
+        showMessage("courseManagerMessage","Only approved teachers and administrators can manage courses.","error");
         return;
     }
 
@@ -1777,9 +1795,7 @@ document.getElementById("courseForm").addEventListener("submit", async function(
     const is_published = document.getElementById("coursePublished").checked;
 
     try {
-        if (!title) {
-            throw new Error("Please enter a course title.");
-        }
+        if (!title) throw new Error("Please enter a course title.");
 
         if (thumbnailInput && !thumbnail_url) {
             throw new Error("Please enter a valid HTTP or HTTPS thumbnail URL.");
@@ -1789,7 +1805,7 @@ document.getElementById("courseForm").addEventListener("submit", async function(
             title,
             description,
             category,
-            thumbnail_url: thumbnail_url || null,
+            thumbnail_url:thumbnail_url || null,
             is_published
         };
 
@@ -1799,13 +1815,13 @@ document.getElementById("courseForm").addEventListener("submit", async function(
             result = await supabaseClient
                 .from("courses")
                 .update(courseData)
-                .eq("id", courseId);
+                .eq("id",courseId);
         } else {
             result = await supabaseClient
                 .from("courses")
                 .insert({
                     ...courseData,
-                    created_by: currentUser.id
+                    created_by:currentUser.id
                 });
         }
 
@@ -1821,8 +1837,8 @@ document.getElementById("courseForm").addEventListener("submit", async function(
         await loadCourseManager();
         await loadPublishedCourses();
 
-    } catch (error) {
-        showMessage("courseManagerMessage", error.message, "error");
+    } catch(error) {
+        showMessage("courseManagerMessage",error.message,"error");
     } finally {
         button.disabled = false;
         button.textContent = "Save Course";
@@ -1849,8 +1865,8 @@ function editCourse(courseId) {
     document.getElementById("cancelCourseEdit").classList.remove("hidden");
 
     document.getElementById("courseFormHeading").scrollIntoView({
-        behavior: "smooth",
-        block: "center"
+        behavior:"smooth",
+        block:"center"
     });
 }
 
@@ -1882,8 +1898,8 @@ function openLessonEditor(courseId) {
     loadManagedLessons(courseId);
 
     document.getElementById("lessonEditor").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+        behavior:"smooth",
+        block:"start"
     });
 }
 
@@ -1892,15 +1908,14 @@ function openLessonEditor(courseId) {
 async function loadManagedLessons(courseId) {
     if (!isApprovedStaff()) return;
 
-    const container = document.getElementById("managedCourses");
-    const { data, error } = await supabaseClient
+    const {data,error} = await supabaseClient
         .from("lessons")
         .select("*")
-        .eq("course_id", courseId)
-        .order("lesson_order", { ascending: true });
+        .eq("course_id",courseId)
+        .order("lesson_order",{ascending:true});
 
     if (error) {
-        showMessage("courseManagerMessage", "Could not load lessons: " + error.message, "error");
+        showMessage("courseManagerMessage","Could not load lessons: " + error.message,"error");
         return;
     }
 
@@ -1942,11 +1957,11 @@ async function loadManagedLessons(courseId) {
 
 /* CREATE OR UPDATE LESSON */
 
-document.getElementById("lessonForm").addEventListener("submit", async function(event) {
+document.getElementById("lessonForm").addEventListener("submit",async function(event) {
     event.preventDefault();
 
     if (!isApprovedStaff()) {
-        showMessage("courseManagerMessage", "You do not have permission to manage lessons.", "error");
+        showMessage("courseManagerMessage","You do not have permission to manage lessons.","error");
         return;
     }
 
@@ -1965,10 +1980,12 @@ document.getElementById("lessonForm").addEventListener("submit", async function(
         const fileInput = document.getElementById("lessonFile").value.trim();
         const video_url = safeExternalURL(videoInput);
         const file_url = safeExternalURL(fileInput);
+
         const lesson_order = Math.max(
             1,
-            parseInt(document.getElementById("lessonOrder").value, 10) || 1
+            parseInt(document.getElementById("lessonOrder").value,10) || 1
         );
+
         const is_published = document.getElementById("lessonPublished").checked;
 
         if (!courseId || !title) {
@@ -1984,12 +2001,12 @@ document.getElementById("lessonForm").addEventListener("submit", async function(
         }
 
         const lessonData = {
-            course_id: courseId,
+            course_id:courseId,
             title,
             description,
             lesson_content,
-            video_url: video_url || null,
-            file_url: file_url || null,
+            video_url:video_url || null,
+            file_url:file_url || null,
             lesson_order,
             is_published
         };
@@ -2000,7 +2017,7 @@ document.getElementById("lessonForm").addEventListener("submit", async function(
             result = await supabaseClient
                 .from("lessons")
                 .update(lessonData)
-                .eq("id", lessonId);
+                .eq("id",lessonId);
         } else {
             result = await supabaseClient
                 .from("lessons")
@@ -2019,8 +2036,8 @@ document.getElementById("lessonForm").addEventListener("submit", async function(
         await loadManagedLessons(courseId);
         await loadPublishedCourses();
 
-    } catch (error) {
-        showMessage("courseManagerMessage", error.message, "error");
+    } catch(error) {
+        showMessage("courseManagerMessage",error.message,"error");
     } finally {
         button.disabled = false;
         button.textContent = "Save Lesson";
@@ -2049,8 +2066,8 @@ function editLesson(lessonId) {
     document.getElementById("saveLessonButton").textContent = "Update Lesson";
 
     document.getElementById("lessonFormHeading").scrollIntoView({
-        behavior: "smooth",
-        block: "center"
+        behavior:"smooth",
+        block:"center"
     });
 }
 
@@ -2080,27 +2097,38 @@ function closeLessonEditor() {
    STUDENT LEARNING AREA
 ===================================================== */
 
-/* LOAD PUBLISHED COURSES */
+/* LOAD ONLY PUBLISHED PYTHON COURSES */
 
 async function loadPublishedCourses() {
     const container = document.getElementById("publishedCoursesGrid");
 
-    const { data, error } = await supabaseClient
+    container.innerHTML = '<div class="empty-state">Loading Python courses...</div>';
+
+    const {data,error} = await supabaseClient
         .from("courses")
         .select("id, title, description, category, thumbnail_url")
-        .eq("is_published", true)
-        .order("created_at", { ascending: false });
+        .eq("is_published",true)
+        .order("created_at",{ascending:false});
 
     if (error) {
-        container.innerHTML = '<div class="empty-state">Courses could not be loaded right now.</div>';
-        showMessage("publishedCourseMessage", error.message, "error");
+        container.innerHTML = '<div class="empty-state">Python courses could not be loaded right now.</div>';
+        showMessage("publishedCourseMessage",error.message,"error");
         return;
     }
 
-    const courses = data || [];
+    /*
+       IMPORTANT:
+       Only courses whose category is exactly Python
+       will appear inside the Python thumbnail.
+    */
+
+    const courses = (data || []).filter(course =>
+        normalized(course.category) === "python"
+    );
 
     if (!courses.length) {
-        container.innerHTML = '<div class="empty-state">No published courses yet. Please check again later.</div>';
+        container.innerHTML = '<div class="empty-state">No published Python courses yet. Please check again later.</div>';
+        clearMessage("publishedCourseMessage");
         return;
     }
 
@@ -2116,10 +2144,12 @@ async function loadPublishedCourses() {
                     ? `<img src="${escapeHTML(imageURL)}" alt="${escapeHTML(course.title)}" loading="lazy">`
                     : `<div class="course-icon" style="margin:18px">📘</div>`
                 }
+
                 <div class="course-card-content">
-                    <span class="course-category">${escapeHTML(course.category || "Course")}</span>
+                    <span class="course-category">${escapeHTML(course.category || "Python")}</span>
                     <h3>${escapeHTML(course.title)}</h3>
                     <p>${escapeHTML(course.description || "Explore this course and its lessons.")}</p>
+
                     <div class="dashboard-actions">
                         <button class="btn btn-small" onclick="openPublishedCourse('${course.id}')">
                             View Course →
@@ -2145,15 +2175,15 @@ async function openPublishedCourse(courseId) {
     lessonsElement.innerHTML = '<div class="empty-state">Loading lessons...</div>';
 
     viewer.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+        behavior:"smooth",
+        block:"start"
     });
 
-    const { data: course, error: courseError } = await supabaseClient
+    const {data:course,error:courseError} = await supabaseClient
         .from("courses")
         .select("id, title, description")
-        .eq("id", courseId)
-        .eq("is_published", true)
+        .eq("id",courseId)
+        .eq("is_published",true)
         .maybeSingle();
 
     if (courseError || !course) {
@@ -2165,12 +2195,12 @@ async function openPublishedCourse(courseId) {
     titleElement.textContent = course.title;
     descriptionElement.textContent = course.description || "";
 
-    const { data: lessons, error: lessonError } = await supabaseClient
+    const {data:lessons,error:lessonError} = await supabaseClient
         .from("lessons")
         .select("id, title, description, lesson_content, video_url, file_url, lesson_order")
-        .eq("course_id", courseId)
-        .eq("is_published", true)
-        .order("lesson_order", { ascending: true });
+        .eq("course_id",courseId)
+        .eq("is_published",true)
+        .order("lesson_order",{ascending:true});
 
     if (lessonError) {
         lessonsElement.innerHTML = '<div class="empty-state">Could not load lessons.</div>';
@@ -2182,7 +2212,7 @@ async function openPublishedCourse(courseId) {
         return;
     }
 
-    lessonsElement.innerHTML = lessons.map((lesson, index) => {
+    lessonsElement.innerHTML = lessons.map((lesson,index) => {
         const videoURL = safeExternalURL(lesson.video_url);
         const fileURL = safeExternalURL(lesson.file_url);
 
@@ -2219,9 +2249,10 @@ async function openPublishedCourse(courseId) {
 
 function closeCourseViewer() {
     document.getElementById("courseViewer").classList.add("hidden");
+
     document.getElementById("courses").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+        behavior:"smooth",
+        block:"start"
     });
 }
 
@@ -2234,16 +2265,16 @@ function closeCourseViewer() {
 async function loadStudentOptions() {
     const select = document.getElementById("attendanceStudent");
 
-    const { data, error } = await supabaseClient
+    const {data,error} = await supabaseClient
         .from("profiles")
         .select("id, full_name, email")
-        .eq("role", "student")
-        .eq("status", "approved")
+        .eq("role","student")
+        .eq("status","approved")
         .order("full_name");
 
     if (error) {
         select.innerHTML = '<option value="">Could not load students</option>';
-        showMessage("attendanceMessage", error.message, "error");
+        showMessage("attendanceMessage",error.message,"error");
         return;
     }
 
@@ -2265,28 +2296,27 @@ async function markAttendance() {
     const status = document.getElementById("attendanceStatus").value;
 
     if (!studentId) {
-        showMessage("attendanceMessage", "Please select a student.", "error");
+        showMessage("attendanceMessage","Please select a student.","error");
         return;
     }
 
-    const { error } = await supabaseClient
+    const {error} = await supabaseClient
         .from("attendance")
         .upsert({
-            student_id: studentId,
-            attendance_date: new Date().toLocaleDateString("en-CA"),
-            attendance_status: status,
-            marked_by: currentUser.id
-        }, {
-            onConflict: "student_id,attendance_date"
+            student_id:studentId,
+            attendance_date:new Date().toLocaleDateString("en-CA"),
+            attendance_status:status,
+            marked_by:currentUser.id
+        },{
+            onConflict:"student_id,attendance_date"
         });
 
     if (error) {
-        showMessage("attendanceMessage", error.message, "error");
+        showMessage("attendanceMessage",error.message,"error");
         return;
     }
 
-    showMessage("attendanceMessage", "Attendance saved successfully.", "success");
-
+    showMessage("attendanceMessage","Attendance saved successfully.","success");
     await loadStaffAttendance();
 }
 
@@ -2295,7 +2325,7 @@ async function markAttendance() {
 async function loadStaffAttendance() {
     const body = document.getElementById("staffAttendanceBody");
 
-    const { data, error } = await supabaseClient
+    const {data,error} = await supabaseClient
         .from("attendance")
         .select(`
             id,
@@ -2307,7 +2337,7 @@ async function loadStaffAttendance() {
                 email
             )
         `)
-        .order("attendance_date", { ascending: false })
+        .order("attendance_date",{ascending:false})
         .limit(200);
 
     if (error) {
@@ -2335,11 +2365,11 @@ async function loadStaffAttendance() {
 async function loadStudentAttendance() {
     const body = document.getElementById("studentAttendanceBody");
 
-    const { data, error } = await supabaseClient
+    const {data,error} = await supabaseClient
         .from("attendance")
         .select("attendance_date, attendance_status, marked_at")
-        .eq("student_id", currentUser.id)
-        .order("attendance_date", { ascending: false })
+        .eq("student_id",currentUser.id)
+        .order("attendance_date",{ascending:false})
         .limit(200);
 
     if (error) {
@@ -2364,10 +2394,10 @@ async function loadStudentAttendance() {
 /* ATTENDANCE COUNT */
 
 async function updateAttendanceCount() {
-    const { count, error } = await supabaseClient
+    const {count,error} = await supabaseClient
         .from("attendance")
-        .select("*", { count: "exact", head: true })
-        .eq("student_id", currentUser.id);
+        .select("*",{count:"exact",head:true})
+        .eq("student_id",currentUser.id);
 
     if (!error) {
         document.getElementById("attendanceCount").textContent = count || 0;
@@ -2379,7 +2409,7 @@ async function updateAttendanceCount() {
 ===================================================== */
 
 async function logout() {
-    const { error } = await supabaseClient.auth.signOut();
+    const {error} = await supabaseClient.auth.signOut();
 
     if (error) {
         alert(error.message);
@@ -2399,7 +2429,6 @@ async function logout() {
 
     document.getElementById("staffAttendance").classList.add("hidden");
     document.getElementById("studentAttendance").classList.add("hidden");
-
     document.getElementById("lessonEditor").classList.add("hidden");
 
     const managedLessons = document.getElementById("managedLessons");
@@ -2407,7 +2436,6 @@ async function logout() {
 
     resetCourseForm();
     resetLessonForm();
-
     showAuth("login");
 
     window.location.hash = "account";
@@ -2416,10 +2444,10 @@ async function logout() {
 /* RESTORE SESSION */
 
 async function restoreSession() {
-    const { data, error } = await supabaseClient.auth.getSession();
+    const {data,error} = await supabaseClient.auth.getSession();
 
     if (error) {
-        console.error("Session error:", error.message);
+        console.error("Session error:",error.message);
         return;
     }
 
@@ -2430,7 +2458,7 @@ async function restoreSession() {
 
 /* AUTH STATE CHANGES */
 
-supabaseClient.auth.onAuthStateChange((event, session) => {
+supabaseClient.auth.onAuthStateChange((event,session) => {
     if (event === "SIGNED_OUT") {
         currentUser = null;
         currentProfile = null;
