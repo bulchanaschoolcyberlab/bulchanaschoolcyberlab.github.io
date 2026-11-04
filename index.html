@@ -321,6 +321,40 @@ header {
     font-size: 13px;
 }
 
+/* PUBLISHED COURSES INSIDE PYTHON CARD */
+
+.python-course-card {
+    grid-column: 1 / -1;
+}
+
+.python-courses-heading {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+}
+
+.python-courses-heading h3 {
+    color: var(--navy);
+    font-size: 19px;
+    margin-bottom: 4px;
+}
+
+.python-courses-heading p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.python-courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 15px;
+}
+
+.python-courses-grid .published-course-card {
+    min-width: 0;
+}
+
 /* DYNAMIC COURSE CARDS */
 
 .published-course-card {
@@ -802,6 +836,14 @@ footer p + p {
         padding: 17px 13px;
     }
 
+    .python-course-card {
+        grid-column: 1 / -1;
+    }
+
+    .python-courses-grid {
+        grid-template-columns: 1fr;
+    }
+
     .published-course-card {
         padding: 0;
     }
@@ -890,10 +932,24 @@ footer p + p {
     </div>
 
     <div class="course-grid">
-        <div class="course-card">
+
+        <!-- PYTHON CARD WITH PUBLISHED COURSES INSIDE -->
+
+        <div class="course-card python-course-card">
             <div class="course-icon">🐍</div>
             <h3>Python Programming</h3>
             <p>Learn Python from the basics and develop your problem-solving skills.</p>
+
+            <div class="python-courses-heading">
+                <h3>📚 Available Courses</h3>
+                <p>Explore courses published by our teachers.</p>
+            </div>
+
+            <div id="publishedCourseMessage" class="message"></div>
+
+            <div id="publishedCoursesGrid" class="python-courses-grid">
+                <div class="empty-state">Loading available courses...</div>
+            </div>
         </div>
 
         <div class="course-card">
@@ -925,20 +981,7 @@ footer p + p {
             <h3>Innovation</h3>
             <p>Turn creative ideas into practical technology projects.</p>
         </div>
-    </div>
-</section>
 
-<!-- PUBLISHED COURSES -->
-
-<section class="section" id="publishedCourses">
-    <div class="section-heading">
-        <h2>📚 Available Courses</h2>
-        <p>Explore courses published by our teachers.</p>
-    </div>
-
-    <div id="publishedCourseMessage" class="message"></div>
-    <div id="publishedCoursesGrid" class="course-grid">
-        <div class="empty-state">Loading available courses...</div>
     </div>
 </section>
 
@@ -2176,7 +2219,7 @@ async function openPublishedCourse(courseId) {
 
 function closeCourseViewer() {
     document.getElementById("courseViewer").classList.add("hidden");
-    document.getElementById("publishedCourses").scrollIntoView({
+    document.getElementById("courses").scrollIntoView({
         behavior: "smooth",
         block: "start"
     });
