@@ -15,7 +15,7 @@
 --red:#dc2626;--shadow:0 8px 25px rgba(16,42,99,.08)
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
 body{font-family:Inter,"Segoe UI",Arial,sans-serif;background:#f7faff;color:var(--text);font-size:15px;line-height:1.6}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
@@ -58,14 +58,16 @@ header{background:rgba(255,255,255,.97);border-bottom:1px solid var(--border);po
 .course-card:hover{transform:translateY(-4px);border-color:#9cc4ff}
 .category-card{width:100%;text-align:left;cursor:pointer;color:var(--text)}
 .category-card:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
 .course-icon{width:52px;height:52px;border-radius:13px;background:var(--light-blue);display:grid;place-items:center;font-size:27px;margin-bottom:15px}
 .course-card h3{font-size:17px;color:var(--navy);margin-bottom:7px}
 .course-card p{color:var(--muted);font-size:13px}
 .category-open{display:inline-block;margin-top:15px;color:var(--blue);font-size:13px;font-weight:700}
 
 .published-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px}
-.published-course-card{overflow:hidden;padding:0;display:flex;flex-direction:column;min-width:0}
-.published-course-card img{width:100%;height:165px;object-fit:cover;background:var(--light-blue)}
+.published-course-card{overflow:hidden;padding:0;display:flex;flex-direction:column;min-width:0;cursor:pointer}
+.published-course-card:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.published-course-card img{width:100%;height:165px;object-fit:cover;background:var(--light-blue);display:block}
 .course-card-content{padding:18px;flex:1}
 .course-category{display:inline-block;font-size:11px;font-weight:700;color:var(--blue);background:var(--light-blue);padding:4px 9px;border-radius:20px;margin-bottom:10px}
 
@@ -520,6 +522,7 @@ let currentProfile = null;
 let managedCourseCache = [];
 let selectedCourseForLessons = null;
 let currentCategory = null;
+let currentPublishedCourse = null;
 
 const categories = {
 python:{
@@ -608,13 +611,30 @@ const status=normalized(currentProfile?.status);
 return status==="approved"&&(role==="admin"||role==="teacher");
 }
 
-/* CATEGORY NAVIGATION */
+/* INSTANT PAGE NAVIGATION */
+
+function showOnlyPage(pageId){
+const pageIds=[
+"mainPage",
+"categoryBoard",
+"courseViewer",
+"adminPanel",
+"courseManagerPanel",
+"attendancePanel"
+];
+
+pageIds.forEach(id=>{
+document.getElementById(id).classList.toggle("hidden",id!==pageId);
+});
+
+window.scrollTo(0,0);
+}
 
 function showMainPage(){
-document.getElementById("mainPage").classList.remove("hidden");
-document.getElementById("categoryBoard").classList.add("hidden");
-document.getElementById("courseViewer").classList.add("hidden");
+showOnlyPage("mainPage");
 currentCategory=null;
+currentPublishedCourse=null;
+history.replaceState(null,"",window.location.pathname);
 }
 
 function openCategoryBoard(categoryKey){
@@ -622,10 +642,9 @@ const category=categories[categoryKey];
 if(!category)return;
 
 currentCategory=categoryKey;
+currentPublishedCourse=null;
 
-document.getElementById("mainPage").classList.add("hidden");
-document.getElementById("courseViewer").classList.add("hidden");
-document.getElementById("categoryBoard").classList.remove("hidden");
+showOnlyPage("categoryBoard");
 
 document.getElementById("categoryBoardTitle").textContent=category.title;
 document.getElementById("categoryBoardDescription").textContent=category.description;
@@ -635,20 +654,13 @@ document.getElementById("categoryCoursesGrid").innerHTML=
 
 clearMessage("categoryBoardMessage");
 
-history.replaceState(null,"","#board-"+categoryKey);
+history.pushState({page:"category",category:categoryKey},"","#board-"+categoryKey);
 
 loadCategoryCourses(categoryKey);
-
-window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function closeCategoryBoard(){
-document.getElementById("categoryBoard").classList.add("hidden");
-document.getElementById("courseViewer").classList.add("hidden");
-document.getElementById("mainPage").classList.remove("hidden");
-currentCategory=null;
-history.replaceState(null,"","#courses");
-document.getElementById("courses").scrollIntoView({behavior:"smooth"});
+showMainPage();
 }
 
 /* MATCH COURSE CATEGORY */
@@ -692,16 +704,24 @@ container.innerHTML=courses.map(course=>{
 const imageURL=safeExternalURL(course.thumbnail_url);
 
 return `
-<article class="course-card published-course-card">
+<article
+class="course-card published-course-card"
+role="button"
+tabindex="0"
+aria-label="Open ${escapeHTML(course.title)}"
+onclick="openPublishedCourse('${escapeHTML(course.id)}')"
+onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openPublishedCourse('${escapeHTML(course.id)}')}">
+
 ${imageURL
 ?`<img src="${escapeHTML(imageURL)}" alt="${escapeHTML(course.title)}" loading="lazy">`
 :`<div class="course-icon" style="margin:18px">📘</div>`}
+
 <div class="course-card-content">
 <span class="course-category">${escapeHTML(course.category||"Course")}</span>
 <h3>${escapeHTML(course.title)}</h3>
 <p>${escapeHTML(course.description||"Explore this course and its lessons.")}</p>
 <div class="dashboard-actions">
-<button class="btn btn-small" onclick="openPublishedCourse('${course.id}')">View Course →</button>
+<span class="btn btn-small">Open Course →</span>
 </div>
 </div>
 </article>`;
@@ -1046,7 +1066,7 @@ document.getElementById("courseFormHeading").textContent="Edit Course";
 document.getElementById("saveCourseButton").textContent="Update Course";
 document.getElementById("cancelCourseEdit").classList.remove("hidden");
 
-document.getElementById("courseFormHeading").scrollIntoView({behavior:"smooth",block:"center"});
+document.getElementById("courseFormHeading").scrollIntoView({behavior:"auto",block:"center"});
 }
 
 /* RESET COURSE FORM */
@@ -1075,7 +1095,7 @@ document.getElementById("lessonCourseName").textContent="Course: "+course.title;
 resetLessonForm();
 loadManagedLessons(courseId);
 
-document.getElementById("lessonEditor").scrollIntoView({behavior:"smooth",block:"start"});
+document.getElementById("lessonEditor").scrollIntoView({behavior:"auto",block:"start"});
 }
 
 /* LOAD LESSONS FOR STAFF */
@@ -1205,7 +1225,7 @@ document.getElementById("lessonPublished").checked=!!lesson.is_published;
 document.getElementById("lessonFormHeading").textContent="Edit Lesson";
 document.getElementById("saveLessonButton").textContent="Update Lesson";
 
-document.getElementById("lessonFormHeading").scrollIntoView({behavior:"smooth",block:"center"});
+document.getElementById("lessonFormHeading").scrollIntoView({behavior:"auto",block:"center"});
 }
 
 /* RESET LESSON FORM */
@@ -1228,22 +1248,28 @@ if(lessons)lessons.remove();
 selectedCourseForLessons=null;
 }
 
-/* OPEN COURSE FOR STUDENTS */
+/* OPEN COURSE PAGE FOR STUDENTS */
 
 async function openPublishedCourse(courseId){
-const viewer=document.getElementById("courseViewer");
+if(!currentCategory)return;
+
+currentPublishedCourse=courseId;
+
+showOnlyPage("courseViewer");
+
 const titleElement=document.getElementById("viewerCourseTitle");
 const descriptionElement=document.getElementById("viewerCourseDescription");
 const lessonsElement=document.getElementById("viewerLessons");
-
-document.getElementById("categoryBoard").classList.add("hidden");
-viewer.classList.remove("hidden");
 
 titleElement.textContent="Loading course...";
 descriptionElement.textContent="";
 lessonsElement.innerHTML='<div class="empty-state">Loading lessons...</div>';
 
-viewer.scrollIntoView({behavior:"smooth",block:"start"});
+history.pushState(
+{page:"course",category:currentCategory,courseId:courseId},
+"",
+"#course-"+courseId
+);
 
 const {data:course,error:courseError}=await supabaseClient
 .from("courses")
@@ -1298,15 +1324,96 @@ ${fileURL?`<a class="text-link" href="${escapeHTML(fileURL)}" target="_blank" re
 /* BACK TO CATEGORY BOARD */
 
 function closeCourseViewer(){
-document.getElementById("courseViewer").classList.add("hidden");
-
 if(currentCategory){
-document.getElementById("categoryBoard").classList.remove("hidden");
-document.getElementById("categoryBoard").scrollIntoView({behavior:"smooth",block:"start"});
+showOnlyPage("categoryBoard");
+currentPublishedCourse=null;
+history.replaceState(
+{page:"category",category:currentCategory},
+"",
+"#board-"+currentCategory
+);
 }else{
 showMainPage();
-document.getElementById("courses").scrollIntoView({behavior:"smooth"});
 }
+}
+
+/* BROWSER BACK BUTTON SUPPORT */
+
+window.addEventListener("popstate",function(event){
+const state=event.state;
+
+if(state?.page==="course"&&state.category){
+currentCategory=state.category;
+currentPublishedCourse=state.courseId;
+showOnlyPage("courseViewer");
+openCourseFromHistory(state.courseId);
+}else if(state?.page==="category"&&state.category){
+currentCategory=state.category;
+currentPublishedCourse=null;
+showOnlyPage("categoryBoard");
+loadCategoryCourses(state.category);
+}else{
+showMainPage();
+}
+});
+
+async function openCourseFromHistory(courseId){
+const titleElement=document.getElementById("viewerCourseTitle");
+const descriptionElement=document.getElementById("viewerCourseDescription");
+const lessonsElement=document.getElementById("viewerLessons");
+
+titleElement.textContent="Loading course...";
+descriptionElement.textContent="";
+lessonsElement.innerHTML='<div class="empty-state">Loading lessons...</div>';
+
+const {data:course,error}=await supabaseClient
+.from("courses")
+.select("id,title,description")
+.eq("id",courseId)
+.eq("is_published",true)
+.maybeSingle();
+
+if(error||!course){
+titleElement.textContent="Course unavailable";
+lessonsElement.innerHTML='<div class="empty-state">This course is not available.</div>';
+return;
+}
+
+titleElement.textContent=course.title;
+descriptionElement.textContent=course.description||"";
+
+const {data:lessons, error:lessonError}=await supabaseClient
+.from("lessons")
+.select("id,title,description,lesson_content,video_url,file_url,lesson_order")
+.eq("course_id",courseId)
+.eq("is_published",true)
+.order("lesson_order",{ascending:true});
+
+if(lessonError){
+lessonsElement.innerHTML='<div class="empty-state">Could not load lessons.</div>';
+return;
+}
+
+if(!lessons||!lessons.length){
+lessonsElement.innerHTML='<div class="empty-state">No published lessons are available yet.</div>';
+return;
+}
+
+lessonsElement.innerHTML=lessons.map((lesson,index)=>{
+const videoURL=safeExternalURL(lesson.video_url);
+const fileURL=safeExternalURL(lesson.file_url);
+
+return `
+<article class="lesson-item">
+<h4>Lesson ${index+1}: ${escapeHTML(lesson.title)}</h4>
+<p>${escapeHTML(lesson.description||"")}</p>
+${lesson.lesson_content?`<div class="lesson-content">${escapeHTML(lesson.lesson_content)}</div>`:""}
+<div class="lesson-links">
+${videoURL?`<a class="text-link" href="${escapeHTML(videoURL)}" target="_blank" rel="noopener noreferrer">▶ Watch video</a>`:""}
+${fileURL?`<a class="text-link" href="${escapeHTML(fileURL)}" target="_blank" rel="noopener noreferrer">📄 Open learning material</a>`:""}
+</div>
+</article>`;
+}).join("");
 }
 
 /* ATTENDANCE: STUDENT OPTIONS */
@@ -1466,6 +1573,7 @@ currentProfile=null;
 managedCourseCache=[];
 selectedCourseForLessons=null;
 currentCategory=null;
+currentPublishedCourse=null;
 
 document.getElementById("authCard").classList.remove("hidden");
 document.getElementById("userDashboard").classList.add("hidden");
@@ -1487,7 +1595,8 @@ resetCourseForm();
 resetLessonForm();
 showAuth("login");
 
-window.location.hash="account";
+history.replaceState(null,"",window.location.pathname+"#account");
+window.scrollTo(0,0);
 }
 
 /* RESTORE SESSION */
